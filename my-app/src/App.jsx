@@ -9,7 +9,7 @@ import Home from './views/Home'
 import { useAuth } from './context/AuthContext'
 import Header from './components/header/Header'
 import { Flex } from '@chakra-ui/react'
-
+import Footer from './components/footer/Footer'
 
 import NavBar from './components/navBar/NavBar'
 import { Box, Container } from '@chakra-ui/react'
@@ -26,8 +26,11 @@ function App() {
 
   return (
 
-    <Box w='100%' h='100vh'>    
-    <Header />  
+    <Box w='100%' minH='100vh'>   
+    <Flex  w="100%" h='8%' justify='center' align='center' bg='black'>
+      <Header />  
+      </Flex> 
+    
 
     
      <Box w='100%' h='100vh'>
@@ -37,7 +40,12 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='*' element={'Not found'} />
       </Routes>
-    </Box></Box>
+    </Box>
+    <Flex h='60%' w='100%'>
+      <Footer />
+    </Flex>
+    
+    </Box>
 
 
 
