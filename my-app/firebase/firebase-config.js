@@ -16,6 +16,7 @@ const firebaseConfig = {
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: "G-525H0G45F7"
 };
@@ -26,5 +27,5 @@ const analytics = getAnalytics(app);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-export {database, app, auth, analytics}
+export  {database, app, auth, analytics}
 

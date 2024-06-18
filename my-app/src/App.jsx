@@ -13,6 +13,7 @@ import Footer from './components/footer/Footer'
 
 import NavBar from './components/navBar/NavBar'
 import { Box, Container } from '@chakra-ui/react'
+import AuthPage from './components/authPage/AuthPage'
 
 function App() {
 
@@ -26,39 +27,16 @@ function App() {
 
   return (
 
-    <Box w='100%' minH='100vh'>   
-    <Flex  w="100%" h='8%' justify='center' align='center' bg='black'>
-      <Header />  
-      </Flex> 
-    
-
-    
-     <Box w='100%' h='100vh'>
-
+  
 
       <Routes>
-        <Route path='/' element={<Home/>} />
+        <Route path='/' element={<Home />} />
         <Route path='*' element={'Not found'} />
+        <Route path='/auth' element={<AuthPage />} />
+
       </Routes>
-    </Box>
-    <Flex h='60%' w='100%'>
-      <Footer />
-    </Flex>
-    
-    </Box>
 
-
-
-
-
-
-
-
-
-
-
-
-
+   
 
   )
 }
