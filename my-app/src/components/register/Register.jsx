@@ -9,7 +9,7 @@ import { update, ref, set, get } from 'firebase/database'
 
 const Register = () => {
     const toast = useToast()
-    const { register } = useAuth();
+    const { register , user, login} = useAuth();
     const [form, setForm] = useState({
         email: '',
         username: '',
@@ -53,6 +53,20 @@ const Register = () => {
         return true;
     };
 
+   const isValidUsername =( username) => {
+        if (username && username.length < 3 || username.length > 20) {
+            toast({
+                title: 'Invalid username.',
+                description: "Username must be between 3 and 20 symbols.",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
+            return false;   
+        }
+        return true;
+    };
+
     const isUniqueUsername = (users, username) => {
 
         if (users) {
@@ -77,7 +91,7 @@ const Register = () => {
             const usersSnapshot = await get(usersRef);
             const users = usersSnapshot.val();
 
-            if (isValidEmail(form.email) && isValidPassword(form.password) && isUniqueUsername(users, form.username)) {
+            if (isValidEmail(form.email) && isValidPassword(form.password) && isUniqueUsername(users, form.username) && isValidUsername(form.username)) {
 
                 const credentials = await register(form.email, form.password);
                 const user = {
@@ -102,7 +116,7 @@ const Register = () => {
                     duration: 3000,
                     isClosable: true,
                 })
-
+                 await login(form.email, form.password);
                 setTimeout(() => {
                     window.location.href = '/';
                 }, 3000);

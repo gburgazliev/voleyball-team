@@ -14,6 +14,8 @@ import Footer from './components/footer/Footer'
 import NavBar from './components/navBar/NavBar'
 import { Box, Container } from '@chakra-ui/react'
 import AuthPage from './components/authPage/AuthPage'
+import Register from './components/register/Register'
+import Login from './components/login/Login'
 
 function App() {
 
@@ -32,7 +34,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='*' element={'Not found'} />
-        <Route path='/auth' element={<AuthPage />} />
+        <Route path='/auth/register' element={<Register />} />
+        <Route path='/auth/login' element={<Login />} />
 
       </Routes>
 

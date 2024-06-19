@@ -9,6 +9,7 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
      const {user, loading, error} = useAuthState(auth);
+    
 
 
         // Define authentication functions
