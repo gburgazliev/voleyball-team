@@ -57,10 +57,7 @@ const Header = () => {
 
 
     useEffect(() => {
-        getUserById(user?.uid)
-            .then((user) => {
-                setCurrentUser(user);
-            });
+        getUserById(user?.uid, setCurrentUser);
          isLoggedInContent();
     }, [user]);
 

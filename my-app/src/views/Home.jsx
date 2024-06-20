@@ -7,6 +7,7 @@ import banner from '../assets/banner.jpg'
 import logo from '../assets/logo.jpg'
 import Footer from '../components/footer/Footer'
 import Header from '../components/header/Header'
+import HomePageAthletes from "../components/homePageAthletes/HomePageAthletes"
 
   
  const Home = () => {
@@ -31,9 +32,16 @@ import Header from '../components/header/Header'
   <ListItem>Physical Conditioning</ListItem>
   <ListItem>Education, individual trainings, sports management, volleyball</ListItem>
 </UnorderedList>
+
                 </Flex>
+                
             </Flex>
-            
+
+       
+        
+            <HomePageAthletes/>
+    
+
    
             
     <Flex h='60%' w='100%'>
