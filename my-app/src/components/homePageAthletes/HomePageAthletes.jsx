@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import SingleHomePageAthlete from "../singleHomePageAthlete/SingleHomePageAthlete";
 import { useAuth } from "../../context/AuthContext";
 import { getUserById } from "../../utils/utils";
-import { get, set, update } from "firebase/database";
+import { get, onValue, set, update } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, push } from "firebase/database";
 import { auth, database } from "../../../firebase/firebase-config";
@@ -34,9 +34,11 @@ const HomePageAthletes = () => {
     useEffect(() => {
         const fetchAthletes = async () => {
 
-            const data = await getHomePageAthletes();
+           onValue(ref(database, 'homePageAthletes'), (snapshot) => {
+                const data = snapshot.val();
+                setAthletes(data || {});
+            });
 
-            setAthletes(data || {});
         };
         fetchAthletes();
 
@@ -129,7 +131,7 @@ const HomePageAthletes = () => {
             <Wrap spacing="30px" justify="center" w='50%'>
                 {Object.entries(athletes).map(([key, value]) => (
                     <WrapItem key={key}>
-                        <SingleHomePageAthlete athlete={value} />
+                        <SingleHomePageAthlete athlete={value} isAdmin={isAdmin} />
                     </WrapItem>
                 ))}
             </Wrap>

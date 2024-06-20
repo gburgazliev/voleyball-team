@@ -1,5 +1,7 @@
 import { getDatabase, ref, set, get, child, onValue, update} from "firebase/database";
-import { database } from "../../firebase/firebase-config";
+import { database, storage } from "../../firebase/firebase-config";
+import { ref as storageRef, deleteObject as deleteStorageObject } from "firebase/storage";
+
 
 
 export const getUserById = async (id, setCurrentUser) => {
@@ -32,3 +34,28 @@ export const deleteObject = async (url) => {
     const objectRef = ref(database, url);
     await set(objectRef, null);
 };
+
+
+export const handleDeleteAthlete = async (id) => {
+    try {
+    
+          const athletesRef = ref(database, `homePageAthletes`);
+    const athletesSnapshot = await get(athletesRef);
+    const athletes = athletesSnapshot.val();
+  const newAthletesArray = Object.entries(athletes).filter(([key, value]) => key !== id);
+    const newAthletes = Object.fromEntries(newAthletesArray);
+    await set(athletesRef, newAthletes);
+ 
+    } catch (error) {
+        console.error(error);
+    }
+    
+
+
+    // const imageRef = storageRef(storage, `homepageAthletes/${id}`) || null;
+    // console.log(imageRef)
+    // if (imageRef) {
+    //     await deleteStorageObject(imageRef);
+    // }
+   
+}
