@@ -16,6 +16,7 @@ import { Box, Container } from '@chakra-ui/react'
 import AuthPage from './components/authPage/AuthPage'
 import Register from './components/register/Register'
 import Login from './components/login/Login'
+import DetailedAthletePage from './components/detailedAthletePage/DetailedAthletePage'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
   
 
       <Routes>
+        <Route path='/detailed-athlete-view/:id' element={<DetailedAthletePage />} />
         <Route path='/' element={<Home />} />
         <Route path='*' element={'Not found'} />
         <Route path='/auth/register' element={<Register />} />

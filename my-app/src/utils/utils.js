@@ -6,17 +6,22 @@ import { ref as storageRef, deleteObject as deleteStorageObject } from "firebase
 
 export const getUserById = async (id, setCurrentUser) => {
     const usersRef = ref(database, `users`);
-   onValue(usersRef, (snapshot) => {
+  const snapshot = await get(usersRef);
     const data = snapshot.val();
    Object.entries(data).forEach(([key, value]) => {
         if (value.uid === id) {
             setCurrentUser(value);
         }
     });
-
-  
-});
 }
+
+export const getAthleteById = async (id) => {
+    const athleteRef = ref(database, `homePageAthletes/${id}`);
+    const athleteSnapshot = await get(athleteRef);
+    const athlete = athleteSnapshot.val();
+    return athlete;
+} 
+
 
 export const getHomePageAthletes = async () => {
     const athletesRef = ref(database, `homePageAthletes`);
