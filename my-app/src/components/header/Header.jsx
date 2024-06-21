@@ -95,13 +95,9 @@ useEffect(() => {
 
                 </Divider>
 
-                <Heading paddingLeft={5} paddingRight={5} size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
-                    ATHLETES
-                </Heading>
+               
 
-                <Divider orientation="vertical" height='20px' borderWidth='1px'>
-
-                </Divider>
+               
 
                 <Heading paddingLeft={5} paddingRight={5} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} >
                     COACHES
