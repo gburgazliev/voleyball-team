@@ -14,9 +14,6 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ],
-    "redeploy": [
-      "npm run build"
     ]
   }
 }
