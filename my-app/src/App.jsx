@@ -30,7 +30,7 @@ function App() {
 
   return (
 
-    <Box width={["100%", "100%", "100%", "100%"]}>
+    
 
       <Routes>
         <Route path='/detailed-athlete-view/:id' element={<DetailedAthletePage />} />
@@ -41,7 +41,7 @@ function App() {
 
       </Routes>
 
-      </Box>
+   
 
   )
 }
