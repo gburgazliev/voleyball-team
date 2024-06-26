@@ -12,8 +12,8 @@ import HomePageAthletes from "../components/homePageAthletes/HomePageAthletes"
   
  const Home = () => {
     return (
-        <Flex  direction='column'justify='center'  bg='black'  align='center'>
-            <Flex position='absolute' w="100%"   top={0} justify='center' align='flex-start' bg='black' zIndex={10} bgColor='black'>
+        <Flex  direction='column'justify='center'  bg='black'  align='center' w={['200%', '100%', '100%']} >
+            <Flex position='absolute' w={['200%', '100%', '100%']}   top={0} justify='center' align='flex-start' bg='black' zIndex={10} bgColor='black'>
       <Header />  
       </Flex>
             <Flex h='15%' justify='center' align='center'  zIndex={1} paddingTop={20}>

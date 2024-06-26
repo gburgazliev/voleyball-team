@@ -9,7 +9,7 @@ const Footer = () => {
 
             <Box h='100%' w='70%' marginBottom={100} justify='center' align='center'>
                 <Flex w='100%' h='100%' textColor='white' justify='space-between' paddingTop={10}>
-                    <Text w='20%' fontSize='lg'>
+                    <Text w={['40%', '20%', '20%', '20%']} fontSize={['sm', 'sm', 'lg', 'lg']}>
                         <Heading size='sm' marginBottom={5}>SB COMMUNITY</Heading>
                         SB Community is a full service sports agency, representing players and team staff.
                         As a full service sports agency, we offer our clients an array of services including contractual,
