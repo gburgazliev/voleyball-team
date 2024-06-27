@@ -15,13 +15,18 @@ export const getUserById = async (id, setCurrentUser) => {
     });
 }
 
-export const getAthleteById = async (id) => {
+export const subscribeToAthleteById = (id, onAthleteUpdate) => {
     const athleteRef = ref(database, `homePageAthletes/${id}`);
-    const athleteSnapshot = await get(athleteRef);
-    const athlete = athleteSnapshot.val();
-    return athlete;
-} 
+    const unsubscribe = onValue(athleteRef, (snapshot) => {
+        const athlete = snapshot.val();
+        onAthleteUpdate(athlete);
+    }, (error) => {
+        console.error(error);
+    });
 
+    // Return the unsubscribe function so it can be called to stop listening for updates
+    return unsubscribe;
+};
 
 export const getHomePageAthletes = async () => {
     const athletesRef = ref(database, `homePageAthletes`);
@@ -54,8 +59,6 @@ export const handleDeleteAthlete = async (id) => {
     } catch (error) {
         console.error(error);
     }
-    
-
 
     // const imageRef = storageRef(storage, `homepageAthletes/${id}`) || null;
     // console.log(imageRef)
@@ -64,3 +67,9 @@ export const handleDeleteAthlete = async (id) => {
     // }
    
 }
+
+export const updateAthlete = async (id, data) => {
+    const athleteRef = ref(database, `homePageAthletes/${id}`);
+    await update(athleteRef, data);
+}
+
