@@ -104,7 +104,7 @@ const DetailedAthletePage = () => {
                 {currUser.role === 'admin' && <Textarea value={description} onChange={(e) => setDescription(e.target.value)} ></Textarea>}
 
             </Flex>
-            {currUser.role === 'admin' && description.length > athlete?.description.length && <Button onClick={handleSubmitDescription}> Submit description</Button>}
+            {currUser.role === 'admin' && description !== athlete.description && <Button onClick={handleSubmitDescription}> Submit description</Button>}
         </Flex>
     )
 }
