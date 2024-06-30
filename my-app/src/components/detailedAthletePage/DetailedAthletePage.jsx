@@ -73,13 +73,13 @@ const DetailedAthletePage = () => {
     }, [athlete])
 
     const handleSubmitDescription = async () => {
-        setIsLoading(true);
+        
         const descriptionProp = {
             description: description
         }
         await updateAthlete(id.slice(1), descriptionProp);
         setDescription(description);
-        setIsLoading(false);
+    
     }
 
 
@@ -111,8 +111,8 @@ const DetailedAthletePage = () => {
                     <Heading >{athlete?.firstname + '' + athlete?.lastname}</Heading>
                     
    
-
-    <Text>{athlete?.description}</Text>
+         {!athlete?.description && <SkeletonText mt="4" noOfLines={4} spacing="4" />}
+         {athlete?.description && <Text>{athlete?.description}</Text>}
 
                 </Box>
 
