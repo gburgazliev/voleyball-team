@@ -20,8 +20,7 @@ const DetailedAthletePage = () => {
     const [userData, setUserData] = useState({});
     const [videoId, setVideoId] = useState('');
     const [description, setDescription] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-
+  
 
 
     useEffect(() => {
@@ -30,7 +29,7 @@ const DetailedAthletePage = () => {
         // Unsubscribe when the component unmounts
         return () => {
             unsubscribe();
-            setIsLoading(false);
+            
         };
 
     }, [id])
@@ -113,7 +112,7 @@ const DetailedAthletePage = () => {
                     {isLoading ? (
     <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
 ) : (
-    <Text>{athlete?.description}</Text>
+    <Text>{description}</Text>
 )}
                 </Box>
 
