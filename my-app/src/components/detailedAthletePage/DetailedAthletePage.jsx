@@ -7,7 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
 import { subscribeToAthleteById } from "../../utils/utils";
 import { updateAthlete } from "../../utils/utils";
-import { set } from "firebase/database";
+
 
 
 const DetailedAthletePage = () => {
@@ -21,6 +21,7 @@ const DetailedAthletePage = () => {
     const [videoId, setVideoId] = useState('');
     const [description, setDescription] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+
 
 
     useEffect(() => {
