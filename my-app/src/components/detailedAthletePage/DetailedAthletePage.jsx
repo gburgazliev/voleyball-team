@@ -109,11 +109,11 @@ const DetailedAthletePage = () => {
             <Flex w={['100%', '100%', '50%', '50%']} borderRadius='1px' h={['10%', '20%', '30%']} align='flex-start' justify='flex-start' direction='column'>
                 <Box padding={6} marginTop={5} boxShadow='lg' bg='white' w='100%'>
                     <Heading >{athlete?.firstname + '' + athlete?.lastname}</Heading>
-                    {isLoading ? (
-    <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
-) : (
-    <Text>{description}</Text>
-)}
+                    
+   
+
+    <Text>{athlete?.description}</Text>
+
                 </Box>
 
                 {currUser.role === 'admin' && <Textarea bg='white' value={description} onChange={(e) => setDescription(e.target.value)} ></Textarea>}
