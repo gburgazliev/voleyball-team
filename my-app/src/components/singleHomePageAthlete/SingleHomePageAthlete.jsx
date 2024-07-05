@@ -10,7 +10,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
 
     return (
         <Flex w='100%' direction='column' justify='center' align='center'>
-            <Avatar name={athlete.firstname} src={athlete.picture} size='2xl' onMouseEnter={() => setIsHovered(true)}
+            <Avatar name={athlete.firstname} src={athlete.picture} size={['2xl', 'lg', '2xl', '2xl']} onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 position="relative">
                 {isAdmin() && isHovered && <Flex justify='space-evenly' direction='column' position='absolute'> <Button zIndex={10} colorScheme='red' onClick={() => navigate(`/detailed-athlete-view/:${athlete.uid}`)}>View profile</Button>

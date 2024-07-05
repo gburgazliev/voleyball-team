@@ -34,7 +34,7 @@ const HomePageAthletes = () => {
     useEffect(() => {
         const fetchAthletes = async () => {
 
-           onValue(ref(database, 'homePageAthletes'), (snapshot) => {
+            onValue(ref(database, 'homePageAthletes'), (snapshot) => {
                 const data = snapshot.val();
                 setAthletes(data || {});
             });
@@ -99,7 +99,6 @@ const HomePageAthletes = () => {
                         [newAthlete.uid]: newAthlete,
                     });
                     setProfilePicUrl(downloadURL);
-                    newAthlete.picture = downloadURL;
                 });
             }
         );
@@ -127,7 +126,7 @@ const HomePageAthletes = () => {
     }
     return (
         <Flex w='100%' minH='30vh' direction='column' justify='center' align='center' zIndex={10}>
-            <Text color='white'>OUT ATHLETES</Text>
+            <Text color='white'>OUR ATHLETES</Text>
             <Wrap spacing="30px" justify="center" w='50%'>
                 {Object.entries(athletes).map(([key, value]) => (
                     <WrapItem key={key}>

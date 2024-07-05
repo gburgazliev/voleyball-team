@@ -9,7 +9,7 @@ import { update, ref, set, get } from 'firebase/database'
 
 const Register = () => {
     const toast = useToast()
-    const { register , user, login} = useAuth();
+    const { register, user, login } = useAuth();
     const [form, setForm] = useState({
         email: '',
         username: '',
@@ -53,7 +53,7 @@ const Register = () => {
         return true;
     };
 
-   const isValidUsername =( username) => {
+    const isValidUsername = (username) => {
         if (username && username.length < 3 || username.length > 20) {
             toast({
                 title: 'Invalid username.',
@@ -62,7 +62,7 @@ const Register = () => {
                 duration: 3000,
                 isClosable: true,
             });
-            return false;   
+            return false;
         }
         return true;
     };
@@ -116,7 +116,7 @@ const Register = () => {
                     duration: 3000,
                     isClosable: true,
                 })
-                 await login(form.email, form.password);
+                await login(form.email, form.password);
                 setTimeout(() => {
                     window.location.href = '/';
                 }, 3000);
@@ -143,7 +143,7 @@ const Register = () => {
     };
     return (
         <Flex w='100%' h='100%' bgColor='black' zIndex={10} justify='center' align='center' backgroundImage={registerBackground} backgroundSize='cover'>
-            <Flex w='30%' h='50%' justify='center' align='center' direction='column'>
+            <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']} justify='center' align='center' direction='column'>
                 <Flex w='50%' h='60%' direction='column' justify='space-evenly'>
                     <Input placeholder="Email" value={form.email} onChange={updateForm('email')} bg='white' />
                     <Input placeholder="Username" bg='white' value={form.username} onChange={updateForm('username')} />

@@ -48,7 +48,7 @@ const Login = () => {
   
     return (
         <Flex w='100%' h='100%' justify='center'  backgroundImage={voleyballBackground} align='center' backgroundSize='cover'>
-          <Flex w='30%' h='40%'  justify='center' align='center'>
+          <Flex w={['100%', '100%', '30%' , '30%']} h={['60%', '60%', '40%' , '40%']}  justify='center' align='center'>
              <Flex w='50%' h='50%' justify='space-evenly' direction='column'>
              <Input placeholder='Enter email' value={form.email}  onChange={ updateForm('email') }   bg='white' />
              <InputGroup size='md'>
