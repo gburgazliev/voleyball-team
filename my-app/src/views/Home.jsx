@@ -8,19 +8,21 @@ import logo from '../assets/logo.jpg'
 import Footer from '../components/footer/Footer'
 import Header from '../components/header/Header'
 import HomePageAthletes from "../components/homePageAthletes/HomePageAthletes"
+import { isMobileDevice } from "../utils/utils"
+import MobileHeader from "../components/mobileHeader/MobileHeader"
 
   
  const Home = () => {
     return (
-        <Flex  direction='column'justify='center'  bg='black'  align='center' w={['200%', '100%', '100%']} >
-            <Flex position='absolute' w={['200%', '100%', '100%']}   top={0} justify='center' align='flex-start' bg='black' zIndex={10} bgColor='black'>
+        <Flex  direction='column'justify='center'  bg='black'  align='center' w={['100%', '100%', '100%', '100%']} >
+     { !isMobileDevice()  ?      <Flex position='fixed' w={['100%', '100%', '100%', '100%']}   top={0} justify='center' align='flex-start' bg='black' zIndex={20}bgColor='black'>
       <Header />  
-      </Flex>
+      </Flex> : <MobileHeader/>}
             <Flex h='15%' justify='center' align='center'  zIndex={1} paddingTop={20}>
                 <Image src={banner} boxSize='600px'    w='100%' alt='Voleyball Team' />
             </Flex>
 
-            <Flex justify='center' align='center' w='100%'>
+            <Flex justify='center' align='center' w={['50%', '50%', '100%', '100%']}>
                 <Image src={logo} boxSize='400px' alt='Voleyball Team' />
                 <Flex direction='column'  align='flex-start'>
                     <Heading textColor='white' fontSize='3xl' paddingBottom={2}>SB Community</Heading>

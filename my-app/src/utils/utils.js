@@ -73,3 +73,6 @@ export const updateAthlete = async (id, data) => {
     await update(athleteRef, data);
 }
 
+export function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  };

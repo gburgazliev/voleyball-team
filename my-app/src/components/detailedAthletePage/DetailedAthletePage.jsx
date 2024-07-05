@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
 import { subscribeToAthleteById } from "../../utils/utils";
+import  Header  from "../header/Header";
 import { updateAthlete } from "../../utils/utils";
 
 
@@ -83,9 +84,12 @@ const DetailedAthletePage = () => {
     }
 
 
-    return (
-        <Flex w='100%' h='100%' direction='column' justify='center' align='center' bgColor='black'  >
-            <Flex w={['100%', '100%', '50%', '45%']} h='53%' direction='column' align='center' bgColor='black' >
+    return (<Flex w='100%' h='100%' direction='column' justify='center' align='center' bgColor='black'  >
+           <Flex  position='absolute'  w={['100%', '100%', '100%', '100%']}   top={0} justify='center' h='5%' bg='black' zIndex={10} bgColor='black'>
+      <Header />  
+      </Flex>
+           
+            <Flex w={['100%', '100%', '50%', '50%']} h={['50%', '100%', '100%', '100%']} direction='column' align='center' bgColor='black' marginTop='10%'>
                 <iframe width='100%'
                     height="100%"
 
@@ -100,27 +104,28 @@ const DetailedAthletePage = () => {
 
             {currUser.role === 'admin' && <Flex w='10%' h='10%' direction='column' justify='center' align='center'>
 
-                <Input type="text" value={videoId} onChange={(e) => setVideoId(e.target.value)}></Input>
+                <Input bg='white' type="text" value={videoId} onChange={(e) => setVideoId(e.target.value)}></Input>
                 {!athlete?.videoID && <Button colorScheme='red' onClick={handleAddVideo}>Add video</Button>}
                 {athlete?.videoID && <Button colorScheme='red' onClick={handleDeleteVideo}>Delete video</Button>}
             </Flex>}
 
 
             <Flex w={['100%', '100%', '50%', '50%']} borderRadius='1px' h={['10%', '20%', '30%']} align='flex-start' justify='flex-start' direction='column'>
-                <Box padding={6} marginTop={5} boxShadow='lg' bg='white' w='100%'>
+             { currUser.role !=='admin'  && <Box padding={6} marginTop={5} boxShadow='lg' bg='white' w='100%'>
                     <Heading >{athlete?.firstname + '' + athlete?.lastname}</Heading>
                     
    
          {!athlete?.description && <SkeletonText mt="4" noOfLines={4} spacing="4" />}
-         {athlete?.description && <Text>{athlete?.description}</Text>}
+         {athlete?.description &&  currUser.role !== 'admin' &&<Text>{athlete?.description}</Text>}
 
-                </Box>
+                </Box>}
 
                 {currUser.role === 'admin' && <Textarea bg='white' value={description} onChange={(e) => setDescription(e.target.value)} ></Textarea>}
 
             </Flex>
             {currUser.role === 'admin' && description !== athlete.description && <Button onClick={handleSubmitDescription}> Submit description</Button>}
         </Flex>
+        
     )
 }
 

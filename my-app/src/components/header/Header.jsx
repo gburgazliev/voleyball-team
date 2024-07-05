@@ -67,8 +67,8 @@ useEffect(() => {
 }, [currentUser]);
 
     return (
-        <Box minH='15vh'  w='60%' bgColor='black' textColor='white' marginRight='5%' marginLeft='5%' zIndex={10}>
-            <Flex w='90%' justify='flex-end' paddingTop={10}>
+        <Flex position='fixed' direction='column'  w={['100%', '60%' , '60%', '60%']} bgColor='black' textColor='white' marginRight='5%' marginLeft='5%'  bg='black' >
+            <Flex w={['80%', '60%' , '90%', '90%']} justify='flex-end' paddingTop={10}>
                 <HStack spacing={5}>
 
                     {content}
@@ -80,13 +80,13 @@ useEffect(() => {
                 </HStack>
             </Flex>
 
-            <Box w='40%' textColor='orange' justify='flex-start' alignSelf='flex-start' bgColor='black'>
-                <Heading w='100%' _hover={{ color: 'blue', cursor: 'pointer' }} onClick={() => navigate('/')}>  SB COMMUNITY</Heading>
+            <Box w='100%' textColor='orange' justify='flex-start' alignSelf='flex-start' bgColor='black'>
+                <Heading w={['100%', '100%' , '25%', '25%']} _hover={{ color: 'blue', cursor: 'pointer' }} onClick={() => navigate('/')}>  SB COMMUNITY</Heading>
 
             </Box>
 
-            <Flex maxW='100%' h='100%' justify='space-between' direction='row' align='center' bgColor='black' paddingTop={5} marginBottom={5}>
-                <Heading paddingLeft={5} paddingRight={5} size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
+            <Flex w='100%' h='100%' justify='space-between' direction='row' align='center' bgColor='black' paddingTop={5} marginBottom={5}>
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
                     HOME
 
                 </Heading>
@@ -99,7 +99,7 @@ useEffect(() => {
 
                
 
-                <Heading paddingLeft={5} paddingRight={5} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} >
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} >
                     COACHES
                 </Heading>
 
@@ -107,14 +107,14 @@ useEffect(() => {
 
                 </Divider>
 
-                <Heading paddingLeft={5} paddingRight={5} size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']}size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
                     HALL OF FAME
                 </Heading>
                 <Divider orientation="vertical" height='20px' borderWidth='1px' >
 
                 </Divider>
 
-                <Heading paddingLeft={5} paddingRight={5} size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
                     ABOUT US
                 </Heading>
 
@@ -126,7 +126,7 @@ useEffect(() => {
                     CONTACT
                 </Heading>
             </Flex>
-        </Box>
+        </Flex>
     )
 }
 
