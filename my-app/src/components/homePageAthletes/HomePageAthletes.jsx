@@ -80,6 +80,7 @@ const HomePageAthletes = () => {
     }
 
     const handleUploadPicture = async (file, newAthlete) => {
+        return new Promise((resolve, reject) => {
         const fileRef = storageRef(storage, `homepageAthletes/${newAthlete.uid}`)
 
         const uploadTask = uploadBytesResumable(fileRef, file);
@@ -93,27 +94,34 @@ const HomePageAthletes = () => {
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-
                     setAthletes({
                         ...athletes,
                         [newAthlete.uid]: newAthlete,
                     });
                     setProfilePicUrl(downloadURL);
-                });
+                    resolve(downloadURL);
+                })
+                    .catch((error) => {
+                        console.error(error);
+                        reject(error);
+                    }
+                    );
             }
         );
+        });
     }
 
     const handleAddAthlete = async () => {
-        const newAthleteRef = push(ref(database, 'homePageAthletes'));
-        const newAthlete = {
+        try {
+            const newAthleteRef = push(ref(database, 'homePageAthletes'));
+           const newAthlete = {
             uid: newAthleteRef.key,
             firstname: form.firstname,
             lastname: form.lastname,
             picture: profilePicUrl,
-        }
-        await handleUploadPicture(file, newAthlete);
-        await update(newAthleteRef, newAthlete);
+        };
+       newAthlete.picture = await handleUploadPicture(file, newAthlete);
+       await update(newAthleteRef, newAthlete)
         setForm({
             firstname: '',
             lastname: '',
@@ -123,11 +131,15 @@ const HomePageAthletes = () => {
         setProfilePicUrl('');
         setProfilePic('');
 
+        } catch (error) {
+            console.error(error);
+        }
+      
     }
     return (
         <Flex w='100%' minH='30vh' direction='column' justify='center' align='center' zIndex={10}>
             <Text color='white'>OUR ATHLETES</Text>
-            <Wrap spacing="30px" justify="center" w='50%'>
+            <Wrap spacing="20px" justify="space-evenly" paddingTop={2} paddingRight={1} paddingLeft={1} paddingBottom={2}  w={['100%', '90%', '50%' , '50%']}>
                 {Object.entries(athletes).map(([key, value]) => (
                     <WrapItem key={key}>
                         <SingleHomePageAthlete athlete={value} isAdmin={isAdmin} />

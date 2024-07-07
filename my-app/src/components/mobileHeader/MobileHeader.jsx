@@ -56,7 +56,7 @@ const MobileHeader = () => {
                         <Text>Media</Text>
                     </DrawerBody>
                     <DrawerFooter >
-                        {user ? <Button onClick={() => navigate('/auth/logout')}>Sign Out</Button> : <> <Button m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
+                        {user ? <Button onClick={() =>{navigate('/'); logout(); onClose()}}>Sign Out</Button> : <> <Button m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
                         <Button onClick={() => navigate('/auth/register')}>Sign Up</Button></> }
                        
                     </DrawerFooter>
