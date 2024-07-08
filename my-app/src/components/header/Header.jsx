@@ -67,7 +67,7 @@ useEffect(() => {
 }, [currentUser]);
 
     return (
-        <Flex position='fixed' direction='column'  w={['100%', '60%' , '60%', '60%']} bgColor='black' textColor='white' marginRight='5%' marginLeft='5%'  bg='black' >
+        <Flex position='relative'  justifySelf='flex-start' h='200px' direction='column'  w= '90%'  bgColor='black' textColor='white' marginRight='5%' marginLeft='5%'  bg='black' >
             <Flex w={['80%', '60%' , '90%', '90%']} justify='flex-end' paddingTop={10}>
                 <HStack spacing={5}>
 
@@ -80,8 +80,8 @@ useEffect(() => {
                 </HStack>
             </Flex>
 
-            <Box w='100%' textColor='orange' justify='flex-start' alignSelf='flex-start' bgColor='black'>
-                <Heading w={['100%', '100%' , '25%', '25%']} _hover={{ color: 'blue', cursor: 'pointer' }} onClick={() => navigate('/')}>  SB COMMUNITY</Heading>
+            <Box w='27%' textColor='orange' justify='flex-start' alignSelf='flex-start' bgColor='black'>
+                <Heading  _hover={{ color: 'red', cursor: 'pointer' }} onClick={() => navigate('/')}>  SB COMMUNITY</Heading>
 
             </Box>
 
@@ -122,7 +122,7 @@ useEffect(() => {
 
                 </Divider>
 
-                <Heading paddingLeft={0} paddingRight={0} size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
+                <Heading paddingLeft={0} paddingRight={0} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} onClick={() => navigate('/contact')}>
                     CONTACT
                 </Heading>
             </Flex>

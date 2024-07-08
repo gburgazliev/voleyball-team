@@ -5,11 +5,11 @@ import letter from "../../assets/letter.png";
 
 const Footer = () => {
     return (
-        <Box h='100%' w='100%' bgColor='black' textColor='white' align='center' paddingTop={20} >
+        <Flex  h='100%' w={['50%', '100%', '100%', '100%']} bgColor='black' textColor='white' justify='center' align='center' paddingTop={20} >
 
             <Box h='100%' w='70%' marginBottom={100} justify='center' align='center'>
                 <Flex w='100%' h='100%' textColor='white' justify='space-between' paddingTop={10}>
-                    <Text w={['40%', '20%', '20%', '20%']} fontSize={['sm', 'sm', 'lg', 'lg']}>
+                    <Text w={['50%', '20%', '20%', '20%']} fontSize={['sm', 'sm', 'lg', 'lg']}>
                         <Heading size='sm' marginBottom={5}>SB COMMUNITY</Heading>
                         SB Community is a full service sports agency, representing players and team staff.
                         As a full service sports agency, we offer our clients an array of services including contractual,
@@ -237,7 +237,7 @@ const Footer = () => {
                 </Flex>
             </Box>
 
-        </Box>
+        </Flex>
     );
 }
 

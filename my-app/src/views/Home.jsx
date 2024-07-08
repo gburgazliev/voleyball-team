@@ -17,10 +17,10 @@ import MobileHeader from "../components/mobileHeader/MobileHeader"
 const Home = () => {
     return (
         <Flex direction='column' justify='center' bg='black' align='center' w={['100%', '100%', '100%', '100%']} >
-            {!isMobileDevice() ? <Flex position='absolute' w={['100%', '100%', '100%', '100%']} top={0} justify='center' align='flex-start' bg='black' zIndex={20} bgColor='black'>
+            {!isMobileDevice() ? 
                 <Header />
-            </Flex> : <MobileHeader />}
-            <Flex h='15%' justify='center' align='center' zIndex={1} paddingTop={20}>
+        : <MobileHeader />}
+            <Flex h='15%' justify='center' align='center' zIndex={0} paddingTop={20}>
                 <Image src={banner} boxSize='600px' w='100%' alt='Voleyball Team' />
             </Flex>
 
@@ -43,9 +43,9 @@ const Home = () => {
 
             <HomePageAthletes />
 
-            <Flex h='60%' w='100%'>
+           { !isMobileDevice() && <Flex h='60%' w='100%'>
                 <Footer />
-            </Flex>
+            </Flex>}
         </Flex>
     )
 }

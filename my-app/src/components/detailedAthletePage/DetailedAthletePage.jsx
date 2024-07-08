@@ -8,6 +8,8 @@ import { auth } from "../../../firebase/firebase-config";
 import { subscribeToAthleteById } from "../../utils/utils";
 import  Header  from "../header/Header";
 import { updateAthlete } from "../../utils/utils";
+import { isMobileDevice } from "../../utils/utils";
+import MobileHeader from "../mobileHeader/MobileHeader";
 
 
 
@@ -85,9 +87,9 @@ const DetailedAthletePage = () => {
 
 
     return (<Flex w='100%' h='100%' direction='column' justify='center' align='center' bgColor='black'  >
-           <Flex  position='absolute'  w={['100%', '100%', '100%', '100%']}   top={0} justify='center' h='5%' bg='black' zIndex={10} bgColor='black'>
+      {  !isMobileDevice() ?    <Flex  position='absolute'  w={['100%', '100%', '100%', '100%']}   top={0} justify='center' h='5%' bg='black' zIndex={10} bgColor='black'>
       <Header />  
-      </Flex>
+      </Flex> : <MobileHeader/>}
            
             <Flex w={['100%', '100%', '50%', '50%']} h={['50%', '100%', '100%', '100%']} direction='column' align='center' bgColor='black' marginTop='10%'>
                 <iframe width='100%'

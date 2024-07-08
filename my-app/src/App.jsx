@@ -17,6 +17,7 @@ import AuthPage from './components/authPage/AuthPage'
 import Register from './components/register/Register'
 import Login from './components/login/Login'
 import DetailedAthletePage from './components/detailedAthletePage/DetailedAthletePage'
+import ContactUsPage from './components/contactUsPage/ContactUsPage'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
     
       <Routes>
         <Route path='/detailed-athlete-view/:id' element={<DetailedAthletePage />} />
+        <Route path='/contact' element={<ContactUsPage/>} />
         <Route path='/' element={<Home />} />
         <Route path='*' element={'Not found'} />
         <Route path='/auth/register' element={<Register />} />
