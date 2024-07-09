@@ -13,8 +13,8 @@ import { Button, Radio, RadioGroup, Stack, useDisclosure } from "@chakra-ui/reac
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
- import { onAuthStateChanged } from "firebase/auth"
- import { auth } from "../../../firebase/firebase-config"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "../../../firebase/firebase-config"
 import { useAuth } from "../../context/AuthContext";
 
 
@@ -26,14 +26,14 @@ const MobileHeader = () => {
     const navigate = useNavigate();
     const { logout } = useAuth();
 
- 
+
     useEffect(() => {
-      
-              const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
         });
-        return unsubscribe;  
-     
+        return unsubscribe;
+
     }, []);
 
 
@@ -52,13 +52,13 @@ const MobileHeader = () => {
                         <Text onClick={() => { navigate('/'); onClose() }} _hover={{ color: 'orange', cursor: 'pointer' }}>Home</Text>
                         <Text>Coaches</Text>
                         <Text>About us</Text>
-                        <Text>Contact us</Text>
+                        <Text onClick={() => { navigate('/contact'); onClose() }} _hover={{ color: 'orange', cursor: 'pointer' }}>Contact us</Text>
                         <Text>Media</Text>
                     </DrawerBody>
                     <DrawerFooter >
-                        {user ? <Button onClick={() =>{navigate('/'); logout(); onClose()}}>Sign Out</Button> : <> <Button m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
-                        <Button onClick={() => navigate('/auth/register')}>Sign Up</Button></> }
-                       
+                        {user ? <Button onClick={() => { navigate('/'); logout(); onClose() }}>Sign Out</Button> : <> <Button m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
+                            <Button onClick={() => navigate('/auth/register')}>Sign Up</Button></>}
+
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
