@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getUserById } from "../../utils/utils";
-import { Box, Flex, Image, Text, Heading, List, ListItem, ListIcon, OrderedList, Skeleton, SkeletonCircle, SkeletonText, UnorderedList, Input, Button, Container, Textarea, Popover, PopoverArrow, PopoverAnchor, PopoverBody, PopoverTrigger, PopoverContent, PopoverHeader, PopoverCloseButton } from "@chakra-ui/react"
+import { Box,Avatar ,Flex, Image, Text, Heading, List, ListItem, ListIcon, OrderedList, Skeleton, SkeletonCircle, SkeletonText, UnorderedList, Input, Button, Container, Textarea, Popover, PopoverArrow, PopoverAnchor, PopoverBody, PopoverTrigger, PopoverContent, PopoverHeader, PopoverCloseButton } from "@chakra-ui/react"
 import { useAuth } from "../../context/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
@@ -91,10 +91,12 @@ const DetailedAthletePage = () => {
       <Header />  
       </Flex> : <MobileHeader/>}
            
-            <Flex w={['100%', '100%', '50%', '50%']} h={['50%', '100%', '100%', '100%']} direction='column' align='center' bgColor='black' marginTop='10%'>
-                <iframe width='100%'
+            
+            <Flex w={['100%', '100%', '100%', '100%']} position='relative' h={['50%', '100%', '100%', '100%']} justify='center' align='center' bgColor='black' marginTop='10%'>
+               
+                <iframe width='50%'
                     height="100%"
-
+                    position='absolute'
                     src={`https://www.youtube.com/embed/${athlete?.videoID}`}
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
