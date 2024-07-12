@@ -5,6 +5,7 @@ import { Flex, Box, Input, Textarea, Button, FormControl,
 import { auth } from "../../../firebase/firebase-config"
 import { useAuth } from "../../context/AuthContext";
 import { useState, useEffect } from "react";
+import emailjs from '@emailjs/browser';
 import { onAuthStateChanged } from "firebase/auth";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRef } from "react";
@@ -33,10 +34,24 @@ const ContactUsPage = () => {
     }, [])
 
 
-    const handleFormSubmit = async () => {
+    const handleFormSubmit = async (e) => {
 
-     console.log(email, title, content, captchaVal);    
-
+       
+            e.preventDefault();
+        
+            emailjs
+              .sendForm('service_b0qofo6', 'template_1ea313o', form.current, {
+                publicKey: 'wGK_-wloZsCW6uwYk',
+              })
+              .then(
+                () => {
+                  console.log('SUCCESS!');
+                },
+                (error) => {
+                  console.log('FAILED...', error.text);
+                },
+              );
+          
     }
     return (
         <Flex direction='column' w='100%' h='100%' justify='space-evenly' align='center'>
