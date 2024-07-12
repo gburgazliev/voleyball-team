@@ -1,4 +1,7 @@
-import { Flex, Box, Input, Textarea, Button } from "@chakra-ui/react"
+import { Flex, Box, Input, Textarea, Button, FormControl,
+    FormLabel,
+    FormErrorMessage,
+    FormHelperText, } from "@chakra-ui/react"
 import { auth } from "../../../firebase/firebase-config"
 import { useAuth } from "../../context/AuthContext";
 import { useState, useEffect } from "react";
@@ -6,6 +9,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRef } from "react";
 import axios from "axios";
+import './contactUsPage.css';
 
 
 
@@ -16,9 +20,9 @@ const ContactUsPage = () => {
     const [email, setEmail] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+     const form = useRef();
 
-
- 
+   
 
     useEffect(() => {
 
@@ -36,9 +40,15 @@ const ContactUsPage = () => {
     }
     return (
         <Flex direction='column' w='100%' h='100%' justify='space-evenly' align='center'>
-            {!user && <Input w='50%' placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />}
-            <Input w='50%' placeholder="Title" />
-            <Textarea w='60%' h='50%' placeholder="Content" />
+           <form className="form" ref={form} disabled={!captchaVal} onSubmit={handleFormSubmit}>
+      <label>Name</label>
+      <input id="username" type="text" name="user_name" />
+      <label>Email</label>
+      <input id='email' type="email" name="user_email" />
+      <label>Message</label>
+      <textarea id="content" name="message" />
+      <button id='send' type="submit" value="Send" > Send</button>
+    </form>
             <ReCAPTCHA
            alignSelf='flex-start'
            
@@ -46,7 +56,7 @@ const ContactUsPage = () => {
             size="normal"
             onChange={(token) => { setCaptchaVal(token)}}
         />
-            <Button disabled={!captchaVal} onClick={handleFormSubmit}>Submit</Button>
+            
         </Flex>
     )
 }

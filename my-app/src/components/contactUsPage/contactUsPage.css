@@ -1,0 +1,41 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+@media (min-width: 461px) {
+   
+
+    #email {
+        width: 20%;
+    }
+}
+
+@media (min-width: 768px) {
+    .form {
+        width: 100%;
+    }
+    #email {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .form {
+        width: 50%;
+    }
+    #email {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1280px) {
+    .form {
+        width: 100%;
+    }
+}
