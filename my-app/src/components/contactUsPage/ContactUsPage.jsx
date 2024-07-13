@@ -13,8 +13,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useRef } from "react";
 import axios from "axios";
 import './contactUsPage.css';
-import { set } from "firebase/database";
-
+import Header from "../header/Header";
+import { isMobileDevice } from "../../utils/utils";
+import MobileHeader from "../mobileHeader/MobileHeader";
 
 
 
@@ -95,6 +96,10 @@ const ContactUsPage = () => {
   
   return (
     <Flex direction='column' w='100%' h='100%' justify='space-evenly' align='center'>
+     
+            {!isMobileDevice() ?  <Header /> : <MobileHeader/>}
+     
+ 
   
        <form className="form" ref={form}  onSubmit={handleFormSubmit}>
         <div className="nameContainer">

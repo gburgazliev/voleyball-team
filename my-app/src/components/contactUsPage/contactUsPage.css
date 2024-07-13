@@ -1,26 +1,10 @@
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  
-   
-}
-
-
-
 #content {
     color: white;
-padding-right: 5%;
-padding-left: 5%;
-padding-top: 2%;
-padding-bottom: 2%;
-   height: 25%;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    height: 25%;
     background-color: #333;
     border-radius: 10px;
 
@@ -29,7 +13,7 @@ padding-bottom: 2%;
 }
 
 #username {
-    color:white;
+    color: white;
     height: 5%;
 }
 
@@ -42,7 +26,7 @@ padding-bottom: 2%;
     margin-top: 50px;
     padding: 20px;
     background-color: blue;
-    width: 10%; 
+    width: 10%;
 }
 
 #send:hover {
@@ -60,12 +44,13 @@ label {
     margin-left: 12%;
 
 }
+
 .nameContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-  
+
     width: 20%;
 
 }
@@ -75,7 +60,7 @@ label {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
- 
+
     width: 20%;
 
 }
@@ -91,16 +76,68 @@ label {
 }
 
 
+@media (max-width: 461px) {
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+    }
+
+    .nameContainer {
+        width: 50%;
+    }
+
+    .emailContainer {
+        width: 50%;
+    }
+
+    .contentContainer {
+        width: 90%;
+    }
+
+    #username,
+    #email {
+        padding: 10px;
+        height: 30px;
+        /* Adjust as needed */
+        width: 50%;
+        /* Full width */
+    }
+
+    #content {
+        padding: 10px;
+        height: 100%;
+        /* Full height */
+        width: 90%;
+        /* Full width */
+    }
+
+    #send {
+        width: 50%;
+    }
+
+
+
+}
+
 @media (min-width: 461px) {
-   
+
 
     #email {
         width: 20%;
     }
+
+
 }
 
 @media (min-width: 768px) {
- 
+
     #email {
         width: 30%;
     }
@@ -112,9 +149,21 @@ label {
 }
 
 @media (min-width: 1024px) {
-   
 
-    #username { 
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+
+    }
+
+    #username {
         width: 20%;
     }
 
@@ -122,12 +171,10 @@ label {
         width: 20%;
     }
 
-    #content { 
+    #content {
         width: 50%;
         height: 50%;
     }
 }
 
-@media (min-width: 1280px) {
- 
-}
+@media (min-width: 1280px) {}
