@@ -1,7 +1,9 @@
-import { Flex, Box, Input, Textarea, Button, FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText, } from "@chakra-ui/react"
+import {
+  Flex, Box, Input, Textarea, Button, FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText, Alert, AlertIcon
+} from "@chakra-ui/react"
 import { auth } from "../../../firebase/firebase-config"
 import { useAuth } from "../../context/AuthContext";
 import { useState, useEffect } from "react";
@@ -11,69 +13,137 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useRef } from "react";
 import axios from "axios";
 import './contactUsPage.css';
+import { set } from "firebase/database";
 
 
 
 
 const ContactUsPage = () => {
-    const [user, setUser] = useState(null);
-    const {captchaVal ,setCaptchaVal} = useState(null);
-    const [email, setEmail] = useState('');
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-     const form = useRef();
-
-   
-
-    useEffect(() => {
-
-        onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
-        });
-
-    }, [])
+  const [user, setUser] = useState(null);
+  const [captchaVal, setCaptchaVal] = useState(null);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [content, setContent] = useState('');
+  const [captchaError, setCaptchaError] = useState(false);
+  const [formError, setFormError] = useState(false);
+  const [isValidName, setIsValidName] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  const nameLengthLimit = 20;
+  const contentLengthLimit = 2000;
+  const form = useRef();
 
 
-    const handleFormSubmit = async (e) => {
 
-       
-            e.preventDefault();
-        
-            emailjs
-              .sendForm('service_b0qofo6', 'template_1ea313o', form.current, {
-                publicKey: 'wGK_-wloZsCW6uwYk',
-              })
-              .then(
-                () => {
-                  console.log('SUCCESS!');
-                },
-                (error) => {
-                  console.log('FAILED...', error.text);
-                },
-              );
-          
+
+  useEffect(() => {
+
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+  }, [])
+
+  const handleContentChange = (e) => {
+    if (e.target.value.length <= contentLengthLimit) {
+      setContent(e.target.value)
     }
-    return (
-        <Flex direction='column' w='100%' h='100%' justify='space-evenly' align='center'>
-           <form className="form" ref={form} disabled={!captchaVal} onSubmit={handleFormSubmit}>
-      <label>Name</label>
-      <input id="username" type="text" name="user_name" />
-      <label>Email</label>
-      <input id='email' type="email" name="user_email" />
-      <label>Message</label>
-      <textarea id="content" name="message" />
-      <button id='send' type="submit" value="Send" > Send</button>
-    </form>
-            <ReCAPTCHA
-           alignSelf='flex-start'
-           
-            sitekey="6LcTDg0qAAAAAIBTo6i6tCEgpVdr6ZT9Rn0zDMEI"
-            size="normal"
-            onChange={(token) => { setCaptchaVal(token)}}
-        />
-            
-        </Flex>
-    )
+  }
+
+  const handleNameChange = (e) => {
+    if (e.target.value.length <= nameLengthLimit) {
+      setName(e.target.value)
+    }
+  }
+   
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (!captchaVal) {
+      setCaptchaError(true);
+      setTimeout(() => {
+        setCaptchaError(false);
+      }, 3000);
+      return;
+    } else if (!name || !email || !content) {
+      setFormError(true);
+      setTimeout(() => {
+        setFormError(false);
+      }, 3000);
+      return;
+    } else if ( name.length < 3 || name.length > 20) {
+      setIsValidName(true);
+      setTimeout(() => {
+        setIsValidName(false);
+      }, 3000);
+      return;
+    }
+
+    emailjs
+      .sendForm('service_b0qofo6', 'template_1ea313o', form.current, {
+        publicKey: 'wGK_-wloZsCW6uwYk',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
 }
 
+  
+  return (
+    <Flex direction='column' w='100%' h='100%' justify='space-evenly' align='center'>
+  
+       <form className="form" ref={form}  onSubmit={handleFormSubmit}>
+        <div className="nameContainer">
+           <label id='nameLabel'>Name *</label>
+         <label id='nameLabelCounter'>{name.length} / {nameLengthLimit}</label>
+        </div>
+        
+        <input id="username" type="text" name="user_name" value={name} onChange={handleNameChange} />
+  
+       
+         <div className="emailContainer">
+            <label>Email *</label>
+         </div>
+        <input id='email' type="email" name="user_email" value={email} onChange={((e) => setEmail(e.target.value))} />
+        <div className="contentContainer">
+           <label>Message *  </label>
+        </div>
+       
+        <textarea id="content"  name="message" value={content} onChange={handleContentChange} />
+        <br />
+        <label > {content.length} / {contentLengthLimit}</label>
+        <button id='send' type="submit" value="Send" > Send</button>
+      </form>
+      {captchaError && (
+        <Alert status='error' variant='solid' w='20%' h='10%' alignSelf='flex-end' >
+          <AlertIcon />
+          Captcha is required!
+        </Alert>
+      )}
+      {formError && (
+        <Alert status='error' variant='solid' w='20%' h='10%' alignSelf='flex-end' >
+          <AlertIcon />
+          All fields should be filled!
+        </Alert>
+      )}
+
+
+      <ReCAPTCHA
+        alignSelf='flex-start'
+
+        sitekey="6LcTDg0qAAAAAIBTo6i6tCEgpVdr6ZT9Rn0zDMEI"
+        size="normal"
+        onChange={setCaptchaVal}
+      />
+
+
+     
+    </Flex>
+  )
+      
+}
 export default ContactUsPage;
