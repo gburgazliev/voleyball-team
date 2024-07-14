@@ -1,0 +1,36 @@
+
+@media screen and (max-width: 846px) and (orientation: landscape) {
+    .video {
+        width: 70%;
+        height: 100%;
+    }
+
+    .description {
+        width: 100%;
+        height: 100%;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) and (orientation: portrait) {
+    .video {
+     margin: 10px;
+        flex-direction: column;
+        width: 95%;
+        height: 1000px
+    }
+
+    .description {
+        width: 100%;
+        height: 300px;
+        margin-top: 10px;
+    }
+}
+
+
+@media screen and (min-width: 1500px) {
+    .video {
+        width: 90%;
+        height: 60%;
+    }
+}

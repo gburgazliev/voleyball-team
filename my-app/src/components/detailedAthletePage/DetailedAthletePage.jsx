@@ -10,7 +10,7 @@ import Header from "../header/Header";
 import { updateAthlete } from "../../utils/utils";
 import { isMobileDevice } from "../../utils/utils";
 import MobileHeader from "../mobileHeader/MobileHeader";
-
+import './detailedAthlete.css'
 
 
 const DetailedAthletePage = () => {
@@ -83,25 +83,24 @@ const DetailedAthletePage = () => {
     }
 
 
-    return (<Flex w='100%' h='100%' direction='column' justify='center' align='center' bgColor='black'  >
+    return (<Flex w='100%' h={['100%', '100%', '100%', '100%']} direction='column' justify='center' align='center' bgColor='black'  >
         {!isMobileDevice() ? <Flex position='absolute' w={['100%', '100%', '100%', '100%']} top={0} justify='center' h='5%' bg='black' zIndex={10} bgColor='black'>
             <Header />
-        </Flex> : <MobileHeader />}
+        </Flex> : 
+            <MobileHeader />
+       }
 
 
-        <Flex w={['100%', '100%', '100%', '100%']} position='relative' h={['50%', '100%', '100%', '100%']} justify='center' align='center' bgColor='black' marginTop='10%'>
+        
 
-            {isMobileDevice() ? <iframe width='100%'
-                height="100%"
-                position='absolute'
+            {!isMobileDevice() ? <iframe className="video" 
                 src={`https://www.youtube.com/embed/${athlete?.videoID}`}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title="Athlete Video">
                 Your browser does not support the video tag.
-            </iframe> : <iframe width='50%'
-                height="100%"
-                position='absolute'
+            </iframe> : <iframe 
+                 className="video"
                 src={`https://www.youtube.com/embed/${athlete?.videoID}`}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -109,7 +108,7 @@ const DetailedAthletePage = () => {
                 Your browser does not support the video tag.
             </iframe>}
 
-        </Flex>
+        
 
         {currUser.role === 'admin' && <Flex w='10%' h='10%' direction='column' justify='center' align='center'>
 
@@ -119,20 +118,23 @@ const DetailedAthletePage = () => {
         </Flex>}
 
 
-        <Flex w={['100%', '100%', '50%', '50%']} borderRadius='1px' h={['10%', '20%', '30%']} align='flex-start' justify='flex-start' direction='column'>
-            {currUser.role !== 'admin' && <Box padding={6} marginTop={5} boxShadow='lg' bg='white' w='100%'>
+        <Flex w={['100%', '100%', '50%', '50%']} borderRadius='1px' h={['100%', '100%', '100%', '20%']} justify='center' align='center'  >
+            <div className="description">
+               {currUser.role !== 'admin' && <Box padding={5} h={['100%', '100%', '100%', '100%']}boxShadow='lg' bg='white' w='100%'>
                 <Heading >{athlete?.firstname + '' + athlete?.lastname}</Heading>
 
 
                 {!athlete?.description && <SkeletonText mt="4" noOfLines={4} spacing="4" />}
-                {athlete?.description && currUser.role !== 'admin' && <Text>{athlete?.description}</Text>}
+                {athlete?.description && currUser.role !== 'admin' && <Text >{athlete?.description}</Text>}
 
             </Box>}
 
             {currUser.role === 'admin' && <Textarea bg='white' value={description} onChange={(e) => setDescription(e.target.value)} ></Textarea>}
 
-        </Flex>
-        {currUser.role === 'admin' && description !== athlete.description && <Button onClick={handleSubmitDescription}> Submit description</Button>}
+      
+        {currUser.role === 'admin' && description !== athlete.description && <Button onClick={handleSubmitDescription}> Submit description</Button>} 
+            </div>
+              </Flex>
     </Flex>
 
     )
