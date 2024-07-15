@@ -123,17 +123,19 @@ const ContactUsPage = () => {
         <label > {content.length} / {contentLengthLimit}</label>
         <button id='send' type="submit" value="Send" > Send</button>
       </form>
-      {captchaError && (
-        <Alert status='error' variant='solid' w='20%' h='10%' alignSelf='flex-end' >
+      {captchaError && ( <div className="error"> 
+           <Alert status='error' variant='solid' w={['50%', '50%', '15%' ,'15%']} h='100%' alignSelf={['center', 'center', 'flex-end' ,'flex-end']} >
           <AlertIcon />
           Captcha is required!
         </Alert>
+      </div>
+     
       )}
-      {formError && (
-        <Alert status='error' variant='solid' w='20%' h='10%' alignSelf='flex-end' >
+      {formError && ( <div className="error">
+        <Alert status='error' variant='solid' w={['50%', '50%', '15%' ,'15%']} h='100%' alignSelf={['center', 'center', 'flex-end' ,'flex-end']} >
           <AlertIcon />
           All fields should be filled!
-        </Alert>
+        </Alert> </div>
       )}
 
 

@@ -12,6 +12,15 @@
 
 }
 
+.error {
+ display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+    width: 100%;
+
+}
+
 #username {
     color: white;
     height: 5%;
@@ -89,6 +98,16 @@ label {
         overflow: hidden;
 
     }
+
+    .error {
+        display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: flex-end;
+            margin-top: 10px;
+           width: 100%;
+       
+       }
 
     .nameContainer {
         width: 50%;

@@ -92,7 +92,7 @@ const DetailedAthletePage = () => {
 
 
         
-
+             <div id='videoContainer'>
                 <iframe 
                  className="video"
                 src={`https://www.youtube.com/embed/${athlete?.videoID}`}
@@ -101,6 +101,7 @@ const DetailedAthletePage = () => {
                 title="Athlete Video">
                 Your browser does not support the video tag.
             </iframe>
+        </div>
 
         
 
@@ -122,11 +123,11 @@ const DetailedAthletePage = () => {
                 {athlete?.description && currUser.role !== 'admin' && <Text >{athlete?.description}</Text>}
 
             </Box>}
-
-            {currUser.role === 'admin' && <Textarea bg='white' value={description} onChange={(e) => setDescription(e.target.value)} ></Textarea>}
+<Flex w='100%' >
+            {currUser.role === 'admin' && <Textarea bg='white' value={description} onChange={(e) => setDescription(e.target.value)} ></Textarea>  }
 
       
-        {currUser.role === 'admin' && description !== athlete.description && <Button onClick={handleSubmitDescription}> Submit description</Button>} 
+        {currUser.role === 'admin' && description !== athlete.description && <Button onClick={handleSubmitDescription}> Submit description</Button>} </Flex>
             </div>
               </Flex>
     </Flex>
