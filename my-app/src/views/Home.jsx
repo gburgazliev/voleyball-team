@@ -21,8 +21,8 @@ const Home = () => {
                 <Header />
         : <MobileHeader />}
             <Flex h='15%' justify='center' align='center' zIndex={0} paddingTop={20}>
-                {!isMobileDevice() && <Image src={banner} boxSize='600px'  w='100%' alt='Voleyball Team' />}
-                {isMobileDevice() && <Image src={banner} boxSize='200px'  w='100%' alt='Voleyball Team' />}
+                 <img className="image" src={banner} boxSize='600px'  w='100%' alt='Voleyball Team' />
+                 
             </Flex>
 
             <Flex justify='center' align='center' w={['50%', '50%', '100%', '100%']}>

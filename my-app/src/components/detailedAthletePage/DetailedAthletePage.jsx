@@ -83,8 +83,8 @@ const DetailedAthletePage = () => {
     }
 
 
-    return (<Flex w='100%' h={['100%', '100%', '100%', '100%']} direction='column' justify='center' align='center' bgColor='black'  >
-        {!isMobileDevice() ? <Flex position='absolute' w={['100%', '100%', '100%', '100%']} top={0} justify='center' h='5%' bg='black' zIndex={10} bgColor='black'>
+    return (<Flex w='100%' minH='100%'direction='column' justify='center' align='center' bgColor='black'  >
+        {!isMobileDevice() ? <Flex position='absolute' w={['100%', '100%', '100%', '100%']} top={0} justify='center' h='5%' bg='black'  bgColor='black'>
             <Header />
         </Flex> : 
             <MobileHeader />
@@ -93,20 +93,14 @@ const DetailedAthletePage = () => {
 
         
 
-            {!isMobileDevice() ? <iframe className="video" 
-                src={`https://www.youtube.com/embed/${athlete?.videoID}`}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Athlete Video">
-                Your browser does not support the video tag.
-            </iframe> : <iframe 
+                <iframe 
                  className="video"
                 src={`https://www.youtube.com/embed/${athlete?.videoID}`}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title="Athlete Video">
                 Your browser does not support the video tag.
-            </iframe>}
+            </iframe>
 
         
 
