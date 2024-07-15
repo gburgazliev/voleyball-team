@@ -29,6 +29,7 @@ const ContactUsPage = () => {
   const [formError, setFormError] = useState(false);
   const [isValidName, setIsValidName] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const nameLengthLimit = 20;
   const contentLengthLimit = 2000;
   const form = useRef();
@@ -57,6 +58,7 @@ const ContactUsPage = () => {
   }
    
   const handleFormSubmit = (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     if (!captchaVal) {
@@ -64,18 +66,21 @@ const ContactUsPage = () => {
       setTimeout(() => {
         setCaptchaError(false);
       }, 3000);
+       setIsLoading(false);
       return;
     } else if (!name || !email || !content) {
       setFormError(true);
       setTimeout(() => {
         setFormError(false);
       }, 3000);
+      setIsLoading(false);
       return;
     } else if ( name.length < 3 || name.length > 20) {
       setIsValidName(true);
       setTimeout(() => {
         setIsValidName(false);
       }, 3000);
+       setIsLoading(false);
       return;
     }
 
@@ -91,6 +96,7 @@ const ContactUsPage = () => {
           console.log('FAILED...', error.text);
         },
       );
+   setIsLoading(false);
 }
 
   
@@ -121,7 +127,7 @@ const ContactUsPage = () => {
         <textarea id="content"  name="message" value={content} onChange={handleContentChange} />
         <br />
         <label > {content.length} / {contentLengthLimit}</label>
-        <button id='send' type="submit" value="Send" > Send</button>
+       { !isLoading ? <button id='send' type="submit" value="Send" > Send</button> : <text id='send' type="submit" value="Send" disabled>Sending...</text>}
       </form>
       {captchaError && ( <div className="error"> 
            <Alert status='error' variant='solid' w={['50%', '50%', '15%' ,'15%']} h='100%' alignSelf={['center', 'center', 'flex-end' ,'flex-end']} >

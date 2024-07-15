@@ -86,7 +86,7 @@ useEffect(() => {
             </Box>
 
             <Flex w='100%' h='100%' justify='space-between' direction='row' align='center' bgColor='black' paddingTop={5} marginBottom={5}>
-                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} onClick={() => navigate('/')}>
                     HOME
 
                 </Heading>
@@ -114,7 +114,7 @@ useEffect(() => {
 
                 </Divider>
 
-                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }}>
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} onClick={() => navigate('/about-us')}>
                     ABOUT US
                 </Heading>
 
