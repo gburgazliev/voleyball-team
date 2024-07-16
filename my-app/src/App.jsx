@@ -21,14 +21,6 @@ import ContactUsPage from './components/contactUsPage/ContactUsPage'
 
 function App() {
 
-  const { user, loading, error, register, login, logout } = useAuth();
-  const { appContainer, container } = styles
-
-  const navData = [
-    { title: 'Home', router: '/' },
-  ]
-
-
   return (
 
     
