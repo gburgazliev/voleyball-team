@@ -56,7 +56,7 @@ const ContactUsPage = () => {
       setName(e.target.value)
     }
   }
-   
+
   const handleFormSubmit = (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -66,7 +66,7 @@ const ContactUsPage = () => {
       setTimeout(() => {
         setCaptchaError(false);
       }, 3000);
-       setIsLoading(false);
+      setIsLoading(false);
       return;
     } else if (!name || !email || !content) {
       setFormError(true);
@@ -75,12 +75,12 @@ const ContactUsPage = () => {
       }, 3000);
       setIsLoading(false);
       return;
-    } else if ( name.length < 3 || name.length > 20) {
+    } else if (name.length < 3 || name.length > 20) {
       setIsValidName(true);
       setTimeout(() => {
         setIsValidName(false);
       }, 3000);
-       setIsLoading(false);
+      setIsLoading(false);
       return;
     }
 
@@ -96,49 +96,49 @@ const ContactUsPage = () => {
           console.log('FAILED...', error.text);
         },
       );
-   setIsLoading(false);
-}
+    setIsLoading(false);
+  }
 
-  
+
   return (
-    <Flex direction='column' w='100%' h='100%' justify='space-evenly' align='center'>
-     
-            {!isMobileDevice() ?  <Header /> : <MobileHeader/>}
-     
- 
-  
-       <form className="form" ref={form}  onSubmit={handleFormSubmit}>
+    <Flex direction='column' w='100%' h='100%' justify='space-evenly' align='center' bgColor='black'>
+
+      {!isMobileDevice() ? <Header /> : <MobileHeader />}
+
+
+
+      <form className="form" ref={form} onSubmit={handleFormSubmit}>
         <div className="nameContainer">
-           <label id='nameLabel'>Name *</label>
-         <label id='nameLabelCounter'>{name.length} / {nameLengthLimit}</label>
+          <label id='nameLabel'>Name *</label>
+          <label id='nameLabelCounter'>{name.length} / {nameLengthLimit}</label>
         </div>
-        
+
         <input id="username" type="text" name="user_name" value={name} onChange={handleNameChange} />
-  
-       
-         <div className="emailContainer">
-            <label>Email *</label>
-         </div>
+
+
+        <div className="emailContainer">
+          <label>Email *</label>
+        </div>
         <input id='email' type="email" name="user_email" value={email} onChange={((e) => setEmail(e.target.value))} />
         <div className="contentContainer">
-           <label>Message *  </label>
+          <label>Message *  </label>
         </div>
-       
-        <textarea id="content"  name="message" value={content} onChange={handleContentChange} />
+
+        <textarea id="content" name="message" value={content} onChange={handleContentChange} />
         <br />
         <label > {content.length} / {contentLengthLimit}</label>
-       { !isLoading ? <button id='send' type="submit" value="Send" > Send</button> : <text id='send' type="submit" value="Send" disabled>Sending...</text>}
+        {!isLoading ? <button id='send' type="submit" value="Send" > Send</button> : <text id='send' type="submit" value="Send" disabled>Sending...</text>}
       </form>
-      {captchaError && ( <div className="error"> 
-           <Alert status='error' variant='solid' w={['50%', '50%', '15%' ,'15%']} h='100%' alignSelf={['center', 'center', 'flex-end' ,'flex-end']} >
+      {captchaError && (<div className="error">
+        <Alert status='error' variant='solid' w={['50%', '50%', '15%', '15%']} h='100%' alignSelf={['center', 'center', 'flex-end', 'flex-end']} >
           <AlertIcon />
           Captcha is required!
         </Alert>
       </div>
-     
+
       )}
-      {formError && ( <div className="error">
-        <Alert status='error' variant='solid' w={['50%', '50%', '15%' ,'15%']} h='100%' alignSelf={['center', 'center', 'flex-end' ,'flex-end']} >
+      {formError && (<div className="error">
+        <Alert status='error' variant='solid' w={['50%', '50%', '15%', '15%']} h='100%' alignSelf={['center', 'center', 'flex-end', 'flex-end']} >
           <AlertIcon />
           All fields should be filled!
         </Alert> </div>
@@ -154,9 +154,9 @@ const ContactUsPage = () => {
       />
 
 
-     
+
     </Flex>
   )
-      
+
 }
 export default ContactUsPage;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getUserById } from "../../utils/utils";
-import { Box, Avatar, Flex, Image, Text, Heading, List, ListItem, ListIcon, OrderedList, Skeleton, SkeletonCircle, SkeletonText, UnorderedList, Input, Button, Container, Textarea, Popover, PopoverArrow, PopoverAnchor, PopoverBody, PopoverTrigger, PopoverContent, PopoverHeader, PopoverCloseButton } from "@chakra-ui/react"
+import { Box, Avatar, Flex, Image, Text, Heading, List, ListItem, ListIcon, OrderedList, Skeleton, SkeletonCircle, SkeletonText, UnorderedList, Input, Button, Container, Textarea, Popover, PopoverArrow, PopoverAnchor, PopoverBody, PopoverTrigger, PopoverContent, PopoverHeader, PopoverCloseButton, Grid } from "@chakra-ui/react"
 import { useAuth } from "../../context/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
@@ -83,11 +83,12 @@ const DetailedAthletePage = () => {
     }
 
 
-    return (<Flex w='100%' minH='100%'direction='column' justify='center' align='center' bgColor='black'  >
-        {!isMobileDevice() ? <Flex position='absolute' w={['100%', '100%', '100%', '100%']} top={0} justify='center' h='5%' bg='black'  bgColor='black'>
+    return (<Flex w='100%' minH='100%'direction='column' justify='center' align='center' bgColor='black' >
+        {!isMobileDevice()? <Flex position='absolute' w={['100%', '100%', '100%', '100%']} top={0} justify='center' h='5%' bg='black'  bgColor='black'>
             <Header />
         </Flex> : 
-            <MobileHeader />
+        <div className='header'>    <MobileHeader /></div>
+         
        }
 
 
@@ -115,7 +116,7 @@ const DetailedAthletePage = () => {
 
         <Flex w={['100%', '100%', '50%', '50%']} borderRadius='1px' h={['100%', '100%', '100%', '20%']} justify='center' align='center'  >
             <div className="description">
-               {currUser.role !== 'admin' && <Box padding={5} h={['100%', '100%', '100%', '100%']}boxShadow='lg' bg='white' w='100%'>
+               {currUser.role !== 'admin' && <Box padding={5} h={['100%', '100%', '100%', '100%']}boxShadow='lg' bg='gray.700' w='100%'>
                 <Heading >{athlete?.firstname + '' + athlete?.lastname}</Heading>
 
 
@@ -130,6 +131,7 @@ const DetailedAthletePage = () => {
         {currUser.role === 'admin' && description !== athlete.description && <Button onClick={handleSubmitDescription}> Submit description</Button>} </Flex>
             </div>
               </Flex>
+        
     </Flex>
 
     )

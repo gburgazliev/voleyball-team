@@ -3,26 +3,28 @@ import {
     ListItem,
     ListIcon,
     OrderedList,
-    UnorderedList,
+    UnorderedList, Divider, AbsoluteCenter
 } from "@chakra-ui/react"
-import banner from '../assets/banner.jpg'
-import logo from '../assets/logo.jpg'
-import Footer from '../components/footer/Footer'
-import Header from '../components/header/Header'
-import HomePageAthletes from "../components/homePageAthletes/HomePageAthletes"
-import { isMobileDevice } from "../utils/utils"
-import MobileHeader from "../components/mobileHeader/MobileHeader"
-
+import banner from '../../assets/banner.jpg'
+import logo from '../../assets/logo.jpg'
+import Footer from '../../components/footer/Footer'
+import Header from '../../components/header/Header'
+import HomePageAthletes from "../../components/homePageAthletes/HomePageAthletes"
+import { isMobileDevice } from "../../utils/utils"
+import MobileHeader from "../../components/mobileHeader/MobileHeader"
+import location from "../../assets/location.png";
+import phone from "../../assets/phone.png";
+import letter from "../../assets/letter.png";
 
 const Home = () => {
     return (
         <Flex direction='column' justify='center' bg='black' align='center' w={['100%', '100%', '100%', '100%']} >
-            {!isMobileDevice() ? 
+            {!isMobileDevice() ?
                 <Header />
-        : <MobileHeader />}
+                : <MobileHeader />}
             <Flex h='15%' justify='center' align='center' zIndex={0} paddingTop={20}>
-                 <img className="image" src={banner} boxSize='600px'  w='100%' alt='Voleyball Team' />
-                 
+                <img className="image" src={banner} boxSize='600px' w='100%' alt='Voleyball Team' />
+
             </Flex>
 
             <Flex justify='center' align='center' w={['50%', '50%', '100%', '100%']}>
@@ -44,9 +46,13 @@ const Home = () => {
 
             <HomePageAthletes />
 
-           { !isMobileDevice() && <Flex h='60%' w='100%'>
-                <Footer />
-            </Flex>}
+
+            <Footer />
+           
+           
+
+
+
         </Flex>
     )
 }

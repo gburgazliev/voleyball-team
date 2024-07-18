@@ -51,7 +51,7 @@ const MobileHeader = () => {
                     <DrawerBody >
                         <Text onClick={() => { navigate('/'); onClose() }} _hover={{ color: 'orange', cursor: 'pointer' }}>Home</Text>
                         <Text>Coaches</Text>
-                        <Text>About us</Text>
+                        <Text onClick={() => { navigate('/about-us'); onClose() }}>About us</Text>
                         <Text onClick={() => { navigate('/contact'); onClose() }} _hover={{ color: 'orange', cursor: 'pointer' }}>Contact us</Text>
                         <Text>Media</Text>
                     </DrawerBody>
