@@ -1,49 +1,31 @@
 import {
-  Flex, Box, Input, Textarea, Button, FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText, Alert, AlertIcon
+  Flex
 } from "@chakra-ui/react"
 import { auth } from "../../../firebase/firebase-config"
-import { useAuth } from "../../context/AuthContext";
 import { useState, useEffect } from "react";
 import emailjs from '@emailjs/browser';
 import { onAuthStateChanged } from "firebase/auth";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRef } from "react";
-import axios from "axios";
 import './contactUsPage.css';
 import Header from "../header/Header";
 import { isMobileDevice } from "../../utils/utils";
 import MobileHeader from "../mobileHeader/MobileHeader";
+import { useToast } from '@chakra-ui/react'
 
 
 
 const ContactUsPage = () => {
-  const [user, setUser] = useState(null);
   const [captchaVal, setCaptchaVal] = useState(null);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
-  const [captchaError, setCaptchaError] = useState(false);
-  const [formError, setFormError] = useState(false);
-  const [isValidName, setIsValidName] = useState(false);
-  const [isValidEmail, setIsValidEmail] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const nameLengthLimit = 20;
   const contentLengthLimit = 2000;
   const form = useRef();
+  const toast = useToast();
 
-
-
-
-  useEffect(() => {
-
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-
-  }, [])
 
   const handleContentChange = (e) => {
     if (e.target.value.length <= contentLengthLimit) {
@@ -62,25 +44,36 @@ const ContactUsPage = () => {
     e.preventDefault();
 
     if (!captchaVal) {
-      setCaptchaError(true);
-      setTimeout(() => {
-        setCaptchaError(false);
-      }, 3000);
+      toast({
+
+        title: 'Captcha is required!',
+        description: 'Please verify that you are not a robot!',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
       setIsLoading(false);
       return;
     } else if (!name || !email || !content) {
-      setFormError(true);
-      setTimeout(() => {
-        setFormError(false);
-      }, 3000);
+      toast({
+        className: 'error',
+        title: 'All fields should be filled!',
+        description: 'Please fill all fields!',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
       setIsLoading(false);
       return;
     } else if (name.length < 3 || name.length > 20) {
-      setIsValidName(true);
-      setTimeout(() => {
-        setIsValidName(false);
-      }, 3000);
-      setIsLoading(false);
+      toast({
+        className: 'error',
+        title: 'Name should be between 3 and 20 characters!',
+        description: 'Please enter a valid name!',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
       return;
     }
 
@@ -129,21 +122,7 @@ const ContactUsPage = () => {
         <label > {content.length} / {contentLengthLimit}</label>
         {!isLoading ? <button id='send' type="submit" value="Send" > Send</button> : <text id='send' type="submit" value="Send" disabled>Sending...</text>}
       </form>
-      {captchaError && (<div className="error">
-        <Alert status='error' variant='solid' w={['50%', '50%', '15%', '15%']} h='100%' alignSelf={['center', 'center', 'flex-end', 'flex-end']} >
-          <AlertIcon />
-          Captcha is required!
-        </Alert>
-      </div>
-
-      )}
-      {formError && (<div className="error">
-        <Alert status='error' variant='solid' w={['50%', '50%', '15%', '15%']} h='100%' alignSelf={['center', 'center', 'flex-end', 'flex-end']} >
-          <AlertIcon />
-          All fields should be filled!
-        </Alert> </div>
-      )}
-
+  
 
       <ReCAPTCHA
         alignSelf='flex-start'
@@ -152,9 +131,6 @@ const ContactUsPage = () => {
         size="normal"
         onChange={setCaptchaVal}
       />
-
-
-
     </Flex>
   )
 

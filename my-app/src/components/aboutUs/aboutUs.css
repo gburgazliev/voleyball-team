@@ -4,6 +4,44 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100vh;
-    background-color: gray;
+    height: auto;
+    background-color: rgb(66, 50, 50);
+}
+
+h1 {
+    font-size: 40px;
+    color: white;
+    margin-top: 50px;
+
+}
+
+#textarea {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    color: white;
+    background-color:rgb(113, 113, 99);
+  
+    border: 4px solid rgb(90, 90, 90);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    #textarea {
+        width: 90%;
+        font-size: large;
+    }
+    h1 {
+        font-size: 30px;
+        margin-top: 10px;
+    }
+
 }
