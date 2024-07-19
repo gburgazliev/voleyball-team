@@ -4,6 +4,9 @@ import React from 'react'
 import voleyballBackground from '../../assets/registerBackground.jpg'
 import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import Footer from '../footer/Footer'
+import MobileHeader from '../mobileHeader/MobileHeader'
+
 
 const Login = () => {
   const [show, setShow] = React.useState(false)
@@ -41,8 +44,9 @@ const Login = () => {
   }
 
   return (
-    <Flex w='100%' h='100%' justify='center' backgroundImage={voleyballBackground} align='center' backgroundSize='cover'>
-      <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']} justify='center' align='center'>
+    <Flex w='100%' minH='100vh' display='flex' direction='column' justify='space-between'  align='center' backgroundColor='black'>
+      <MobileHeader />
+      <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']} marginTop='15%' marginBottom='10%' justify='center' align='center'>
         <Flex w={['60%', '60%', '50%', '50%']} h='50%' justify='space-evenly' direction='column'>
           <Input placeholder='Enter email' value={form.email} onChange={updateForm('email')} bg='white' />
           <InputGroup size='lg'>
@@ -66,6 +70,7 @@ const Login = () => {
           </Button>
         </Flex>
       </Flex>
+      <Footer/>
     </Flex>
   )
 }

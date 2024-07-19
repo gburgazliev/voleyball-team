@@ -5,6 +5,8 @@ import { reauthenticateWithPopup } from "firebase/auth";
 import { useAuth } from "../../context/AuthContext";
 import { database } from "../../../firebase/firebase-config";
 import { update, ref, set, get } from 'firebase/database'
+import MobileHeader from "../mobileHeader/MobileHeader";
+import Footer from "../footer/Footer";
 
 
 const Register = () => {
@@ -142,8 +144,9 @@ const Register = () => {
 
     };
     return (
-        <Flex w='100%' h='100%' bgColor='black' zIndex={10} justify='center' align='center' backgroundImage={registerBackground} backgroundSize='cover'>
-            <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']} justify='center' align='center' direction='column'>
+        <Flex w='100%' minH='100vh' bgColor='black' zIndex={10} display='flex' direction='column' justify='center' align='center'backgroundColor='black'>
+            <MobileHeader />
+            <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']} marginTop='12%' marginBottom='10%' justify='center' align='center' direction='column'>
                 <Flex w='50%' h='60%' direction='column' justify='space-evenly'>
                     <Input placeholder="Email" value={form.email} onChange={updateForm('email')} bg='white' />
                     <Input placeholder="Username" bg='white' value={form.username} onChange={updateForm('username')} />
@@ -153,7 +156,7 @@ const Register = () => {
                     Register
                 </Button>
             </Flex>
-
+            <Footer />
         </Flex>
     )
 }
