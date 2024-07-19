@@ -28,7 +28,7 @@ const Home = () => {
             </Flex>
 
             <Flex justify='center' align='center' w={['50%', '50%', '100%', '100%']}>
-                <Image src={logo} boxSize='400px' alt='Voleyball Team' />
+                <Image src={logo} boxSize='300px' alt='Voleyball Team' />
                 <Flex direction='column' align='flex-start'>
                     <Heading textColor='white' fontSize='3xl' paddingBottom={2}>SB Community</Heading>
                     <UnorderedList color='white'>
