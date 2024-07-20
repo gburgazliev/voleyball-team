@@ -13,14 +13,11 @@
 }
 
 
-#username {
-    color: white;
-    height: 5%;
-}
 
-#email {
+#email, #username {
     color: white;
     height: 5%;
+    padding: 10px;
 }
 
 #send {
