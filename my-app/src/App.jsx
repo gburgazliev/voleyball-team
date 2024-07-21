@@ -25,7 +25,7 @@ function App() {
   return (
 
     
-    <Router>
+
       <Routes>
         <Route path='/detailed-athlete-view/:id' element={<DetailedAthletePage />} />
         <Route path='/contact' element={<ContactUsPage/>} />
@@ -36,7 +36,7 @@ function App() {
         <Route path='/auth/login' element={<Login />} />
 
       </Routes>
-    </Router>
+    
 
 
 
