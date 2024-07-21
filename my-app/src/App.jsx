@@ -12,7 +12,7 @@ import Header from './components/header/Header'
 import { Flex } from '@chakra-ui/react'
 import Footer from './components/footer/Footer'
 import AboutUs from './components/aboutUs/AboutUs'
-import NavBar from './components/navBar/NavBar'
+
 import { Box, Container } from '@chakra-ui/react'
 import AuthPage from './components/authPage/AuthPage'
 import Register from './components/register/Register'
