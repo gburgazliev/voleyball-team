@@ -12,6 +12,7 @@ import Header from "../header/Header";
 import { isMobileDevice } from "../../utils/utils";
 import MobileHeader from "../mobileHeader/MobileHeader";
 import { useToast } from '@chakra-ui/react'
+import Footer from "../footer/Footer";
 
 
 
@@ -94,7 +95,7 @@ const ContactUsPage = () => {
 
 
   return (
-    <Flex direction='column' w='100%' h='100%' justify='space-evenly' align='center' bgColor='black'>
+    <Flex direction='column' w='100%' minH='100%' justify='space-evenly' align='center' bgColor='black'>
 
       {!isMobileDevice() ? <Header /> : <MobileHeader />}
 
@@ -121,16 +122,19 @@ const ContactUsPage = () => {
         <br />
         <label > {content.length} / {contentLengthLimit}</label>
         {!isLoading ? <button id='send' type="submit" value="Send" > Send</button> : <text id='send' type="submit" value="Send" disabled>Sending...</text>}
-      </form>
-  
-
+        
       <ReCAPTCHA
-        alignSelf='flex-start'
+       
 
         sitekey="6LcTDg0qAAAAAIBTo6i6tCEgpVdr6ZT9Rn0zDMEI"
         size="normal"
         onChange={setCaptchaVal}
       />
+
+      </form>
+  
+
+      <Footer />
     </Flex>
   )
 
