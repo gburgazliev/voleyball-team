@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from 'react'
 import reactLogo from './assets/react.svg'
-import {BrowserRouter as Router } from 'react-router-dom'
+
 
 import styles from './App.module.css'
 import { auth } from '../firebase/firebase-config'
