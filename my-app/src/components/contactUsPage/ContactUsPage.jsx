@@ -1,3 +1,8 @@
+/**
+ * ContactUsPage component for the volleyball site.
+ * This component displays a contact form where users can send messages.
+ * It includes form validation, captcha verification, and email sending functionality.
+ */
 import {
   Flex
 } from "@chakra-ui/react"
@@ -16,6 +21,7 @@ import Footer from "../footer/Footer";
 
 
 
+
 const ContactUsPage = () => {
   const [captchaVal, setCaptchaVal] = useState(null);
   const [email, setEmail] = useState('');
@@ -28,18 +34,33 @@ const ContactUsPage = () => {
   const toast = useToast();
 
 
+  /**
+   * Handles the change event of the content input field.
+   * Updates the content state if the length of the input value is within the contentLengthLimit.
+   * @param {Object} e - The event object.
+   */
   const handleContentChange = (e) => {
     if (e.target.value.length <= contentLengthLimit) {
       setContent(e.target.value)
     }
   }
 
+  /**
+   * Handles the change event for the name input field.
+   * Updates the name state if the entered value is within the length limit.
+   * @param {Object} e - The event object.
+   */
   const handleNameChange = (e) => {
     if (e.target.value.length <= nameLengthLimit) {
       setName(e.target.value)
     }
   }
 
+  /**
+   * Handles the form submission.
+   * @param {Event} e - The form submission event.
+   * @returns {void}
+   */
   const handleFormSubmit = (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -122,17 +143,17 @@ const ContactUsPage = () => {
         <br />
         <label > {content.length} / {contentLengthLimit}</label>
         {!isLoading ? <button id='send' type="submit" value="Send" > Send</button> : <text id='send' type="submit" value="Send" disabled>Sending...</text>}
-        
-      <ReCAPTCHA
-       
 
-        sitekey="6LcTDg0qAAAAAIBTo6i6tCEgpVdr6ZT9Rn0zDMEI"
-        size="normal"
-        onChange={setCaptchaVal}
-      />
+        <ReCAPTCHA
+
+
+          sitekey="6LcTDg0qAAAAAIBTo6i6tCEgpVdr6ZT9Rn0zDMEI"
+          size="normal"
+          onChange={setCaptchaVal}
+        />
 
       </form>
-  
+
 
       <Footer />
     </Flex>

@@ -1,3 +1,9 @@
+/**
+ * Login component for user authentication.
+ *
+ * @component
+ * @returns {JSX.Element} Login component
+ */
 import { Box, Container, Flex, Heading, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
 import React from 'react'
@@ -19,6 +25,12 @@ const Login = () => {
     password: '',
   })
 
+  /**
+   * Updates the form state with the new value of the specified property.
+   *
+   * @param {string} prop - The name of the property to update.
+   * @returns {Function} - The event handler function.
+   */
   const updateForm = prop => e => {
     setForm({
       ...form,
@@ -27,6 +39,10 @@ const Login = () => {
   };
 
 
+  /**
+   * Handles the login functionality.
+   * @returns {Promise<void>} A promise that resolves when the login is successful.
+   */
   const handleLogin = async () => {
     try {
       await login(form.email, form.password);

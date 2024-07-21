@@ -1,3 +1,8 @@
+/**
+ * Represents the Register component.
+ * This component is responsible for handling user registration.
+ * @returns {JSX.Element} The Register component.
+ */
 import { Box, Flex, Heading, Button, Input, useToast } from "@chakra-ui/react";
 import registerBackground from '../../assets/registerBackground.jpg'
 import { useState, useEffect } from "react";
@@ -18,6 +23,11 @@ const Register = () => {
         password: '',
     })
 
+    /**
+     * Updates the form state with the provided property value.
+     * @param {string} prop - The property to update in the form state.
+     * @returns {Function} - The event handler function.
+     */
     const updateForm = prop => e => {
         setForm({
             ...form,
@@ -26,11 +36,16 @@ const Register = () => {
     };
 
 
+    /**
+     * Checks if a password is valid.
+     * @param {string} password - The password to be checked.
+     * @returns {boolean} - Returns true if the password is valid, false otherwise.
+     */
     const isValidPassword = password => {
         if (password.length < 8) {
             toast({
                 title: 'Invalid Password.',
-                description: "Password can't be less then 8 symbols.",
+                description: "Password can't be less than 8 symbols.",
                 status: 'error',
                 duration: 3000,
                 isClosable: true,
@@ -40,6 +55,12 @@ const Register = () => {
         return true;
     };
 
+    /**
+     * Checks if the given email is valid.
+     * 
+     * @param {string} email - The email to be validated.
+     * @returns {boolean} - Returns true if the email is valid, false otherwise.
+     */
     const isValidEmail = (email) => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
@@ -55,6 +76,11 @@ const Register = () => {
         return true;
     };
 
+    /**
+     * Checks if a username is valid.
+     * @param {string} username - The username to be validated.
+     * @returns {boolean} - Returns true if the username is valid, false otherwise.
+     */
     const isValidUsername = (username) => {
         if (username && username.length < 3 || username.length > 20) {
             toast({
@@ -69,6 +95,12 @@ const Register = () => {
         return true;
     };
 
+    /**
+     * Checks if a username is unique among a list of users.
+     * @param {Object} users - The list of users.
+     * @param {string} username - The username to check.
+     * @returns {boolean} - Returns true if the username is unique, false otherwise.
+     */
     const isUniqueUsername = (users, username) => {
 
         if (users) {
@@ -87,6 +119,10 @@ const Register = () => {
         return true;
     };
 
+    /**
+     * Handles the registration process.
+     * @returns {Promise<void>} A promise that resolves when the registration process is completed.
+     */
     const handleRegister = async () => {
         try {
             const usersRef = ref(database, `users`);

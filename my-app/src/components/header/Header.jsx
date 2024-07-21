@@ -11,6 +11,11 @@ import { ref, set, get, update } from 'firebase/database'
 import { getUserById } from "../../utils/utils"
 import { useAuth } from "../../context/AuthContext"
 
+/**
+ * Header component for the volleyball site.
+ *
+ * @returns {JSX.Element} The rendered Header component.
+ */
 const Header = () => {
     const navigate = useNavigate()
     const [user, setUser] = useState(null);
@@ -19,6 +24,9 @@ const Header = () => {
     const {logout} = useAuth();
 
 
+    /**
+     * Renders the content based on the user's login status.
+     */
     const isLoggedInContent = () => {
         let content = '';
 

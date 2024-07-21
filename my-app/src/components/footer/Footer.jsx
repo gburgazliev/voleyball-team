@@ -1,8 +1,19 @@
+/**
+ * Footer component for the website.
+ * Displays information about SB Community sports agency and staff contacts.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Footer />
+ * )
+ */
 import { Box, Container, Flex, Textarea, Text, Heading, Image, Spacer, HStack, Divider } from "@chakra-ui/react";
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
 import letter from "../../assets/letter.png";
 import './footer.css';
+
 
 const Footer = () => {
     return (

@@ -1,3 +1,9 @@
+/**
+ * Renders the home page athletes component.
+ * 
+ * @returns {JSX.Element} The home page athletes component.
+ */
+
 import { Box, Flex, Text, Button, Popover, PopoverTrigger, PopoverContent, Avatar, PopoverBody, PopoverHeader, PopoverArrow, PopoverCloseButton, Input, Wrap, WrapItem } from "@chakra-ui/react"
 import { getHomePageAthletes } from "../../utils/utils";
 import { useEffect, useState } from "react";
@@ -60,6 +66,11 @@ const HomePageAthletes = () => {
     }, [userData]);
 
 
+    /**
+     * Updates the form state with the provided property value.
+     * @param {string} prop - The property to update in the form state.
+     * @returns {Function} - The event handler function.
+     */
     const updateForm = prop => e => {
         setForm({
             ...form,
@@ -67,18 +78,33 @@ const HomePageAthletes = () => {
         });
     }
 
+    /**
+     * Checks if the current user has the role of admin.
+     * @returns {boolean} True if the current user is an admin, false otherwise.
+     */
     const isAdmin = () => {
         return currentUser?.role === 'admin';
     }
 
 
 
+    /**
+     * Handles the change event of the file input element.
+     * @param {Object} e - The event object.
+     */
     const handleChange = (e) => {
         const file = e.target.files[0];
         setFile(file);
         setProfilePic(URL.createObjectURL(file));
     }
 
+    /**
+     * Handles the upload of a picture for a new athlete.
+     * 
+     * @param {File} file - The file to be uploaded.
+     * @param {Object} newAthlete - The new athlete object.
+     * @returns {Promise<string>} - A promise that resolves with the download URL of the uploaded picture.
+     */
     const handleUploadPicture = async (file, newAthlete) => {
         return new Promise((resolve, reject) => {
         const fileRef = storageRef(storage, `homepageAthletes/${newAthlete.uid}`)
@@ -111,6 +137,11 @@ const HomePageAthletes = () => {
         });
     }
 
+    /**
+     * Handles the addition of a new athlete.
+     * @returns {Promise<void>} A promise that resolves when the athlete is added successfully.
+     */
+  
     const handleAddAthlete = async () => {
         try {
             const newAthleteRef = push(ref(database, 'homePageAthletes'));

@@ -1,3 +1,11 @@
+/**
+ * MobileHeader component for the volleyball site.
+ * @component
+ * @example
+ * return (
+ *   <MobileHeader />
+ * )
+ */
 import {
     Heading, Drawer,
     DrawerBody,

@@ -1,3 +1,8 @@
+/**
+ * Component for displaying detailed information about an athlete.
+ * @component
+ * @returns {JSX.Element} DetailedAthletePage component
+ */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getUserById } from "../../utils/utils";
@@ -60,6 +65,10 @@ const DetailedAthletePage = () => {
     }
 
 
+    /**
+     * Handles the deletion of a video for the athlete.
+     * @returns {Promise<void>}
+     */
     const handleDeleteVideo = async () => {
         const videoProp = {
             videoID: null
@@ -72,6 +81,11 @@ const DetailedAthletePage = () => {
         setDescription(athlete?.description);
     }, [athlete])
 
+    /**
+     * Handles the submission of the athlete's description.
+     * Updates the athlete's description using the updateAthlete function.
+     * @returns {Promise<void>} A promise that resolves when the athlete's description is updated.
+     */
     const handleSubmitDescription = async () => {
 
         const descriptionProp = {

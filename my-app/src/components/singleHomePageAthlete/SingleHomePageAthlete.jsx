@@ -1,3 +1,10 @@
+/**
+ * Renders a single athlete component for the home page.
+ * @param {Object} props - The component props.
+ * @param {Object} props.athlete - The athlete object.
+ * @param {boolean} props.isAdmin - Indicates if the user is an admin.
+ * @returns {JSX.Element} The rendered component.
+ */
 import React from 'react'
 import { Box, Text, Wrap, WrapItem, Avatar, Flex, Button } from '@chakra-ui/react'
 import { useState } from 'react'

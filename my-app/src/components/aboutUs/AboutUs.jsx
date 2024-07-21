@@ -7,12 +7,6 @@ import { isMobileDevice } from '../../utils/utils';
 
 
 const AboutUs = () => {
- 
-
- 
-      
-
-
     return (
         <div id='about-us-container'>
              <MobileHeader /> 

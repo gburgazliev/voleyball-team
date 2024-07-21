@@ -1,3 +1,7 @@
+/**
+ * Renders the home page of the volleyball team website.
+ * @returns {JSX.Element} The rendered home page component.
+ */
 import {
     Box, Flex, Image, Text, Heading, List,
     ListItem,
@@ -23,18 +27,18 @@ const Home = () => {
                 <Header />
                 : <MobileHeader />}
             <Flex h='15%' justify='center' align='center' zIndex={0} paddingTop={20}>
-                <img className="image" src={banner} boxSize='600px' w='100%' alt='Voleyball Team' />
+                <img className="image" src={banner} boxSize='600px' w='100%' alt='Volleyball Team' />
 
             </Flex>
 
             <Flex justify='center' align='center' w={['50%', '50%', '100%', '100%']}>
-                <Image src={logo} boxSize='300px' alt='Voleyball Team' />
+                <Image src={logo} boxSize='300px' alt='Volleyball Team' />
                 <Flex direction='column' align='flex-start'>
                     <Heading textColor='white' fontSize='3xl' paddingBottom={2}>SB Community</Heading>
                     <UnorderedList color='white'>
                         <ListItem>Team searching</ListItem>
                         <ListItem>Contract Negotiations</ListItem>
-                        <ListItem>Judical Assistance</ListItem>
+                        <ListItem>Judicial Assistance</ListItem>
                         <ListItem>Medical Follow-up</ListItem>
                         <ListItem>Physical Conditioning</ListItem>
                         <ListItem>Education, individual trainings, sports management, volleyball</ListItem>
@@ -48,11 +52,6 @@ const Home = () => {
 
 
             <Footer />
-           
-           
-
-
-
         </Flex>
     )
 }
