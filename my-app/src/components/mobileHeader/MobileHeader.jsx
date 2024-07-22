@@ -99,8 +99,8 @@ const MobileHeader = () => {
 
                     </DrawerBody>
                     <DrawerFooter >
-                        {/* {user ? <Button onClick={() => { navigate('/'); logout(); onClose() }}>Sign Out</Button> : <> <Button bg={location.pathname === '/auth/login' ? 'orange' : 'gray.100'} m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
-                            <Button bg={location.pathname === '/auth/register' ? 'orange' : 'gray.100'} onClick={() => navigate('/auth/register')}>Sign Up</Button></>} */}
+                        {user ? <Button onClick={() => { navigate('/'); logout(); onClose() }}>Sign Out</Button> : <> <Button bg={location.pathname === '/auth/login' ? 'orange' : 'gray.100'} m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
+                            <Button bg={location.pathname === '/auth/register' ? 'orange' : 'gray.100'} onClick={() => navigate('/auth/register')}>Sign Up</Button></>}
 
                     </DrawerFooter>
                 </DrawerContent>

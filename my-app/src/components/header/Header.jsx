@@ -42,13 +42,13 @@ const Header = () => {
                 </Flex>
             );
         } else {
-            // content = (
-            //     <Flex>
-            //         <Button onClick={() => navigate('/auth/login')} marginRight={2}>Sign in</Button>
+            content = (
+                <Flex>
+                    <Button onClick={() => navigate('/auth/login')} marginRight={2}>Sign in</Button>
 
-            //         <Button onClick={() => navigate('/auth/register')} marginLeft={2}>Sign up</Button>
-            //     </Flex>
-            // );
+                    <Button onClick={() => navigate('/auth/register')} marginLeft={2}>Sign up</Button>
+                </Flex>
+            );
         }
         setContent(content);
     };
