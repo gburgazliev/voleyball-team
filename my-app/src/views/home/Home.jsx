@@ -32,20 +32,23 @@ const Home = () => {
 
             </Flex>
 
-            <Flex justify='center' align='center' w={['50%', '50%', '100%', '100%']}>
+            <Flex justify='center' padding={2} gap='5%' align='center' w={['100%', '100%', '100%', '100%']}>
                 <img id='logo' src={logo} boxSize='400px' alt='Volleyball Team' />
-                <Flex direction='column' align='flex-start'>
-                    <Heading textColor='white' fontSize='3xl' paddingBottom={2}>Heaven07</Heading>
-                    <UnorderedList color='white'>
-                        <ListItem>Team searching</ListItem>
-                        <ListItem>Contract Negotiations</ListItem>
-                        <ListItem>Judicial Assistance</ListItem>
-                        <ListItem>Medical Follow-up</ListItem>
-                        <ListItem>Physical Conditioning</ListItem>
-                        <ListItem>Education, individual trainings, sports management, volleyball</ListItem>
-                    </UnorderedList>
+                
+                
+                      <ul  
+                    >
+                        <li>Team searching</li>
+                        <li>Contract Negotiations</li>
+                        <li>Judicial Assistance</li>
+                        <li>Medical Follow-up</li>
+                        <li>Physical Conditioning</li>
+                        <li>Education, individual trainings, sports management, volleyball</li>
+                    </ul>
+                
+                  
 
-                </Flex>
+             
 
             </Flex>
 

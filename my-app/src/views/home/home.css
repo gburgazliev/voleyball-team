@@ -1,8 +1,91 @@
+li {
+  color: white;
+ 
+}
 
+
+
+#logo {
+  height: 400px;
+  width:400px;
+  
+}
+
+@media screen and (max-width: 450px) {
+  #logo {
+    height: 235px;
+    width: 235px;
+    
+  }
+
+  li {
+    color: white;
+    font-size: 11px
+  }
+
+  ul {
+
+   margin-top: 10px;
+   
+  width: 100%;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  #logo {
+    height: 235px;
+    width: 235px;
+    
+  }
+
+  li {
+    color: white;
+    font-size: 11px
+  }
+
+  ul {
+
+   margin-top: 10px;
+   
+  width: 100%;
+  }
+}
 
 @media screen and (max-width: 430px) {
   #logo {
-    height: 225px;
-    width: 225px;
+    height: 235px;
+    width: 235px;
+    
+  }
+
+  li {
+    color: white;
+    font-size: 11px
+  }
+
+  ul {
+
+   margin-top: 10px;
+   
+  width: 100%;
+  }
+}
+@media screen and (max-width: 481px) {
+  #logo {
+    height: 235px;
+    width: 235px;
+    
+  }
+
+  li {
+    color: white;
+    font-size: 11px
+  }
+
+  ul {
+
+   margin-top: 10px;
+   
+  width: 100%;
   }
 }
