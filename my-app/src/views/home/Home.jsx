@@ -19,6 +19,7 @@ import MobileHeader from "../../components/mobileHeader/MobileHeader"
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
 import letter from "../../assets/letter.png";
+import './home.css'
 
 const Home = () => {
     return (
@@ -32,9 +33,9 @@ const Home = () => {
             </Flex>
 
             <Flex justify='center' align='center' w={['50%', '50%', '100%', '100%']}>
-                <Image src={logo} boxSize='300px' alt='Volleyball Team' />
+                <img id='logo' src={logo} boxSize='400px' alt='Volleyball Team' />
                 <Flex direction='column' align='flex-start'>
-                    <Heading textColor='white' fontSize='3xl' paddingBottom={2}>SB Community</Heading>
+                    <Heading textColor='white' fontSize='3xl' paddingBottom={2}>Heaven07</Heading>
                     <UnorderedList color='white'>
                         <ListItem>Team searching</ListItem>
                         <ListItem>Contract Negotiations</ListItem>
