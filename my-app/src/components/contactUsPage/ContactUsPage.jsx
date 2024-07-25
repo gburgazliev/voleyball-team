@@ -112,6 +112,14 @@ const ContactUsPage = () => {
         },
       );
     setIsLoading(false);
+
+    toast({
+      title: 'Message sent!',
+      description: 'Thank you for contacting us!',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    });
   }
 
 
