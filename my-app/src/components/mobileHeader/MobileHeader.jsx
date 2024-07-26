@@ -76,13 +76,15 @@ const MobileHeader = () => {
                     <DrawerCloseButton />
                     <DrawerBody >
                         <Stack>
-                            <Button bg={location.pathname === '/' ? 'blue.200' : 'gray.100'} _hover={{ color: 'orange', cursor: 'pointer' }} onClick={() => { navigate('/') }}>Home</Button>
-                            <Button _hover={{ color: 'orange', cursor: 'pointer' }}>Coaches</Button>
+                            <Button bg={location.pathname === '/' ? 'blue.200' : 'gray.100'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/') }}>Home</Button>
+                            <Button _hover={{ color: 'blue.200', cursor: 'pointer' }}>Coaches</Button>
                             <Button bg={location.pathname === '/about-us' ? 'blue.200' : 'gray.100'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/about-us') }}>About us</Button>
                             <Button bg={location.pathname === '/contact' ? 'blue.200' : 'gray.100'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/contact') }} >Contact us</Button>
                             <Popover  >
+                            {({ isOpen }) => (
+                                <>
                                 <PopoverTrigger>
-                                    <Button >Media</Button>
+                                    <Button  _hover={{ color: 'blue.200', cursor: 'pointer' }} bg={isOpen ? 'blue.200' : 'gray.100'} >Media</Button>
                                 </PopoverTrigger>
                                 <PopoverContent>
                                     <PopoverArrow />
@@ -94,7 +96,8 @@ const MobileHeader = () => {
                                         </a>
                                         <Image src={youtube} boxSize='50px'></Image>  </Flex>
                                     </PopoverBody>
-                                </PopoverContent>
+                                </PopoverContent> </>
+                                 )}
                             </Popover>
                         </Stack>
 
