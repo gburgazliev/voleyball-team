@@ -1,5 +1,34 @@
 
+@keyframes identifier {
+    0% {
+       transform:  translateX(-300px);
+    }
 
+    50% {
+     transform:    translateX(200px);
+    }
+
+    65% {
+     transform:    translateX(-50px);
+    }
+
+    80% {
+     transform:    translateX(10px);
+    }
+
+    90% {
+     transform:    translateX(-15px);
+    }
+
+    100% {
+     transform:    translateY(0);
+    }
+    
+}
+
+.slideFromLeft {
+    animation: identifier 1.5s;
+}
 
 
 
