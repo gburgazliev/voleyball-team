@@ -108,7 +108,7 @@ const DetailedAthletePage = () => {
 
 
         
-             <div id='videoContainer' class='slideFromLeft'>
+             <div id='videoContainer' class='fadeIn'>
                 <iframe 
                  className="video"
                 src={`https://www.youtube.com/embed/${athlete?.videoID}`}
