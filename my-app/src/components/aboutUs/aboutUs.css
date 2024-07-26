@@ -1,3 +1,18 @@
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+    
+}
+
+.slideInFromBottom {
+    animation: slideInFromBottom 1.5s ;
+}
+
+
 #about-us-container {
     display: flex;
     flex-direction: column;
