@@ -1,0 +1,29 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+    
+}
+
+@keyframes slideFromTop {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+    
+}
+
+.slideFromTop {
+    animation: slideFromTop 1.5s;
+}
+
+.fadeIn {
+    animation: fadeIn 1.5s;
+}

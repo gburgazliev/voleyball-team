@@ -37,6 +37,7 @@ import { useLocation } from 'react-router-dom';
 import instagram from '../../assets/instagram.png';
 import facebook from '../../assets/facebook.png';
 import youtube from '../../assets/youtube.png';
+import './mobileHeader.css'
 
 
 
@@ -64,8 +65,8 @@ const MobileHeader = () => {
 
     return (
         <>
-            <Heading color='orange'>SB COMMUNITY</Heading>
-            <Button colorScheme='blue' onClick={onOpen}>
+            <Heading color='white' className="slideFromTop">Heaven 07</Heading>
+            <Button className="fadeIn" colorScheme='blue' onClick={onOpen}>
                 MENU
             </Button>
             <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
@@ -75,10 +76,10 @@ const MobileHeader = () => {
                     <DrawerCloseButton />
                     <DrawerBody >
                         <Stack>
-                            <Button bg={location.pathname === '/' ? 'orange' : 'gray.100'} _hover={{ color: 'orange', cursor: 'pointer' }} onClick={() => { navigate('/') }}>Home</Button>
+                            <Button bg={location.pathname === '/' ? 'blue.200' : 'gray.100'} _hover={{ color: 'orange', cursor: 'pointer' }} onClick={() => { navigate('/') }}>Home</Button>
                             <Button _hover={{ color: 'orange', cursor: 'pointer' }}>Coaches</Button>
-                            <Button bg={location.pathname === '/about-us' ? 'orange' : 'gray.100'} _hover={{ color: 'orange', cursor: 'pointer' }} onClick={() => { navigate('/about-us') }}>About us</Button>
-                            <Button bg={location.pathname === '/contact' ? 'orange' : 'gray.100'} _hover={{ color: 'orange', cursor: 'pointer' }} onClick={() => { navigate('/contact') }} >Contact us</Button>
+                            <Button bg={location.pathname === '/about-us' ? 'blue.200' : 'gray.100'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/about-us') }}>About us</Button>
+                            <Button bg={location.pathname === '/contact' ? 'blue.200' : 'gray.100'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/contact') }} >Contact us</Button>
                             <Popover  >
                                 <PopoverTrigger>
                                     <Button >Media</Button>

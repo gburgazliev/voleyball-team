@@ -30,73 +30,30 @@ const Footer = () => {
                     <Divider />
                 </div>
                 <div id='staff-info'>
-                    <div className="staff-couple">
-                        <div className="person-info"> <h1 className="heading">Boris SIMURIJA</h1>
+                    <div>
+                        <div className="staff-couple">
+                        <div className="person-info"> <h1 className="heading">Vicho Kolev</h1>
                             <div className="couples">
                                 <img src={phone} alt="phone" />
-                                <p> +1 (202) 378-0493</p>
+                                <p> +359 88 6676470</p>
                             </div>
                             <div className="couples">
                                 <img src={location} alt="location" />
-                                <p>Owner</p>
+                                <p>Owner - Sofia, Bulgaria</p>
                             </div>
                             <div className="couples">
                                 <img src={letter} alt="letter" />
-                                <p>office@sb-community.com</p>
+                                <p>heaven07@abv.bg</p>
                             </div>
                         </div>
-                        <div className="divider">
-                    <Divider />
-                </div>
-                        <div className="person-info"> <h1 className="heading">Boris SIMURIJA</h1>
-                            <div className="couples">
-                                <img src={phone} alt="phone" />
-                                <p> +381 (63)881-2236</p>
-                            </div>
-                            <div className="couples">
-                                <img src={location} alt="location" />
-                                <p>Licenced FIVB Agent</p>
-                            </div>
-                            <div className="couples">
-                                <img src={letter} alt="letter" />
-                                <p>boris@sb-community.com</p>
-                            </div>
-                        </div>
+                      
+                    </div> 
                     </div>
+                       
+                   
+                    
 
-                   <div className="staff-couple">
-                       <div className="person-info"> <h1 className="heading">Boris SIMURIJA</h1>
-                        <div className="couples">
-                            <img src={phone} alt="phone" />
-                            <p> +381 (63)881-2236</p>
-                        </div>
-                        <div className="couples">
-                            <img src={location} alt="location" />
-                            <p>Licenced FIVB Agent</p>
-                        </div>
-                        <div className="couples">
-                            <img src={letter} alt="letter" />
-                            <p>boris@sb-community.com</p>
-                        </div>
-                    </div>
-              
-                 <div className="divider">
-                            <Divider orientation='vertical' />
-                        </div>
-                        <div className="person-info"> <h1 className="heading">Boris SIMURIJA</h1>
-                        <div className="couples">
-                            <img src={phone} alt="phone" />
-                            <p> +381 (63)881-2236</p>
-                        </div>
-                        <div className="couples">
-                            <img src={location} alt="location" />
-                            <p>Licenced FIVB Agent</p>
-                        </div>
-                        <div className="couples">
-                            <img src={letter} alt="letter" />
-                            <p>boris@sb-community.com</p>
-                        </div>
-                    </div>  </div>
+                 
                    </div>
                  </div>
     );

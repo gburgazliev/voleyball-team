@@ -27,13 +27,13 @@ const Home = () => {
             {!isMobileDevice() ?
                 <Header />
                 : <MobileHeader />}
-            <Flex h='15%' justify='center' align='center' zIndex={0} paddingTop={20}>
-                <img className="image" src={banner} boxSize='600px' w='100%' alt='Volleyball Team' />
+            
+                <img id='banner' src={banner}  alt='Volleyball Team' />
 
-            </Flex>
+            
 
             <Flex justify='center' padding={2} gap='5%' align='center' w={['100%', '100%', '100%', '100%']}>
-                <img id='logo' src={logo} boxSize='400px' alt='Volleyball Team' />
+                <img id='logo' src={logo}  alt='Volleyball Team' />
                 
                 
                       <ul  

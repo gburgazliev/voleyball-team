@@ -25,6 +25,7 @@ const DetailedAthletePage = () => {
     const [userData, setUserData] = useState({});
     const [videoId, setVideoId] = useState('');
     const [description, setDescription] = useState('');
+    const formattedDescription = athlete?.description?.split('\n').map((item) => <p>{item}</p>);
 
 
 
@@ -130,12 +131,12 @@ const DetailedAthletePage = () => {
 
         <Flex w={['100%', '100%', '50%', '50%']} borderRadius='1px' h={['100%', '100%', '100%', '20%']} justify='center' align='center'  >
             <div className="description">
-               {currUser.role !== 'admin' && <Box padding={5} h={['100%', '100%', '100%', '100%']}boxShadow='lg' bg='gray.700' w='100%'>
+               {currUser.role !== 'admin' && <Box padding={5} h={['100%', '100%', '100%', '100%']}boxShadow='lg' bg='black' w='100%'>
                 <Heading >{athlete?.firstname + '' + athlete?.lastname}</Heading>
 
 
                 {!athlete?.description && <SkeletonText mt="4" noOfLines={4} spacing="4" />}
-                {athlete?.description && currUser.role !== 'admin' && <Text >{athlete?.description}</Text>}
+                {athlete?.description && currUser.role !== 'admin' && <Text >{formattedDescription}</Text>}
 
             </Box>}
 <Flex w='100%' >

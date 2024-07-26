@@ -1,3 +1,7 @@
+
+
+
+
 li {
   color: white;
  
@@ -9,7 +13,10 @@ li {
   height: 400px;
   width:400px;
   
+  
 }
+
+
 
 @media screen and (max-width: 450px) {
   #logo {

@@ -10,6 +10,8 @@ import { auth } from "../../../firebase/firebase-config"
 import { ref, set, get, update } from 'firebase/database'
 import { getUserById } from "../../utils/utils"
 import { useAuth } from "../../context/AuthContext"
+import './header.css'
+
 
 /**
  * Header component for the volleyball site.
@@ -75,7 +77,7 @@ useEffect(() => {
 }, [currentUser]);
 
     return (
-        <Flex position='relative'  justifySelf='flex-start' h='200px' direction='column'  w= '90%'  bgColor='black' textColor='white' marginRight='5%' marginLeft='5%'  bg='black' >
+        <Flex className="slideInLeft" position='relative'  justifySelf='flex-start' h='200px' direction='column'  w= '90%'   textColor='white' marginRight='5%' marginLeft='5%'  bg='transparent' >
             <Flex w={['80%', '60%' , '90%', '90%']} justify='flex-end' paddingTop={10}>
                 <HStack spacing={5}>
 
@@ -88,13 +90,13 @@ useEffect(() => {
                 </HStack>
             </Flex>
 
-            <Box w='27%' textColor='orange' justify='flex-start' alignSelf='flex-start' bgColor='black'>
-                <Heading  _hover={{ color: 'red', cursor: 'pointer' }} onClick={() => navigate('/')}>  SB COMMUNITY</Heading>
+            <Box w='27%' textColor='white' justify='flex-start' alignSelf='flex-start' bgColor='transparent'>
+                <Heading  _hover={{ color: 'blue.300', cursor: 'pointer' }} onClick={() => navigate('/')}> HEAVEN 07</Heading>
 
             </Box>
 
-            <Flex w='100%' h='100%' justify='space-between' direction='row' align='center' bgColor='black' paddingTop={5} marginBottom={5}>
-                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} onClick={() => navigate('/')}>
+            <Flex w='100%' h='100%' justify='space-between' direction='row' align='center' bgColor='transparent' paddingTop={5} marginBottom={5}>
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'blue.300', cursor: 'pointer' }} onClick={() => navigate('/')}>
                     HOME
 
                 </Heading>
@@ -107,7 +109,7 @@ useEffect(() => {
 
                
 
-                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} >
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'blue.300', cursor: 'pointer' }} >
                     COACHES
                 </Heading>
 
@@ -118,7 +120,7 @@ useEffect(() => {
               
                 
 
-                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} onClick={() => navigate('/about-us')}>
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'blue.300', cursor: 'pointer' }} onClick={() => navigate('/about-us')}>
                     ABOUT US
                 </Heading>
 
@@ -126,7 +128,7 @@ useEffect(() => {
 
                 </Divider>
 
-                <Heading paddingLeft={0} paddingRight={0} size='sm' _hover={{ color: 'red', cursor: 'pointer' }} onClick={() => navigate('/contact')}>
+                <Heading paddingLeft={0} paddingRight={0} size='sm' _hover={{ color: 'blue.300', cursor: 'pointer' }} onClick={() => navigate('/contact')}>
                     CONTACT
                 </Heading>
             </Flex>
