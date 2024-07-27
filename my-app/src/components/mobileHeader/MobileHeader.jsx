@@ -90,7 +90,7 @@ const MobileHeader = () => {
                                     <PopoverArrow />
                                     <PopoverCloseButton />
 
-                                    <PopoverBody > <Flex justify='space-evenly'> <Image src={facebook} boxSize='50px'></Image>
+                                    <PopoverBody bg='gray.400' > <Flex justify='space-evenly'> <Image src={facebook} boxSize='50px'></Image>
                                         <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                                             <Image src={instagram} boxSize='50px'></Image>
                                         </a>
@@ -102,7 +102,7 @@ const MobileHeader = () => {
                         </Stack>
 
                     </DrawerBody>
-                    <DrawerFooter >
+                    <DrawerFooter borderTopWidth='1px' color='white' >
                         {user ? <Button _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/'); logout(); onClose() }} bg='gray.400'>Sign Out</Button> : <> <Button _hover={{ color: 'blue.200', cursor: 'pointer' }}bg={location.pathname === '/auth/login' ? 'orange' : 'gray.400'} m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
                             <Button _hover={{ color: 'blue.200', cursor: 'pointer' }} bg={location.pathname === '/auth/register' ? 'orange' : 'gray.400'} onClick={() => navigate('/auth/register')}>Sign Up</Button></>}
 
