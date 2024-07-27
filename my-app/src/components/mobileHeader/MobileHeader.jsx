@@ -71,20 +71,20 @@ const MobileHeader = () => {
             </Button>
             <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay />
-                <DrawerContent>
-                    <DrawerHeader borderBottomWidth='1px'>Menu</DrawerHeader>
-                    <DrawerCloseButton />
-                    <DrawerBody >
+                <DrawerContent  bg='gray.800'>
+                    <DrawerHeader borderBottomWidth='1px' color='white'>Menu</DrawerHeader>
+                    <DrawerCloseButton color='white' _hover={{ color: 'blue.200', cursor: 'pointer' }}/>
+                    <DrawerBody bg='gray.900' >
                         <Stack>
-                            <Button bg={location.pathname === '/' ? 'blue.200' : 'gray.100'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/') }}>Home</Button>
-                            <Button _hover={{ color: 'blue.200', cursor: 'pointer' }}>Coaches</Button>
-                            <Button bg={location.pathname === '/about-us' ? 'blue.200' : 'gray.100'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/about-us') }}>About us</Button>
-                            <Button bg={location.pathname === '/contact' ? 'blue.200' : 'gray.100'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/contact') }} >Contact us</Button>
+                            <Button bg={location.pathname === '/' ? 'blue.200' : 'gray.400'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/') }}>Home</Button>
+                            <Button _hover={{ color: 'blue.200', cursor: 'pointer' }} bg='gray.400'>Coaches</Button>
+                            <Button bg={location.pathname === '/about-us' ? 'blue.200' : 'gray.400'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/about-us') }}>About us</Button>
+                            <Button bg={location.pathname === '/contact' ? 'blue.200' : 'gray.400'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/contact') }} >Contact us</Button>
                             <Popover  >
                             {({ isOpen }) => (
                                 <>
                                 <PopoverTrigger>
-                                    <Button  _hover={{ color: 'blue.200', cursor: 'pointer' }} bg={isOpen ? 'blue.200' : 'gray.100'} >Media</Button>
+                                    <Button  _hover={{ color: 'blue.200', cursor: 'pointer' }} bg={isOpen ? 'blue.200' : 'gray.400'} >Media</Button>
                                 </PopoverTrigger>
                                 <PopoverContent>
                                     <PopoverArrow />
@@ -103,8 +103,8 @@ const MobileHeader = () => {
 
                     </DrawerBody>
                     <DrawerFooter >
-                        {user ? <Button onClick={() => { navigate('/'); logout(); onClose() }}>Sign Out</Button> : <> <Button bg={location.pathname === '/auth/login' ? 'orange' : 'gray.100'} m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
-                            <Button bg={location.pathname === '/auth/register' ? 'orange' : 'gray.100'} onClick={() => navigate('/auth/register')}>Sign Up</Button></>}
+                        {user ? <Button _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/'); logout(); onClose() }} bg='gray.400'>Sign Out</Button> : <> <Button _hover={{ color: 'blue.200', cursor: 'pointer' }}bg={location.pathname === '/auth/login' ? 'orange' : 'gray.400'} m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
+                            <Button _hover={{ color: 'blue.200', cursor: 'pointer' }} bg={location.pathname === '/auth/register' ? 'orange' : 'gray.400'} onClick={() => navigate('/auth/register')}>Sign Up</Button></>}
 
                     </DrawerFooter>
                 </DrawerContent>
