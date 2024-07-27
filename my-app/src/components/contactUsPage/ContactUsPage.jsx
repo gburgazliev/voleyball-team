@@ -113,6 +113,10 @@ const ContactUsPage = () => {
       );
     setIsLoading(false);
 
+    setName('');
+    setEmail('');
+    setContent('');
+
     toast({
       title: 'Message sent!',
       description: 'Thank you for contacting us!',
