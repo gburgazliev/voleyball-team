@@ -113,8 +113,7 @@ const ContactUsPage = () => {
       );
     setIsLoading(false);
 
-    setName('');
-    setEmail('');
+   
     setContent('');
 
     toast({
