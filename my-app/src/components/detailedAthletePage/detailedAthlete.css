@@ -15,24 +15,10 @@
 
 @keyframes identifier {
     0% {
-       transform:  translateX(-300px);
+       transform:  translateY(100px);
     }
 
-    50% {
-     transform:    translateX(200px);
-    }
-
-    65% {
-     transform:    translateX(-50px);
-    }
-
-    80% {
-     transform:    translateX(10px);
-    }
-
-    90% {
-     transform:    translateX(-15px);
-    }
+   
 
     100% {
      transform:    translateY(0);
@@ -103,6 +89,22 @@ img {
     width: 50%;
     height: 100%;
     border: 2px solid red;
+}
+
+#detailed-athlete-loader {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    
+    
+    
+  
+   
+  
+   
 }
 
 

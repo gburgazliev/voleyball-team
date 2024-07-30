@@ -19,12 +19,23 @@ import MobileHeader from "../../components/mobileHeader/MobileHeader"
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
 import letter from "../../assets/letter.png";
+import Loader from "../../components/loader/Loader";
+import { useState } from "react";
 import './home.css'
 
 const Home = () => {
+ 
+
+
+ 
     return (
+    
+
+
         <Flex direction='column' justify='center' bg='black' align='center' w={['100%', '100%', '100%', '100%']} >
-            {!isMobileDevice() ?
+            
+               
+            {  !isMobileDevice() ?
                 <Header />
                 : <MobileHeader />}
             
@@ -57,6 +68,11 @@ const Home = () => {
 
             <Footer />
         </Flex>
+
+
+
+
+
     )
 }
 

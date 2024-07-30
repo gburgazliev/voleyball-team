@@ -15,7 +15,9 @@ import Header from "../header/Header";
 import { updateAthlete } from "../../utils/utils";
 import { isMobileDevice } from "../../utils/utils";
 import MobileHeader from "../mobileHeader/MobileHeader";
+import Loader from "../loader/Loader";
 import './detailedAthlete.css'
+import { set } from "firebase/database";
 
 
 const DetailedAthletePage = () => {
@@ -23,14 +25,17 @@ const DetailedAthletePage = () => {
     const [athlete, setAthlete] = useState({});
     const [currUser, setUser] = useState({});
     const [userData, setUserData] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
     const [videoId, setVideoId] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const [description, setDescription] = useState('');
     const formattedDescription = athlete?.description?.split('\n').map((item) => <p>{item}</p>);
 
 
 
     useEffect(() => {
-        const unsubscribe = subscribeToAthleteById(id.slice(1), setAthlete);
+           setIsLoaded(true);
+        const unsubscribe = subscribeToAthleteById(id.slice(1), setAthlete, setIsLoaded);
 
         // Unsubscribe when the component unmounts
         return () => {
@@ -98,6 +103,8 @@ const DetailedAthletePage = () => {
     }
 
 
+
+
     return (<Flex w='100%' minH='100%'direction='column' justify='center' align='center' bgColor='black' >
         {!isMobileDevice()? <Flex position='absolute' w={['100%', '100%', '100%', '100%']} top={0} justify='center' h='5%' bg='black'  bgColor='black'>
             <Header />
@@ -106,9 +113,10 @@ const DetailedAthletePage = () => {
          
        }
 
-
-        
-             <div id='videoContainer' class='fadeIn'>
+       {isLoaded ? <div id='detailed-athlete-loader'>
+           <Loader /> 
+        </div>  :
+           <div id='videoContainer' class='fadeIn'>
                 <iframe 
                  className="video"
                 src={`https://www.youtube.com/embed/${athlete?.videoID}`}
@@ -119,6 +127,11 @@ const DetailedAthletePage = () => {
             </iframe>
         </div>
 
+        }
+
+
+        
+          
         
 
         {currUser.role === 'admin' && <Flex w='10%' h='10%' direction='column' justify='center' align='center'>
@@ -134,7 +147,6 @@ const DetailedAthletePage = () => {
                {currUser.role !== 'admin' && <Box padding={5} h={['100%', '100%', '100%', '100%']}boxShadow='lg' bg='black' w='100%'>
                 <Heading >{athlete?.firstname + '' + athlete?.lastname}</Heading>
 
-
                 {!athlete?.description && <SkeletonText mt="4" noOfLines={4} spacing="4" />}
                 {athlete?.description && currUser.role !== 'admin' && <Text >{formattedDescription}</Text>}
 
@@ -146,6 +158,7 @@ const DetailedAthletePage = () => {
         {currUser.role === 'admin' && description !== athlete.description && <Button onClick={handleSubmitDescription}> Submit description</Button>} </Flex>
             </div>
               </Flex>
+              
         
     </Flex>
 

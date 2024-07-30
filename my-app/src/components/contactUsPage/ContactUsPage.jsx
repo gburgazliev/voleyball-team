@@ -18,6 +18,7 @@ import { isMobileDevice } from "../../utils/utils";
 import MobileHeader from "../mobileHeader/MobileHeader";
 import { useToast } from '@chakra-ui/react'
 import Footer from "../footer/Footer";
+import Loader from "../loader/Loader";
 
 
 
@@ -96,6 +97,7 @@ const ContactUsPage = () => {
         duration: 3000,
         isClosable: true,
       });
+      setIsLoading(false);
       return;
     }
 
@@ -110,8 +112,12 @@ const ContactUsPage = () => {
         (error) => {
           console.log('FAILED...', error.text);
         },
-      );
-    setIsLoading(false);
+      )
+      .finally(() => {
+        setIsLoading(false);
+      });
+
+ 
 
    
     setContent('');
@@ -132,8 +138,7 @@ const ContactUsPage = () => {
       {!isMobileDevice() ? <Header /> : <MobileHeader />}
 
 
-
-      <form className="form" ref={form} onSubmit={handleFormSubmit}>
+      {isLoading ?   <Loader />  :  <form className="form" ref={form} onSubmit={handleFormSubmit}>
         <div className="nameContainer">
           <label id='nameLabel'>Name *</label>
           <label id='nameLabelCounter'>{name.length} / {nameLengthLimit}</label>
@@ -153,7 +158,7 @@ const ContactUsPage = () => {
         <textarea id="content" name="message" value={content} onChange={handleContentChange} />
         <br />
         <label > {content.length} / {contentLengthLimit}</label>
-        {!isLoading ? <button id='send' type="submit" value="Send" > Send</button> : <text id='send' type="submit" value="Send" disabled>Sending...</text>}
+         <button id='send' type="submit" value="Send" > Send</button>
 
         <ReCAPTCHA
 
@@ -163,7 +168,8 @@ const ContactUsPage = () => {
           onChange={setCaptchaVal}
         />
 
-      </form>
+      </form>}
+     
 
 
       <Footer />

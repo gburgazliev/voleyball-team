@@ -1,6 +1,7 @@
 import { getDatabase, ref, set, get, child, onValue, update} from "firebase/database";
-import { database, storage } from "../../firebase/firebase-config";
-import { ref as storageRef, deleteObject as deleteStorageObject } from "firebase/storage";
+import { database, storage, storageRef , deleteObject} from "../../firebase/firebase-config";
+
+
 
 
 
@@ -28,11 +29,13 @@ export const getUserById = async (id, setCurrentUser) => {
  * @param {function} onAthleteUpdate - The callback function to be called when the athlete is updated.
  * @returns {function} - The unsubscribe function that can be called to stop listening for updates.
  */
-export const subscribeToAthleteById = (id, onAthleteUpdate) => {
+export const subscribeToAthleteById = (id, onAthleteUpdate, setIsLoading) => {
     const athleteRef = ref(database, `homePageAthletes/${id}`);
     const unsubscribe = onValue(athleteRef, (snapshot) => {
         const athlete = snapshot.val();
         onAthleteUpdate(athlete);
+        setIsLoading(false);
+
     }, (error) => {
         console.error(error);
     });
@@ -68,9 +71,15 @@ export const updateHomePageAthletes = async (athletes) => {
  * @param {string} url - The URL of the object to be deleted.
  * @returns {Promise<void>} - A promise that resolves when the object is successfully deleted.
  */
-export const deleteObject = async (url) => {
+export const deleteDatabaseObject = async (url) => {
     const objectRef = ref(database, url);
     await set(objectRef, null);
+};
+
+
+const deleteStorageObject = async (url) => {
+   const storageRefObject = storageRef(storage, url);
+    await deleteObject(storageRefObject);
 };
 
 
@@ -87,6 +96,8 @@ export const handleDeleteAthlete = async (id) => {
     const athletes = athletesSnapshot.val();
   const newAthletesArray = Object.entries(athletes).filter(([key, value]) => key !== id);
     const newAthletes = Object.fromEntries(newAthletesArray);
+ 
+    await deleteStorageObject(`homepageAthletes/${id}`);
     await set(athletesRef, newAthletes);
  
     } catch (error) {

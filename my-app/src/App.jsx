@@ -19,8 +19,10 @@ import Register from './components/register/Register'
 import Login from './components/login/Login'
 import DetailedAthletePage from './components/detailedAthletePage/DetailedAthletePage'
 import ContactUsPage from './components/contactUsPage/ContactUsPage'
+import Loader from './components/loader/Loader'
 
 function App() {
+
 
   return (
 
