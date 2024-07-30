@@ -8,7 +8,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-     const {user, loading, error} = useAuthState(auth);
+     const [user, loading, error] = useAuthState(auth);
     
 
 
@@ -25,9 +25,14 @@ export const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+       
+
      const valueData = {
         user, loading, error, register, login, logout
      };
+
+
+
     
     return (
         <AuthContext.Provider value={valueData}>

@@ -1,6 +1,8 @@
 
 .coaches-page-container {
-    height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -9,4 +11,39 @@
     width: 100%;
     justify-content: center;
     gap: 10px;
+    
+    
+}
+
+#footer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 200px;
+}
+
+#coaches-container { 
+    display: flex;
+    flex-wrap: wrap;
+  padding: 100px;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 100px;
+}
+
+#add-coach-button {
+  display: block;
+    background-color: gray;
+    padding: 14px 20px;
+    color: black;
+  
+ 
+    
+    cursor: pointer;
+  
+    
+    border: 2px solid #4CAF50;
+    width: auto;
+    align-self: center;
 }
