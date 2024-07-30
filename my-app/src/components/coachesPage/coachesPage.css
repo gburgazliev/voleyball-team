@@ -1,0 +1,12 @@
+
+.coaches-page-container {
+    height: 100vh;
+}
+
+
+#header {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+}

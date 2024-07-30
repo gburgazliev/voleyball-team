@@ -20,6 +20,7 @@ import Login from './components/login/Login'
 import DetailedAthletePage from './components/detailedAthletePage/DetailedAthletePage'
 import ContactUsPage from './components/contactUsPage/ContactUsPage'
 import Loader from './components/loader/Loader'
+import CoachesPage from './components/coachesPage/CoachesPage'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
 
       <Routes>
         <Route path='/detailed-athlete-view/:id' element={<DetailedAthletePage />} />
+        <Route path='/coaches' element={<CoachesPage />} />
         <Route path='/contact' element={<ContactUsPage/>} />
         <Route path='/' element={<Home />} />
         <Route path='/about-us' element={<AboutUs />} />

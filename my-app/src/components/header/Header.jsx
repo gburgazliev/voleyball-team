@@ -109,7 +109,7 @@ useEffect(() => {
 
                
 
-                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'blue.300', cursor: 'pointer' }} >
+                <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'blue.300', cursor: 'pointer' }} onClick={() => navigate('/coaches')}>
                     COACHES
                 </Heading>
 
