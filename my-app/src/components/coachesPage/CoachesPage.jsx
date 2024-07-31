@@ -18,11 +18,11 @@ import {
 } from '@chakra-ui/react'
 import './coachesPage.css';
 import { getDownloadURL } from "firebase/storage";
-import { addCoachToDatabase, updateCoach, getCoaches } from "../../utils/utils";
+import { addCoachToDatabase, updateCoach} from "../../utils/utils";
 import { database, storage, storageRef } from '../../../firebase/firebase-config';
 import { set, onValue, ref } from "firebase/database";
-
-
+import SingleCoachesPageCoach from "../singleCoachesPageAthlete/SingleCoachesPageAthlete";
+import { getUserById } from "../../utils/utils";
 import { uploadBytes } from "firebase/storage";
 const CoachesPage = () => {
     const { user } = useAuth();
@@ -32,6 +32,8 @@ const CoachesPage = () => {
     const [imageURL, setImageURL] = useState('');
     const [file, setFile] = useState(null);
     const [coaches, setCoaches] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null);
+
 
 
 
@@ -53,7 +55,7 @@ const CoachesPage = () => {
                 await uploadBytes(storageRefImage, file);
                 downloadURL = await getDownloadURL(storageRefImage);
             }
-            await updateCoach(coachUID, { imageURL: downloadURL });
+            await updateCoach(coachUID, { imageURL: downloadURL , uid: coachUID});
 
             setFirstName('');
             setLastName('');
@@ -77,6 +79,11 @@ const CoachesPage = () => {
             console.error(error);
         });
     }, []);
+
+    useEffect(() => {
+        if (user)  getUserById(user.uid, setCurrentUser);
+        }, [user]);
+    
     
     return (
         <div class="coaches-page-container">
@@ -87,15 +94,14 @@ const CoachesPage = () => {
             </div>
 
             <div id='coaches-container'>
-                <h1>asdadadadadad</h1>
-                <h1>asdadsadadsadsad</h1>
-                <h1>asdadadadadad</h1>
-                <h1>asdadadadadad</h1>
-                <h1>asdadsadadsadsad</h1>
-                <h1>asdadadadadad</h1>
+                {coaches.map((coach) => {
+                    return (
+                        <SingleCoachesPageCoach user={currentUser} key={coach.uid} coach={coach} />
+                    );
+                })}
 
             </div>
-            <button id='add-coach-button' onClick={() => setIsModalOpen(true)}>Add coach</button>
+          { currentUser && currentUser.role ==='admin' && <button id='add-coach-button' onClick={() => setIsModalOpen(true)}>Add coach</button>}
             <Modal isOpen={isModalOpen} onClose={() => { setIsModalOpen(false) }}>
                 <ModalOverlay />
                 <ModalContent>
@@ -105,7 +111,7 @@ const CoachesPage = () => {
                         <input type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)} value={firstName} />
                         <input type="text" placeholder="Last name" onChange={(e) => setLastName(e.target.value)} value={lastName} />
                         <input type='file' onChange={handleFileChange} />
-                        <img src={imageURL} alt="" />
+                        <img id='modal-image'src={imageURL} alt="" />
                     </ModalBody>
                     <ModalFooter >
                         <button onClick={addCoach}>Save</button>

@@ -1,0 +1,55 @@
+.single-coach-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+   
+   
+   border: 3px solid #4CAF50;
+   background-color: wheat;
+    border-radius: 10px;
+    width: auto;
+
+   position: relative;
+}
+
+#coach-image-container {
+    width: 150px;
+    height: 200px;
+   
+    
+}
+
+.coach-image {
+    width: 200px;
+    height: 200px;
+    z-index: 0;
+}
+.navigation {
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        
+        width: 100%;
+        height: 90%;
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+       
+        color: white;
+        font-size: 20px;
+        opacity: 0; /* Initially hidden */
+        transition: opacity 0.3s ease; /* Smooth transition for visibility */
+    
+    
+}
+
+
+
+.single-coach-container:hover .navigation{
+    opacity: 1;
+   
+}
+
