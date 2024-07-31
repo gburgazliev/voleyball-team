@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, get, child, onValue, update} from "firebase/database";
+import { getDatabase, ref, set, get, child, onValue, update, push} from "firebase/database";
 import { database, storage, storageRef , deleteObject} from "../../firebase/firebase-config";
 
 
@@ -55,6 +55,8 @@ export const getHomePageAthletes = async () => {
     return athletes;
 }
 
+
+
 /**
  * Updates the home page athletes in the database.
  * 
@@ -64,6 +66,23 @@ export const getHomePageAthletes = async () => {
 export const updateHomePageAthletes = async (athletes) => {
     const athletesRef = ref(database, `homePageAthletes`);
     await update(athletesRef, athletes);
+}
+
+export const addCoachToDatabase = async (firstName, lastName, imageURL) => {
+    const newCoach = {
+        firstName,
+        lastName,
+        imageURL
+    };
+    const coachesRef = ref(database, `coaches`);
+    const newCoachRef = push(coachesRef);
+    await set(newCoachRef, newCoach);
+    return newCoachRef.key;
+}
+
+export const updateCoach = async (id, data) => {
+    const coachRef = ref(database, `coaches/${id}`);
+    await update(coachRef, data);
 }
 
 /**
@@ -77,7 +96,7 @@ export const deleteDatabaseObject = async (url) => {
 };
 
 
-const deleteStorageObject = async (url) => {
+export const deleteStorageObject = async (url) => {
    const storageRefObject = storageRef(storage, url);
     await deleteObject(storageRefObject);
 };

@@ -47,3 +47,18 @@
     width: auto;
     align-self: center;
 }
+
+input {
+  padding:10px;
+  margin:10px;
+  background-color: whitesmoke;
+  border: 2px solid #a3a9a3;
+  width: 80%;
+ 
+}
+
+img {
+  width: auto;
+  height: auto;
+  border-radius: 50%;
+}
