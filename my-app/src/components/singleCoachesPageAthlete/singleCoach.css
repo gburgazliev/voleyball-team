@@ -7,7 +7,7 @@
    
    border: 3px solid #4CAF50;
    background-color: wheat;
-    border-radius: 10px;
+    border-radius: 5px;
     width: auto;
 
    position: relative;
@@ -16,7 +16,7 @@
 #coach-image-container {
     width: 150px;
     height: 200px;
-   
+  
     
 }
 

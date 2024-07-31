@@ -108,9 +108,9 @@ const CoachesPage = () => {
                     <ModalHeader >Add coach</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody >
-                        <input type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)} value={firstName} />
-                        <input type="text" placeholder="Last name" onChange={(e) => setLastName(e.target.value)} value={lastName} />
-                        <input type='file' onChange={handleFileChange} />
+                        <input id='first-name-input' type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)} value={firstName} />
+                        <input id="last-name-input" type="text" placeholder="Last name" onChange={(e) => setLastName(e.target.value)} value={lastName} />
+                        <input id="coach-file-input" type='file' onChange={handleFileChange} />
                         <img id='modal-image'src={imageURL} alt="" />
                     </ModalBody>
                     <ModalFooter >
