@@ -30,7 +30,18 @@ const DetailedAthletePage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [description, setDescription] = useState('');
     const formattedDescription = athlete?.description?.split('\n').map((item) =>{
+        
+
         if(item.includes('http')){
+          item = item.split(' -')
+          if(item.length > 1){
+                 
+                return <p>{item[0]} <a class='link'  onClick={() => window.open(item[1], '_blank', 'noopener,noreferrer')}>{item[1]}</a></p>
+            } else {
+            
+                return <p class='link'  onClick={() => window.open(item, '_blank', 'noopener,noreferrer')}>{item}</p>
+            }
+          
             return  <p class='link'  onClick={() => window.open(item, '_blank', 'noopener,noreferrer')}>{item}</p>
         } else {
             return <p>{item}</p>
