@@ -6,7 +6,9 @@ const SingleCoachesPageCoach = ({user, coach}) => {
     
 
   const handleDeleteCoach = async () => {
-        await deleteStorageObject(coach.imageURL);
+    if (coach.imageURL){
+      await deleteStorageObject(coach.imageURL);
+    }
         await deleteDatabaseObject(`coaches/${coach.uid}`);
   }
 
@@ -18,15 +20,20 @@ const SingleCoachesPageCoach = ({user, coach}) => {
         <div class='single-coach-container'>
           
                 <img class='coach-image' src={coach.imageURL} alt="" />
-         
-                 <p>{coach.firstName} {coach.lastName}</p>
+             
+              
               
                  <div className="navigation">
+                  <div id='coach-names'> 
+                    <p>{coach.firstName} </p> 
+                    <p>{coach.lastName}</p>
+                  </div>
+               
                 <button>View profile</button>
                 {user && user.role === 'admin' ? <button onClick={handleDeleteCoach}>Delete</button> : null}
                
                </div>
-              
+                
         </div>
     )
 }

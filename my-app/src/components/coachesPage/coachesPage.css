@@ -3,6 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: black;
 }
 
 
@@ -37,13 +38,8 @@
     background-color: gray;
     padding: 14px 20px;
     color: black;
-  
- 
-    
     cursor: pointer;
-  
-    
-    border: 2px solid #4CAF50;
+    border: 2px solid gray;
     width: auto;
     align-self: center;
 }
@@ -61,4 +57,65 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
+}
+
+@media screen and (max-width: 390px) {
+  #coaches-container {
+    padding: 10px;
+    margin-bottom: 100px;
+    
+  }
+ 
+  
+
+  
+}
+
+@media screen and (max-width: 450px) {
+  #coaches-container {
+    padding: 10px;
+    margin-bottom: 100px;
+    
+  }
+ 
+  
+
+  
+}
+
+@media screen and (min-width: 450px) {
+  #coaches-container {
+    padding: 10px;
+    margin-bottom: 100px;
+    
+  }
+ 
+  
+
+  
+}
+
+@media screen and (min-width: 700px) {
+  #coaches-container {
+    padding: 10%;
+ 
+    
+  }
+ 
+  
+
+  
+}
+
+@media screen and (min-width: 1500px) {
+  #coaches-container {
+    padding-left: 30%;
+    padding-right: 30%;
+ 
+    
+  }
+ 
+  
+
+  
 }

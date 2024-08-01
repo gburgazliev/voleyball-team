@@ -1,6 +1,8 @@
 
 
-
+#banner {
+  border-radius: 20%;
+}
 
 li {
   color: white;

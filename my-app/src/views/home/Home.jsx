@@ -18,6 +18,7 @@ import { isMobileDevice } from "../../utils/utils"
 import MobileHeader from "../../components/mobileHeader/MobileHeader"
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
+import banner2 from "../../assets/banner2.jpg";
 import letter from "../../assets/letter.png";
 import Loader from "../../components/loader/Loader";
 import { useState } from "react";
@@ -39,7 +40,7 @@ const Home = () => {
                 <Header />
                 : <MobileHeader />}
             
-                <img id='banner' src={banner}  alt='Volleyball Team' />
+                <img id='banner' src={banner2}  alt='Volleyball Team' />
 
             
 
