@@ -29,7 +29,15 @@ const DetailedAthletePage = () => {
     const [videoId, setVideoId] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [description, setDescription] = useState('');
-    const formattedDescription = athlete?.description?.split('\n').map((item) => <p>{item}</p>);
+    const formattedDescription = athlete?.description?.split('\n').map((item) =>{
+        if(item.includes('http')){
+            return <a href={
+                item
+            }>{item}</a>
+        } else {
+            return <p>{item}</p>
+        }
+    });
 
 
 
