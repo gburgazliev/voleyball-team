@@ -106,6 +106,9 @@ img {
   
    
 }
+.link {
+    color: rgb(114, 114, 220);
+}
 
 .link:hover {
     color: purple;
