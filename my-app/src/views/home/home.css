@@ -13,7 +13,7 @@ li {
 
 #logo {
   height: 400px;
-  width:400px;
+  width:450px;
   
   
 }
@@ -63,7 +63,7 @@ li {
 @media screen and (max-width: 430px) {
   #logo {
     height: 235px;
-    width: 235px;
+    width: 200px;
     
   }
 
@@ -82,7 +82,7 @@ li {
 @media screen and (max-width: 481px) {
   #logo {
     height: 235px;
-    width: 235px;
+    width: 250px;
     
   }
 
