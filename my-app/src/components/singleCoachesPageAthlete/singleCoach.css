@@ -57,8 +57,9 @@
        
         color: white;
         font-size: 20px;
-        opacity: 0; /* Initially hidden */
-        transition: opacity 0.3s ease; /* Smooth transition for visibility */
+        opacity: 0;
+         /* Initially hidden */
+        transition: opacity 1s ease; /* Smooth transition for visibility */
     
     
 }
@@ -66,9 +67,13 @@
 
 
 .single-coach-container:hover .navigation{
+   
     opacity: 1;
+    
    
 }
+
+
 
 
 @media screen and (max-width:390px) {
