@@ -31,9 +31,7 @@ const DetailedAthletePage = () => {
     const [description, setDescription] = useState('');
     const formattedDescription = athlete?.description?.split('\n').map((item) =>{
         if(item.includes('http')){
-            return <a href={
-                item
-            }>{item}</a>
+            return  <p class='link'  onClick={() => window.open(item, '_blank', 'noopener,noreferrer')}>{item}</p>
         } else {
             return <p>{item}</p>
         }
