@@ -1,9 +1,11 @@
 import './singleCoach.css'
 import { getUserById, deleteStorageObject, deleteDatabaseObject } from '../../utils/utils'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const SingleCoachesPageCoach = ({user, coach}) => {
-    
+  const navigate = useNavigate();
+      
 
   const handleDeleteCoach = async () => {
     if (coach.imageURL){
@@ -29,7 +31,7 @@ const SingleCoachesPageCoach = ({user, coach}) => {
                     <p>{coach.lastName}</p>
                   </div>
                
-                <button>View profile</button>
+                <button onClick={() => navigate(`/detailed-coach/:${coach.uid}`)}>View profile</button>
                 {user && user.role === 'admin' ? <button onClick={handleDeleteCoach}>Delete</button> : null}
                
                </div>
