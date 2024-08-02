@@ -21,6 +21,7 @@ import DetailedAthletePage from './components/detailedAthletePage/DetailedAthlet
 import ContactUsPage from './components/contactUsPage/ContactUsPage'
 import Loader from './components/loader/Loader'
 import CoachesPage from './components/coachesPage/CoachesPage'
+import DetailedCoach from './components/detailedCoach/DetailedCoach'
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <Route path='*' element={'Not found'} />
         <Route path='/auth/register' element={<Register />} />
         <Route path='/auth/login' element={<Login />} />
+        <Route path='/detailed-coach/:id' element={<DetailedCoach />} />
 
       </Routes>
     
