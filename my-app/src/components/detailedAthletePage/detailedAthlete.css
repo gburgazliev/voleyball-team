@@ -85,11 +85,7 @@
 
 }
 
-img {
-    width: 50%;
-    height: 100%;
-    border: 2px solid red;
-}
+
 
 #detailed-athlete-loader {
     display: flex;
