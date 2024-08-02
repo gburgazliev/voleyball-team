@@ -1,3 +1,15 @@
+@keyframes liftUp {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateX(100px);
+    }
+}
+
+
+
 .single-coach-container {
     display: flex;
     flex-direction: column;
@@ -9,16 +21,24 @@
    background-color: wheat;
     border-radius: 5px;
     width: auto;
+    transform: translateY(0px);
+    transition: transform 1s;
 
    position: relative;
+}
+
+.single-coach-container:hover {
+    transform: translateY(-20px);
+    transition: transform 1s;
 }
 
 #coach-image-container {
     width: 200px;
     height: 200px;
-  
     
 }
+
+
 #coach-names {
     display: flex;
     flex-direction: column;
@@ -65,13 +85,14 @@
 }
 
 
-
 .single-coach-container:hover .navigation{
-   
     opacity: 1;
-    
+      
    
 }
+
+
+
 
 
 

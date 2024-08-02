@@ -21,7 +21,7 @@ import { getDownloadURL } from "firebase/storage";
 import { addCoachToDatabase, updateCoach} from "../../utils/utils";
 import { database, storage, storageRef } from '../../../firebase/firebase-config';
 import { set, onValue, ref } from "firebase/database";
-import SingleCoachesPageCoach from "../singleCoachesPageAthlete/SingleCoachesPageAthlete";
+import SingleCoachesPageCoach from "../singleCoachesPageCoach/SingleCoachesPageCoach";
 import { getUserById } from "../../utils/utils";
 import { uploadBytes } from "firebase/storage";
 const CoachesPage = () => {

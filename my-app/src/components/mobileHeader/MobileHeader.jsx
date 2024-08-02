@@ -77,7 +77,7 @@ const MobileHeader = () => {
                     <DrawerBody bg='gray.900' >
                         <Stack>
                             <Button bg={location.pathname === '/' ? 'blue.200' : 'gray.400'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/') }}>Home</Button>
-                            <Button _hover={{ color: 'blue.200', cursor: 'pointer' }} bg='gray.400' onClick={() => navigate('/coaches')}>Coaches</Button>
+                            <Button bg={location.pathname === '/coaches' ? 'blue.200' : 'gray.400'} _hover={{ color: 'blue.200', cursor: 'pointer' }}  onClick={() => navigate('/coaches')}>Coaches</Button>
                             <Button bg={location.pathname === '/about-us' ? 'blue.200' : 'gray.400'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/about-us') }}>About us</Button>
                             <Button bg={location.pathname === '/contact' ? 'blue.200' : 'gray.400'} _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/contact') }} >Contact us</Button>
                             <Popover  >
