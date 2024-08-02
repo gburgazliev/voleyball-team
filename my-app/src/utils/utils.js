@@ -85,6 +85,17 @@ export const updateCoach = async (id, data) => {
     await update(coachRef, data);
 }
 
+export const subscribeToCoachById = (id, onCoachUpdate) => {
+    const coachRef = ref(database, `coaches/${id}`);
+   onValue(coachRef, (snapshot) => {
+     const coach = snapshot.val();
+        onCoachUpdate(coach);
+    }, (error) => {
+        console.error(error);
+    })
+
+}
+
 /**
  * Deletes an object from the database.
  * @param {string} url - The URL of the object to be deleted.
