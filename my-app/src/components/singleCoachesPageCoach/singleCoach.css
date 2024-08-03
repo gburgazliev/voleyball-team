@@ -29,8 +29,12 @@
 
 .single-coach-container:hover {
     transform: translateY(-20px);
+    box-shadow: 0px 0px 4px 3px rgb(220, 220, 220);
     transition: transform 1s;
+      
 }
+
+
 
 #coach-image-container {
     width: 200px;

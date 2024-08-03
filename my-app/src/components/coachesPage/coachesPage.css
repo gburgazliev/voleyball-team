@@ -1,6 +1,6 @@
 
 .coaches-page-container {
-  min-height: 100vh;
+  
   display: flex;
   flex-direction: column;
   background-color: black;
@@ -18,10 +18,12 @@
 #coaches-container { 
     display: flex;
     flex-wrap: wrap;
-  padding: 100px;
+ gap: 15px;
     justify-content: center;
-    gap: 10px;
-    margin-top: 100px;
+      padding-left: 200px;
+    padding-right: 200px;
+  
+   
 }
 
 #add-coach-button {
@@ -50,12 +52,10 @@
   border-radius: 50%;
 }
 
+
+
 @media screen and (max-width: 390px) {
-  #coaches-container {
-    padding: 10px;
-    margin-bottom: 100px;
-    
-  }
+
  
   
 
@@ -64,39 +64,20 @@
 
 @media screen and (max-width: 450px) {
   #coaches-container {
-    padding: 10px;
-    margin-bottom: 100px;
-    
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+   
   }
+ 
  
   
 
   
 }
 
-@media screen and (min-width: 450px) {
-  #coaches-container {
-    padding: 10px;
-    margin-bottom: 100px;
-    
-  }
- 
-  
 
-  
-}
-
-@media screen and (min-width: 700px) {
-  #coaches-container {
-    padding: 10%;
- 
-    
-  }
- 
-  
-
-  
-}
 
 @media screen and (min-width: 1500px) {
   #coaches-container {
