@@ -60,9 +60,9 @@ const Login = () => {
   }
 
   return (
-    <Flex w='100%' minH='100vh' display='flex' direction='column' justify='space-between'  align='center' backgroundColor='#1a202c'>
+    <Flex w='100%' marginBottom={40} display='flex' direction='column' justify='space-between'  align='center' backgroundColor='#1a202c'>
    
-      <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']} marginTop={['20%', '20%', '10%', '10%']} marginBottom='10%' justify='center' align='center'>
+      <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']} marginTop={10}   justify='center' align='center'>
         <Flex w={['70%', '70%', '50%', '50%']} h='50%' justify='space-evenly' direction='column'>
           <Input placeholder='Enter email' value={form.email} onChange={updateForm('email')} marginBottom={5} bg='white' />
           <InputGroup size='lg'>
