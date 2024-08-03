@@ -146,15 +146,15 @@ const DetailedAthletePage = () => {
           
         
 
-        {currUser.role === 'admin' && <Flex w='10%' h='10%' direction='column' justify='center' align='center'>
+        {currUser.role === 'admin' && <Flex w='10%' h='10%' direction='column' justify='center' align='center' gap={5} >
 
-            <Input bg='white' type="text" value={videoId} onChange={(e) => setVideoId(e.target.value)}></Input>
+           {!athlete.videoID && <Input bg='white' w={200} type="text" value={videoId} onChange={(e) => setVideoId(e.target.value)}></Input>}
             {!athlete?.videoID && <Button colorScheme='red' onClick={handleAddVideo}>Add video</Button>}
             {athlete?.videoID && <Button colorScheme='red' onClick={handleDeleteVideo}>Delete video</Button>}
         </Flex>}
 
 
-        <Flex w={['100%', '100%', '50%', '50%']} borderRadius='1px' h={['100%', '100%', '100%', '20%']} justify='center' align='center'  >
+        <Flex w={['100%', '100%', '50%', '50%']}  borderRadius='1px' h={['100%', '100%', '100%', '20%']} justify='center' align='center'  >
             <div className="description">
                {currUser.role !== 'admin' && <Box padding={5} h={['100%', '100%', '100%', '100%']} boxShadow='5px' bg='#1a202c' w='100%'>
                 <Heading >{athlete?.firstname + ' ' + athlete?.lastname}</Heading>
@@ -163,7 +163,7 @@ const DetailedAthletePage = () => {
                 {athlete?.description && currUser.role !== 'admin' && <Text >{formattedDescription}</Text>}
 
             </Box>}
-<Flex w='100%' >
+<Flex w='100%'  direction='column' gap={5}>
             {currUser.role === 'admin' && <Textarea bg='white' color='black' value={description} onChange={(e) => setDescription(e.target.value)} ></Textarea>  }
 
       
