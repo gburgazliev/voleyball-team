@@ -75,15 +75,7 @@ const AboutUs = () => {
 
                     Contact us today to learn more about how we can support you on your volleyball journey. Welcome to Heaven-07, where the sky is the limit!
 
-                    ---
-
-                    For inquiries and more information, please reach out to us at [contact information].
-
-                    Follow us on social media [links to social media profiles].
-
-                    ---
-
-                    Thank you for choosing Heaven-07 Volleyball Agency. Together, we will reach new heights!</text>
+                    </text>
             </div>
  
              </div>
