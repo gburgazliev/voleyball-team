@@ -103,6 +103,28 @@ flex-direction: column;
     text-align: end;
     margin-right: 100px;
 }
+.flex-start-container {
+    transform: translateY(0);
+    transition: transform 1.5s;
+}
+
+.flex-start-container:hover {
+    transform: translateY(-30px);
+    transition: transform 1.5s;
+}
+
+.flex-end-container {
+    transform: translateY(0);
+    transition: transform 1.5s;
+}
+
+
+
+
+.flex-end-container:hover {
+    transform: translateY(-30px);
+    transition: transform 1.5s;
+}
 
 @media screen and (max-width: 600px) {
    
