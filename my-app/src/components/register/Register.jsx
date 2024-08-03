@@ -180,7 +180,7 @@ const Register = () => {
 
     };
     return (
-        <Flex w='100%' minH='100vh' bgColor='#1a202c' zIndex={10} display='flex' direction='column' justify='center' align='center'backgroundColor='#1a202c'>
+        <Flex w='100%' minH='100vh' bgColor='#1a202c'  display='flex' direction='column' justify='center' align='center'backgroundColor='#1a202c'>
           
             <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']}  marginBottom='10%' justify='center' align='center' direction='column'>
                 <Flex w={['70%', '70%', '50%', '50%']} h='60%' direction='column' justify='space-evenly' >
