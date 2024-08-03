@@ -19,12 +19,7 @@ const Footer = () => {
     return (
         <footer className="mobile-footer">
                 <h6 className="heading">
-                    SB Community is a full service sports agency, representing players and team staff.
-                    As a full service sports agency, we offer our clients an array of services including contractual,
-                    financial and personal consulting, thus enabling them to more fully focus on their craft.
-                    We have connections with teams and players in every market around the world.
-                    With a strong world-wide presence our unique business model has opened doors in every
-                    major market for volleyball & awarded our clients lucrative playing contracts.
+                Heaven-07 was founded by a team of former professional volleyball activists , coaches, and industry experts who share a deep love for the game. Our diverse backgrounds and extensive experience in the world of volleyball give us a unique perspective and the ability to provide comprehensive support to our clients. Whether you are an athlete looking to take your career to the next level, a coach seeking innovative training methods, or an organization aiming to enhance your volleyball programs, Heaven-07 is here to help you succeed. Join us in our mission to elevate the game of volleyball and create a brighter future for the sport we love. Contact us today to learn more about how we can support you on your volleyball journey. Welcome to Heaven-07, where the sky is the limit!
                 </h6>
                 <div className="divider">
                     <Divider />
