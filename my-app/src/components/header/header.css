@@ -10,6 +10,7 @@
 
 .slideInLeft {
     animation: slideInLeft 2s;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.3);
 }
 
 #pc-header {
@@ -29,7 +30,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   background-color: #1a202c;
     width: 100%;
-       
-    margin-top: bottom;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    
+   
 }

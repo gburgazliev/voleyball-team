@@ -34,7 +34,8 @@ function App() {
     <div class='app'>
        {!isMobileDevice() ? <Header /> : <MobileHeader />}
       <div class="main">
-        <Routes>
+      
+         <Routes>
         <Route path='/detailed-athlete-view/:id' element={<DetailedAthletePage />} />
         <Route path='/coaches' element={<CoachesPage />} />
         <Route path='/contact' element={<ContactUsPage/>} />
@@ -46,6 +47,10 @@ function App() {
         <Route path='/detailed-coach/:id' element={<DetailedCoach />} />
 
       </Routes>
+    
+          
+      
+       
       </div>
 
       <Footer />

@@ -133,7 +133,7 @@ const ContactUsPage = () => {
 
 
   return (
-    <Flex direction='column'  w='100%' minH='100%' justify='space-evenly' align='center' bgColor='black'>
+    <Flex direction='column'  w='100%' minH='100%' justify='space-evenly' align='center' bgColor='#1a202c'>
 
 
 
