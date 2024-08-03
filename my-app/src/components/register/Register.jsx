@@ -181,9 +181,9 @@ const Register = () => {
     };
     return (
         <Flex w='100%' minH='100vh' bgColor='black' zIndex={10} display='flex' direction='column' justify='center' align='center'backgroundColor='black'>
-            <MobileHeader />
-            <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']} marginTop='12%' marginBottom='10%' justify='center' align='center' direction='column'>
-                <Flex w={['70%', '70%', '50%', '50%']} h='60%' direction='column' justify='space-evenly' marginTop={5}>
+          
+            <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']}  marginBottom='10%' justify='center' align='center' direction='column'>
+                <Flex w={['70%', '70%', '50%', '50%']} h='60%' direction='column' justify='space-evenly' >
                     <Input placeholder="Email" value={form.email} marginBottom={5} onChange={updateForm('email')} bg='white' />
                     <Input placeholder="Username" bg='white' marginBottom={5} value={form.username} onChange={updateForm('username')} />
                     <Input placeholder="Password" bg='white ' value={form.password} onChange={updateForm('password')} />
@@ -192,7 +192,7 @@ const Register = () => {
                     Register
                 </Button>
             </Flex>
-            <Footer />
+           
         </Flex>
     )
 }

@@ -87,11 +87,7 @@ const CoachesPage = () => {
     
     return (
         <div class="coaches-page-container">
-            <div id='header'>
-                {!isMobileDevice() ?
-                    <Header />
-                    : <MobileHeader />}
-            </div>
+            
 
             <div id='coaches-container'>
                 {coaches.map((coach) => {
@@ -118,9 +114,7 @@ const CoachesPage = () => {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
-            <div id='footer'>
-                <Footer />
-            </div>
+          
         </div>
     );
 }

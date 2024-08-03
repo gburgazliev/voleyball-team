@@ -35,10 +35,7 @@ const Home = () => {
 
         <Flex direction='column' justify='center' bg='black' align='center' w={['100%', '100%', '100%', '100%']} >
             
-               
-            {  !isMobileDevice() ?
-                <Header />
-                : <MobileHeader />}
+        
             
                 <img id='banner' src={banner2}  alt='Volleyball Team' />
 
@@ -67,7 +64,7 @@ const Home = () => {
             <HomePageAthletes />
 
 
-            <Footer />
+        
         </Flex>
 
 

@@ -3,7 +3,9 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
-     margin-top: 30%
+     width: 100%;
+        
+     margin-top: auto;
 
  }
 
@@ -91,8 +93,8 @@
      .mobile-footer {
          display: flex;
          flex-direction: column;
-         margin-top: 10%;
-         width: 80%;
+        
+         width: 100%;
      }
 
      .heading {

@@ -133,9 +133,8 @@ const ContactUsPage = () => {
 
 
   return (
-    <Flex direction='column' w='100%' minH='100%' justify='space-evenly' align='center' bgColor='black'>
+    <Flex direction='column'  w='100%' minH='100%' justify='space-evenly' align='center' bgColor='black'>
 
-      {!isMobileDevice() ? <Header /> : <MobileHeader />}
 
 
       {isLoading ?   <Loader />  :  <form className="form" ref={form} onSubmit={handleFormSubmit}>
@@ -172,7 +171,7 @@ const ContactUsPage = () => {
      
 
 
-      <Footer />
+  
     </Flex>
   )
 

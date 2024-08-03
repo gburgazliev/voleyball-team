@@ -7,25 +7,9 @@
 }
 
 
-#header {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    gap: 10px;
-    padding-bottom: 30px;
-    padding-top: 10px;
 
-    
-    
-}
 
-#footer {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    gap: 10px;
-    
-}
+
 
 #coaches-container { 
     display: flex;

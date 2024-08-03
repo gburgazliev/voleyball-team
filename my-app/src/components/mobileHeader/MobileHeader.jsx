@@ -64,8 +64,8 @@ const MobileHeader = () => {
 
 
     return (
-        <>
-            <Heading color='white' className="slideFromTop">Heaven 07</Heading>
+       <header id="mobile-header">
+         <Heading color='white' className="slideFromTop">Heaven 07</Heading>
             <Button className="fadeIn" colorScheme='blue' onClick={onOpen}>
                 MENU
             </Button>
@@ -109,7 +109,9 @@ const MobileHeader = () => {
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
-        </>
+       </header>
+           
+       
     )
 
 

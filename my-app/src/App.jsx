@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from 'react'
 import reactLogo from './assets/react.svg'
 
 
-import styles from './App.module.css'
+import './App.css'
 import { auth } from '../firebase/firebase-config'
 import { useContext } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link, UNSAFE_ViewTransitionContext } from 'react-router-dom';
@@ -23,14 +23,18 @@ import Loader from './components/loader/Loader'
 import CoachesPage from './components/coachesPage/CoachesPage'
 import DetailedCoach from './components/detailedCoach/DetailedCoach'
 
+import MobileHeader from './components/mobileHeader/MobileHeader'
+import { isMobileDevice } from './utils/utils'
+
 function App() {
 
 
   return (
 
-    
-
-      <Routes>
+    <div class='app'>
+       {!isMobileDevice() ? <Header /> : <MobileHeader />}
+      <div class="main">
+        <Routes>
         <Route path='/detailed-athlete-view/:id' element={<DetailedAthletePage />} />
         <Route path='/coaches' element={<CoachesPage />} />
         <Route path='/contact' element={<ContactUsPage/>} />
@@ -42,6 +46,13 @@ function App() {
         <Route path='/detailed-coach/:id' element={<DetailedCoach />} />
 
       </Routes>
+      </div>
+
+      <Footer />
+
+    </div>
+
+      
     
 
 

@@ -77,7 +77,8 @@ useEffect(() => {
 }, [currentUser]);
 
     return (
-        <Flex className="slideInLeft" position='relative'  justifySelf='flex-start' h='200px' direction='column'  w= '90%'   textColor='white' marginRight='5%' marginLeft='5%'  bg='transparent' >
+        <header id='pc-header' class="slideInLeft">
+            <Flex className="slideInLeft" position='relative'  justifySelf='flex-start' h='200px' direction='column'  w= '90%'   textColor='white' marginRight='5%' marginLeft='5%'  bg='transparent' >
             <Flex w={['80%', '60%' , '90%', '90%']} justify='flex-end' paddingTop={10}>
                 <HStack spacing={5}>
 
@@ -133,6 +134,8 @@ useEffect(() => {
                 </Heading>
             </Flex>
         </Flex>
+        </header>
+        
     )
 }
 

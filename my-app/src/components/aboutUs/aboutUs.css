@@ -19,8 +19,9 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: auto;
-    background-color: #1a202c
+    height: 100%;
+    background-color: #1a202c;
+  padding-top: 100px;
 }
 
 h1 {

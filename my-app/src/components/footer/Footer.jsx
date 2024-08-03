@@ -17,7 +17,7 @@ import './footer.css';
 
 const Footer = () => {
     return (
-        <div className="mobile-footer">
+        <footer className="mobile-footer">
                 <h6 className="heading">
                     SB Community is a full service sports agency, representing players and team staff.
                     As a full service sports agency, we offer our clients an array of services including contractual,
@@ -55,7 +55,7 @@ const Footer = () => {
 
                  
                    </div>
-                 </div>
+                 </footer>
     );
 }
 

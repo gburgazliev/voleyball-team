@@ -27,3 +27,16 @@
 .fadeIn {
     animation: fadeIn 3s;
 }
+
+#mobile-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    background-color: transparent;
+ 
+    color: white;
+   
+    
+}

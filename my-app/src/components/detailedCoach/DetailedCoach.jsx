@@ -42,9 +42,7 @@ const DetailedCoach = () => {
 
 
   return (
-    <> {!isMobileDevice() ? <Header /> : <div id='header'>
-      <MobileHeader />
-    </div>} <div class='detailed-coach-container'>
+     <div class='detailed-coach-container'>
 
 
         <div id="coach-details-container">
@@ -75,11 +73,9 @@ const DetailedCoach = () => {
 
 
       </div>
-      <div id='footer'>
-        <Footer />
-      </div>
+    
 
-    </>
+   
 
 
 
