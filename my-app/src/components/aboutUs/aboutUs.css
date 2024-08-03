@@ -52,7 +52,7 @@ h1 {
     display: flex;
     font-size: 20px;
     color: white;
-    background-color: rgb(97, 93, 93);
+   
     margin-top: 20px;
    padding: 10px;
   
@@ -68,7 +68,7 @@ h1 {
    
     margin-top: 20px;
     padding: 10px;
-    background-color: rgb(97, 93, 93);
+   
     width: 50%;
     align-self: flex-end;
 }
