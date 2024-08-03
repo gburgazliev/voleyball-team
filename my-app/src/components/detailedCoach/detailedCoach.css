@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: auto;
     background-color: #1a202c;
     
 }
@@ -12,6 +12,7 @@
 .detailed-coach-container {
    padding: 100px 250px 100px 250px;
    width: 70%;
+
   
 }
 

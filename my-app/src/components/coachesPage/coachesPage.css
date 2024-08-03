@@ -9,7 +9,11 @@
 
 
 
+.coach-image {
 
+  height: 100%;
+  
+}
 
 #coaches-container { 
     display: flex;

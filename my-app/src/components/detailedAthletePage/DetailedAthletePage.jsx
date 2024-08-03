@@ -122,20 +122,15 @@ const DetailedAthletePage = () => {
 
 
 
-    return (<Flex w='100%' minH='100%'direction='column' justify='center' align='center' bgColor='black' >
-        {!isMobileDevice()? <Flex position='absolute' w={['100%', '100%', '100%', '100%']} top={0} justify='center' h='5%' bg='black'  bgColor='black'>
-            <Header />
-        </Flex> : 
-        <div className='header'>    <MobileHeader /></div>
-         
-       }
+    return (<Flex w='100%' direction='column' justify='flex-start' align='center' bgColor='black' >
+      
 
        {isLoaded ? <div id='detailed-athlete-loader'>
            <Loader /> 
         </div>  :
            <div id='videoContainer' class='fadeIn'>
                 <iframe 
-                 className="video"
+                 class="video"
                 src={`https://www.youtube.com/embed/${athlete?.videoID}`}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
