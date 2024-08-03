@@ -113,4 +113,20 @@ flex-direction: column;
 
 }
 
-/* to do media queries */
+@media (min-width:300px) and (max-width: 1000px) {
+    .text-flex-start-container {
+        width: 100%;
+    }
+
+    .text-flex-end-container {
+        width: 100%;
+    }
+
+    .flex-start-p {
+        margin-left: 0px;
+    }
+
+    .flex-end-p {
+        margin-right: 0px;
+    }
+}
