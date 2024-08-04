@@ -70,3 +70,41 @@
     padding: 0;
     margin: 0;
 }
+
+@media (min-width: 380px) and (max-width:430px) {
+    #mobile-header h2 {
+        font-size: 1.5em;
+    }
+
+    #mobile-header-social-media-container {
+        display: flex;
+        gap: 23px;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1em;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+
+
+@media (min-width:335px) and (max-width: 377px) {
+    #mobile-header h2{  
+        font-size: 1em;
+    }
+
+    #mobile-header-social-media-container {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1em;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+}

@@ -99,11 +99,11 @@ const MobileHeader = () => {
                                     <PopoverArrow />
                                     <PopoverCloseButton />
 
-                                    <PopoverBody bg='gray.400' > <Flex justify='space-evenly'> <Image src={facebook} boxSize='50px'></Image>
-                                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                                            <Image src={instagram} boxSize='50px'></Image>
+                                    <PopoverBody bg='gray.400' > <Flex justify='space-evenly'> 
+                                        <a class='mobile-header-image' href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                                            <image class='mobile-header-image' src={instagram} ></image>
                                         </a>
-                                        <Image src={youtube} boxSize='50px'></Image>  </Flex>
+                                        <image class='mobile-header-image'src={youtube} ></image>  </Flex>
                                     </PopoverBody>
                                 </PopoverContent> </>
                                  )}
