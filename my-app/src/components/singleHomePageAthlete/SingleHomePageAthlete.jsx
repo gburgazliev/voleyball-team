@@ -26,8 +26,8 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
                 </Flex>}
             </Avatar>
             <Flex direction='column'justify='center' align='center' w='100%'>
-                <Text color='white'>{athlete.firstname}</Text>
-                <Text color='white'>{ athlete.lastname}</Text>
+                <Text >{athlete.firstname}</Text>
+                <Text >{ athlete.lastname}</Text>
             </Flex>
 
 

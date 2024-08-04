@@ -156,7 +156,7 @@ const DetailedAthletePage = () => {
 
         <Flex w={['100%', '100%', '50%', '50%']}  borderRadius='1px' h={['100%', '100%', '100%', '20%']} justify='center' align='center'  >
             <div className="description">
-               {currUser.role !== 'admin' && <Box padding={5} h={['100%', '100%', '100%', '100%']} boxShadow='5px' bg='#1a202c' w='100%'>
+               {currUser.role !== 'admin' && <Box padding={5} h={['100%', '100%', '100%', '100%']} boxShadow='5px'  w='100%'>
                 <Heading >{athlete?.firstname + ' ' + athlete?.lastname}</Heading>
 
                 {!athlete?.description && <SkeletonText mt="4" noOfLines={4} spacing="4" />}
