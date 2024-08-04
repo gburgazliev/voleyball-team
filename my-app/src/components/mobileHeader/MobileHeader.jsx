@@ -65,7 +65,7 @@ const MobileHeader = () => {
 
     return (
        <header id="mobile-header">
-         <Heading color='white' className="slideFromTop">Heaven 07</Heading>
+         <Heading color='white' className="slideFromTop"  fontFamily='Lobster, cursive'>Heaven 07</Heading>
             <Button className="fadeIn" colorScheme='blue' onClick={onOpen}>
                 MENU
             </Button>

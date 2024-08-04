@@ -33,7 +33,7 @@
 #mobile-header {
     display: flex;
     gap: 10px;
-    justify-content: center;
+    justify-content: space-between;
     position: fixed;
     z-index: 100;
     align-items: center;

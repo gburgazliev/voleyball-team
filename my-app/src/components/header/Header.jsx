@@ -34,14 +34,14 @@ const Header = () => {
 
         if (user) {
             content = (
-                <Flex direction='column' justify='center' >
-                    <Text>Logged in as {currentUser?.username}</Text>
+                <div id="log-in-info" >
+                    <p>Welcome, {currentUser?.username} !</p>
                     
                     <Button  w='100px' alignSelf='flex-end'onClick={async () => {
                         await logout(currentUser?.email, currentUser?.password);
                         navigate('/');
                     }}>Sign out</Button>
-                </Flex>
+                </div>
             );
         } else {
             content = (
@@ -91,10 +91,10 @@ useEffect(() => {
                 </HStack>
             </Flex>
 
-            <Box w='27%' textColor='white' justify='flex-start' alignSelf='flex-start' bgColor='transparent'>
-                <Heading  _hover={{ color: 'blue.300', cursor: 'pointer' }} onClick={() => navigate('/')}> HEAVEN 07</Heading>
+            
+                <h1  id='header-heading' onClick={() => navigate('/')}> HEAVEN 07</h1>
 
-            </Box>
+            
 
             <Flex w='100%' h='100%' justify='space-between' direction='row' align='center' bgColor='transparent' paddingTop={5} marginBottom={5}>
                 <Heading paddingLeft={['0', '0' , '5', '5']} paddingRight={['0', '0' , '5', '5']} size='sm' _hover={{ color: 'blue.300', cursor: 'pointer' }} onClick={() => navigate('/')}>
