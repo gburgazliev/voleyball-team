@@ -37,6 +37,7 @@ import { useLocation } from 'react-router-dom';
 import instagram from '../../assets/instagram.png';
 import facebook from '../../assets/facebook.png';
 import youtube from '../../assets/youtube.png';
+import { getUserById } from "../../utils/utils";
 import './mobileHeader.css'
 
 
@@ -45,27 +46,37 @@ import './mobileHeader.css'
 
 const MobileHeader = () => {
 
-    const [user, setUser] = useState(null);
+    const [userData, setUser] = useState(null);
     const navigate = useNavigate();
-    const { logout } = useAuth();
+    const {user, logout } = useAuth();
     const location = useLocation();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isPopoverOpen, onPopoverOpen, onPopoverClose } = usePopover();
 
 
     useEffect(() => {
-
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
-        });
-        return unsubscribe;
-
-    }, []);
+        if (user) {
+            getUserById(user.uid, setUser)
+        }
+    }, [user]);
 
 
     return (
        <header id="mobile-header">
          <Heading color='white' className="slideFromTop"  fontFamily='Lobster, cursive'>Heaven 07</Heading>
+
+         <div id="mobile-header-social-media-container">
+           <a href="https://www.instagram.com" target="_blank">
+                <Image src={instagram} boxSize='30px'></Image>
+           </a>
+              <a href="https://www.facebook.com" target="_blank">
+                <Image src={facebook} boxSize='30px'></Image>
+                </a>
+                <a href="https://www.youtube.com" target="_blank">
+                <Image src={youtube} boxSize='30px'></Image>
+                </a>
+
+         </div>
             <Button className="fadeIn" colorScheme='blue' onClick={onOpen}>
                 MENU
             </Button>
@@ -83,9 +94,7 @@ const MobileHeader = () => {
                             <Popover  >
                             {({ isOpen }) => (
                                 <>
-                                <PopoverTrigger>
-                                    <Button  _hover={{ color: 'blue.200', cursor: 'pointer' }} bg={isOpen ? 'blue.200' : 'gray.400'} >Media</Button>
-                                </PopoverTrigger>
+                
                                 <PopoverContent>
                                     <PopoverArrow />
                                     <PopoverCloseButton />
@@ -103,7 +112,9 @@ const MobileHeader = () => {
 
                     </DrawerBody>
                     <DrawerFooter borderTopWidth='1px' color='white' >
-                        {user ? <Button _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/'); logout(); onClose() }} bg='gray.400'>Sign Out</Button> : <> <Button _hover={{ color: 'blue.200', cursor: 'pointer' }}bg={location.pathname === '/auth/login' ? 'orange' : 'gray.400'} m={2} onClick={() => navigate('/auth/login')}>Sign In</Button>
+                        {user ? <div id="mobile-header-log-in-info">
+                            <p>Welcome, {userData?.username}!</p>
+                           <Button _hover={{ color: 'blue.200', cursor: 'pointer' }} onClick={() => { navigate('/'); logout(); onClose() }} bg='gray.400'>Sign Out</Button> </div>: <> <Button _hover={{ color: 'blue.200', cursor: 'pointer' }}bg={location.pathname === '/auth/login' ? 'orange' : 'gray.400'} m={2} onClick={() => navigate('/auth/login')}>Sign In</Button> 
                             <Button _hover={{ color: 'blue.200', cursor: 'pointer' }} bg={location.pathname === '/auth/register' ? 'orange' : 'gray.400'} onClick={() => navigate('/auth/register')}>Sign Up</Button></>}
 
                     </DrawerFooter>
