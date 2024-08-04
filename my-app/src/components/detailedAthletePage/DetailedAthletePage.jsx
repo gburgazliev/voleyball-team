@@ -122,7 +122,7 @@ const DetailedAthletePage = () => {
 
 
 
-    return (<Flex w='100%' direction='column' justify='flex-start' align='center' bgColor='#1a202c' >
+    return (<Flex w='100%' direction='column' justify='flex-start' align='center'  >
       
 
        {isLoaded ? <div id='detailed-athlete-loader'>

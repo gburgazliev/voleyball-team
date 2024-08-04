@@ -1,13 +1,4 @@
-.coaches-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    background-color: #1a202c;
-    
-}
+
 
 .detailed-coach-container {
    padding: 10px 250px 100px 250px;
@@ -25,13 +16,13 @@
 }
 
 #coach-description p {
-    color: white;
+    color: var(--base--text--color);
     font-size: 20px;
 padding-right: 30px
 }
 
 #coach-description h1 {
-    color: white;
+    color: var(--base--text--color);
     font-size: 30px;
     padding-bottom: 30px
 

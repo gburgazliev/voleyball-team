@@ -1,4 +1,44 @@
+:root {
+  --base--color: #1a202c;
+  --base--text--color: #ffffff;
+  
+}
+.light-mode {
+  --base--color: #ffffff;
+  --base--text--color: #000000;
+}
+p {
+  color: var(--base--text--color);
 
+  font-family: 'Lobster', cursive;
+  margin: 0;
+  padding: 0;
+}
+
+
+h1, h2 ,h3 ,h4 ,h5, h6{
+  color: var(--base--text--color);
+
+  font-family: 'Lobster', cursive;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  color: var(--base--text--color);
+  
+  font-family: 'Lobster', cursive;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  color: var(--base--text--color);
+  
+  font-family: 'Lobster', cursive;
+  margin: 0;
+  padding: 0;
+}
 
 #root {
  height: 100% !important;
@@ -8,7 +48,7 @@
 
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #1a202c;
+  background-color: var(--base--color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,9 +67,6 @@
 
 }
 
-html {
-background-color: black;
-}
 
 
 

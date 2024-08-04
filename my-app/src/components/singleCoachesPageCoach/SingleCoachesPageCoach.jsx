@@ -27,8 +27,8 @@ const SingleCoachesPageCoach = ({user, coach}) => {
               
                  <div className="navigation">
                   <div id='coach-names'> 
-                    <p>{coach.firstName} </p> 
-                    <p>{coach.lastName}</p>
+                    <p class='single-coach-name'>{coach.firstName} </p> 
+                    <p class='single-coach-name'>{coach.lastName}</p>
                   </div>
                
                 <button onClick={() => navigate(`/detailed-coach/:${coach.uid}`)}>View profile</button>

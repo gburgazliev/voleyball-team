@@ -33,7 +33,7 @@ const Home = () => {
     
 
 
-        <Flex direction='column' justify='center'bg='#1a202c' align='center' w={['100%', '100%', '100%', '100%']} >
+        <Flex direction='column' justify='center'  align='center' w={['100%', '100%', '100%', '100%']} >
             
         
             
