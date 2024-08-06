@@ -60,7 +60,7 @@ const Login = () => {
   }
 
   return (
-    <Flex w='100%' marginBottom={40} display='flex' direction='column' justify='space-between'  align='center' backgroundColor='#1a202c'>
+    <Flex w='100%' marginBottom={40} display='flex' direction='column' justify='space-between'  align='center' >
    
       <Flex w={['100%', '100%', '30%', '30%']} h={['60%', '60%', '40%', '40%']} marginTop={10}   justify='center' align='center'>
         <Flex w={['70%', '70%', '50%', '50%']} h='50%' justify='space-evenly' direction='column'>
@@ -73,7 +73,7 @@ const Login = () => {
               placeholder='Enter password'
               value={form.password}
               onChange={updateForm('password')}
-              bg='white'
+            
             />
             <InputRightElement width='4.5rem'>
               <Button h='1.75rem' size='sm' onClick={handleClick}>
