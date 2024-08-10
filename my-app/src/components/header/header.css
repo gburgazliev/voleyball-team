@@ -44,7 +44,7 @@
     color: var(--base--text--color);
     margin: 0;
     padding: 0;
-    font-family: 'Lobster', cursive;
+  font-family:'Roboto', sans-serif;
     text-align: start;
     width: auto;
     position: absolute;
@@ -77,7 +77,7 @@
     margin: 0;
     padding: 0;
     font-size: 2em;
-    font-family: 'Lobster', cursive;
+    font-family: 'Roboto', sans-serif;
     position: absolute;
     top: 5px;
     right: 10px;
