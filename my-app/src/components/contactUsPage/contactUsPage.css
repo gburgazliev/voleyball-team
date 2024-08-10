@@ -34,7 +34,7 @@
 }
 
 label {
-    color: white;
+    color: var(--base--text--color);
     font-size: large;
 }
 
