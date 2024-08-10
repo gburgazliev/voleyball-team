@@ -95,9 +95,7 @@
 }
 
 @media (min-width: 380px) and (max-width:430px) {
-    #mobile-header h2 {
-        font-size: 1.5em;
-    }
+  
 
     #mobile-header-social-media-container {
         display: flex;
@@ -123,12 +121,15 @@
 #mobile-theme-switch svg:nth-child(1){
     display: none;
 }
+#mobile-header h2 {
+    color: var(--base--text--color);
+    font-size: 1.2em;
+   
+}
 
 
 @media (min-width:335px) and (max-width: 377px) {
-    #mobile-header h2{  
-        font-size: 1em;
-    }
+   
 
     #mobile-header-social-media-container {
         display: flex;
