@@ -1,4 +1,4 @@
-@keyframes spin {
+@keyframes UpDown {
     0% {
         transform: translateY(0px);
     }
@@ -42,17 +42,17 @@
     
 }
 
-.spin {
-    animation: spin 2s linear infinite;
+.upDown {
+    animation: UpDown 2s linear infinite;
 }
 
-.spinDelayHalfSec {
-    animation: spin 2s linear infinite;
+.upDownDelayHalfSec {
+    animation: Updown 2s linear infinite;
     animation-delay: 0.5s;
 }
 
-.spinDelay1sec {
-    animation: spin 2s linear infinite;
+.upDownDelayOneSec {
+    animation: Updown 2s linear infinite;
     animation-delay: 0.8s;
 }
 

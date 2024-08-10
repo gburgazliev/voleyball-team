@@ -22,8 +22,10 @@ const Home = () => {
         <Flex direction='column' justify='center'  align='center' w={['100%', '100%', '100%', '100%']} >
             
         
-            
-                <img id='banner' src={banner2}  alt='Volleyball Team' />
+             <div class='banner-container'>
+                 <img id='banner' src={banner2}  alt='Volleyball Team' />
+             </div>
+               
 
             
 

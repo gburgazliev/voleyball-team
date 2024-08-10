@@ -1,3 +1,28 @@
+@keyframes rotate {
+    0% {
+        transform: rotateY(180deg);
+    }
+
+   
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+@keyframes rotateLeft {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(180deg);
+    }
+    
+}
+
+
+
+
 @keyframes slideInLeft {
     from {
         transform: translateX(-500px);
@@ -13,6 +38,17 @@
     animation: slideInLeft 2s;
 
 }
+.rotateLeft {
+    animation: rotateLeft 0.3s linear;
+    
+}
+
+.rotate {
+    animation: rotate 0.3s linear;
+    
+}
+
+
 
 #pc-header {
     /* display: flex;

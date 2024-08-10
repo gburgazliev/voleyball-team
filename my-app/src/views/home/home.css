@@ -14,7 +14,7 @@
   border-radius: 20%;
  margin-top: 10px;
   box-shadow: 0px 0px 4px 3px var(--base--text--color);
- 
+  
   }
 
 li {
@@ -71,6 +71,10 @@ li {
    
   width: 100%;
   }
+  .banner-container {
+    padding: 10px;
+  }
+
 }
 
 @media screen and (max-width: 430px) {
@@ -79,6 +83,10 @@ li {
     width: 200px;
     
   }
+  .banner-container {
+    padding: 10px;
+  }
+
 
   li {
     color: white;
@@ -93,6 +101,10 @@ li {
   }
 }
 @media screen and (max-width: 481px) {
+  .banner-container {
+    padding: 10px;
+  }
+
   #logo {
     height: 235px;
     width: 250px;

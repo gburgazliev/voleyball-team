@@ -4,9 +4,9 @@ const Loader = () => {
     return (
         <div id='loader'>
            <div id="cloud-container">
-             <img src={loading} class='spin' alt="cloud" />
-            <img src={loading}  class='spinDelayHalfSec' alt="cloud" />
-            <img src={loading} class='spinDelay1sec'alt="cloud" />
+             <img src={loading} class='upDown' alt="cloud" />
+            <img src={loading}  class='upDownDelayHalfSec' alt="cloud" />
+            <img src={loading} class='upDownDelayOneSec'alt="cloud" />
            </div>
            
 
