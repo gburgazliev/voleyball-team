@@ -6,18 +6,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getUserById } from "../../utils/utils";
-import { Box, Avatar, Flex, Image, Text, Heading, List, ListItem, ListIcon, OrderedList, Skeleton, SkeletonCircle, SkeletonText, UnorderedList, Input, Button, Container, Textarea, Popover, PopoverArrow, PopoverAnchor, PopoverBody, PopoverTrigger, PopoverContent, PopoverHeader, PopoverCloseButton, Grid } from "@chakra-ui/react"
-import { useAuth } from "../../context/AuthContext";
+import { Box, Flex, Image, Text, Heading, SkeletonText, Input, Button, Container, Textarea, Popover, PopoverArrow, PopoverAnchor, PopoverBody, PopoverTrigger, PopoverContent, PopoverHeader, PopoverCloseButton, Grid } from "@chakra-ui/react"
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
 import { subscribeToAthleteById } from "../../utils/utils";
-import Header from "../header/Header";
 import { updateAthlete } from "../../utils/utils";
-import { isMobileDevice } from "../../utils/utils";
-import MobileHeader from "../mobileHeader/MobileHeader";
 import Loader from "../loader/Loader";
 import './detailedAthlete.css'
-import { set } from "firebase/database";
+
 
 
 const DetailedAthletePage = () => {

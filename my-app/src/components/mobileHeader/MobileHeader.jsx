@@ -14,32 +14,23 @@ import {
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
-    Box,
-    Text, Popover,
-    PopoverTrigger,
+    Popover,
     PopoverContent,
-    PopoverHeader,
     PopoverBody,
-    PopoverFooter,
     PopoverArrow,
     PopoverCloseButton,
-    PopoverAnchor, Image, Flex
+    Image, Flex
 } from "@chakra-ui/react";
-import { Button, Radio, RadioGroup, Stack, useDisclosure, usePopover } from "@chakra-ui/react"
+import { Button, Stack, useDisclosure, usePopover } from "@chakra-ui/react"
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "../../../firebase/firebase-config"
 import { useAuth } from "../../context/AuthContext";
-import { color, m } from "framer-motion";
 import { useLocation } from 'react-router-dom';
 import instagram from '../../assets/instagram.png';
 import facebook from '../../assets/facebook.png';
 import youtube from '../../assets/youtube.png';
 import { getUserById } from "../../utils/utils";
-import moon from '../../assets/moon.svg';
-import sun from '../../assets/sun.svg';
 import './mobileHeader.css'
 
 
@@ -117,7 +108,7 @@ const MobileHeader = () => {
 
     return (
         <header id="mobile-header">
-            <Heading className="slideFromTop" fontFamily='Lobster, cursive'>Heaven 07</Heading>
+            <Heading className="slideFromTop" >Heaven 07</Heading>
             <div>
 <div id="mobile-theme-switch" onClick={() => setTheme(true)}>
                                 <svg id='moon' xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#1E124A"><path d="M582-80q-86.08 0-162.7-32.17-76.63-32.16-134.51-87.27-57.88-55.1-91.34-128.92Q160-402.17 160-485.08q0-83.92 33.5-157.75 33.5-73.84 91.33-129Q342.67-827 419.3-859.17q76.62-32.16 162.7-32.16 49.33 0 93.67 11.33Q720-868.67 760-848.67q-90.33 60.34-145.83 154.5-55.5 94.17-55.5 208.5 0 114.34 55.5 208.84T760-122.67q-40 20-84.33 31.34Q631.33-80 582-80Zm0-66.67h24.61q11.72 0 20.06-1.33-63-71.33-98.84-157.17Q492-391 492-485.33q0-94.34 35.83-180.17 35.84-85.83 98.84-157.83-8.34-1.34-20.06-1.34H582q-146.33 0-250.83 99.14-104.5 99.15-104.5 240.17 0 141.03 104.5 239.86 104.5 98.83 250.83 98.83ZM492-486Z" /></svg>

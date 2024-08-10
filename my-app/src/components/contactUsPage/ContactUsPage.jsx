@@ -6,19 +6,14 @@
 import {
   Flex
 } from "@chakra-ui/react"
-import { auth } from "../../../firebase/firebase-config"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import emailjs from '@emailjs/browser';
-import { onAuthStateChanged } from "firebase/auth";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRef } from "react";
 import './contactUsPage.css';
-import Header from "../header/Header";
-import { isMobileDevice } from "../../utils/utils";
-import MobileHeader from "../mobileHeader/MobileHeader";
 import { useToast } from '@chakra-ui/react'
-import Footer from "../footer/Footer";
-import Loader from "../loader/Loader";
+
+
 
 
 

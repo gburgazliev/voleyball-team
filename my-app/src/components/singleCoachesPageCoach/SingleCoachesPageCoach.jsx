@@ -1,6 +1,6 @@
 import './singleCoach.css'
-import { getUserById, deleteStorageObject, deleteDatabaseObject } from '../../utils/utils'
-import { useState, useEffect } from 'react'
+import {  deleteStorageObject, deleteDatabaseObject } from '../../utils/utils'
+
 import { useNavigate } from 'react-router-dom'
 
 const SingleCoachesPageCoach = ({user, coach}) => {

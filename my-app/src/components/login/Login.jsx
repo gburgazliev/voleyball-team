@@ -4,14 +4,13 @@
  * @component
  * @returns {JSX.Element} Login component
  */
-import { Box, Container, Flex, Heading, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
+import {  Flex, Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
 import React from 'react'
-import voleyballBackground from '../../assets/registerBackground.jpg'
+
 import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import Footer from '../footer/Footer'
-import MobileHeader from '../mobileHeader/MobileHeader'
+
 
 
 const Login = () => {

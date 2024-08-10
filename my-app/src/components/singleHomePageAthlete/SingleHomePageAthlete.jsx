@@ -6,7 +6,7 @@
  * @returns {JSX.Element} The rendered component.
  */
 import React from 'react'
-import { Box, Text, Wrap, WrapItem, Avatar, Flex, Button } from '@chakra-ui/react'
+import {Text, Avatar, Flex, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { handleDeleteAthlete } from '../../utils/utils'
 import { useNavigate } from 'react-router-dom'

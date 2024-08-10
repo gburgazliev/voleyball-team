@@ -1,10 +1,4 @@
-import { useEffect } from 'react';
-import Footer from '../footer/Footer';
-import './aboutUs.css';
-import MobileHeader from '../mobileHeader/MobileHeader';
-import Header from '../header/Header';
-import { isMobileDevice } from '../../utils/utils';
-
+import './aboutUs.css'
 
 const AboutUs = () => {
     return (

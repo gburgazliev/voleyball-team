@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Heading, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Divider, Center, Icon, Image, Button, Text } from "@chakra-ui/react"
+import {Flex, Heading, Divider,  Image, Button } from "@chakra-ui/react"
 import { HStack } from "@chakra-ui/react"
 import facebook from '../../assets/facebook.png'
 import instagram from '../../assets/instagram.png'
@@ -7,12 +7,8 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../../../firebase/firebase-config"
-import { ref, set, get, update } from 'firebase/database'
 import { getUserById } from "../../utils/utils"
 import { useAuth } from "../../context/AuthContext"
-import { FaSun, FaMoon } from 'react-icons/fa';
-import sun from '../../assets/sun.svg'
-import moon from '../../assets/moon.svg'
 import './header.css'
 
 

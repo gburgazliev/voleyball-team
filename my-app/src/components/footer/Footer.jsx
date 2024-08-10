@@ -8,7 +8,7 @@
  *   <Footer />
  * )
  */
-import { Box, Container, Flex, Textarea, Text, Heading, Image, Spacer, HStack, Divider } from "@chakra-ui/react";
+import { Divider } from "@chakra-ui/react";
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
 import letter from "../../assets/letter.png";

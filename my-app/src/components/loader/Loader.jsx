@@ -1,4 +1,3 @@
-import { Spinner , Flex} from '@chakra-ui/react'
 import './loader.css'
 import loading from '../../assets/loading.png'
 const Loader = () => {

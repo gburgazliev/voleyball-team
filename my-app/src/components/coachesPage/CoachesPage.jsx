@@ -1,7 +1,3 @@
-import Header from "../header/Header";
-import MobileHeader from "../mobileHeader/MobileHeader";
-import { isMobileDevice } from "../../utils/utils";
-import Footer from "../footer/Footer";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 
@@ -20,7 +16,7 @@ import './coachesPage.css';
 import { getDownloadURL } from "firebase/storage";
 import { addCoachToDatabase, updateCoach} from "../../utils/utils";
 import { database, storage, storageRef } from '../../../firebase/firebase-config';
-import { set, onValue, ref } from "firebase/database";
+import {onValue, ref } from "firebase/database";
 import SingleCoachesPageCoach from "../singleCoachesPageCoach/SingleCoachesPageCoach";
 import { getUserById } from "../../utils/utils";
 import { uploadBytes } from "firebase/storage";
@@ -33,12 +29,6 @@ const CoachesPage = () => {
     const [file, setFile] = useState(null);
     const [coaches, setCoaches] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
-
-
-
-
-
-
 
     const handleFileChange = (e) => {
         setImageURL(URL.createObjectURL(e.target.files[0]));

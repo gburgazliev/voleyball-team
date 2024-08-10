@@ -3,15 +3,14 @@
  * This component is responsible for handling user registration.
  * @returns {JSX.Element} The Register component.
  */
-import { Box, Flex, Heading, Button, Input, useToast } from "@chakra-ui/react";
-import registerBackground from '../../assets/registerBackground.jpg'
-import { useState, useEffect } from "react";
-import { reauthenticateWithPopup } from "firebase/auth";
+import { Flex,  Button, Input, useToast } from "@chakra-ui/react";
+
+import { useState} from "react";
+
 import { useAuth } from "../../context/AuthContext";
 import { database } from "../../../firebase/firebase-config";
-import { update, ref, set, get } from 'firebase/database'
-import MobileHeader from "../mobileHeader/MobileHeader";
-import Footer from "../footer/Footer";
+import { update, ref, get } from 'firebase/database'
+
 
 
 const Register = () => {
