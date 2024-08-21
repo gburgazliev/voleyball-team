@@ -37,8 +37,6 @@ const DetailedAthletePage = () => {
             
                 return <p class='link'  onClick={() => window.open(item, '_blank', 'noopener,noreferrer')}>{item}</p>
             }
-          
-            return  <p class='link'  onClick={() => window.open(item, '_blank', 'noopener,noreferrer')}>{item}</p>
         } else {
             return <p>{item}</p>
         }

@@ -13,6 +13,11 @@ const DetailedCoach = () => {
   const { user } = useAuth();
   const [userData, setUser] = useState({});
   const [coachDescription, setCoachDescription] = useState('');
+  const formatCoachDescription = coach?.description ? coach?.description.split('\n').map((string) => {
+    return <p>{string}</p>
+  })
+  : [];
+
 
 
   useEffect(() => {
@@ -54,7 +59,7 @@ const DetailedCoach = () => {
               </textarea>
             </>
                 :
-              <p>{coach?.description}</p>
+              <p>{formatCoachDescription}</p>
             }
 
             {userData?.role === 'admin' && coach?.description !== coachDescription && <><button onClick={() => setCoachDescription(coach?.description || '')}>Cancel</button> <button onClick={handleSubmit}>Save</button> </>}
