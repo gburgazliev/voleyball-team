@@ -154,7 +154,7 @@ const DetailedAthletePage = () => {
                 <Heading >{athlete?.firstname + ' ' + athlete?.lastname}</Heading>
 
                 {!athlete?.description && <SkeletonText mt="4" noOfLines={4} spacing="4" />}
-                {athlete?.description && currUser.role !== 'admin' && <Text >{formattedDescription}</Text>}
+                {athlete?.description && currUser.role !== 'admin' && <>{formattedDescription}</>}
 
             </Box>}
 <Flex w='100%'  direction='column' gap={5}>
