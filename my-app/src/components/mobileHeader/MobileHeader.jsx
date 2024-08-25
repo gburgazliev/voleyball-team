@@ -116,10 +116,10 @@ const MobileHeader = () => {
                             </div>
             </div>
             <div id="mobile-header-social-media-container">
-                <a href="https://www.instagram.com" target="_blank">
+                <a href="https://www.instagram.com/heaven07_volleyagency/" target="_blank">
                     <Image src={instagram} boxSize='30px'></Image>
                 </a>
-                <a href="https://www.facebook.com" target="_blank">
+                <a href="https://www.facebook.com/profile.php?id=61564570175373" target="_blank">
                     <Image src={facebook} boxSize='30px'></Image>
                 </a>
                 <a href="https://www.youtube.com" target="_blank">
