@@ -116,7 +116,7 @@ const MobileHeader = () => {
                             </div>
             </div>
             <div id="mobile-header-social-media-container">
-                <a href="https://www.instagram.com/heaven07_volleyagency/" target="_blank">
+                <a href="https://www.instagram.com/heaven07.volleyball.agency?igsh=MXhzM2p5NWFwMnBp" target="_blank">
                     <Image src={instagram} boxSize='30px'></Image>
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=61564570175373" target="_blank">

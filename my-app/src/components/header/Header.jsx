@@ -125,7 +125,7 @@ const Header = () => {
                         <a href="https://www.facebook.com/profile.php?id=61564570175373" target="_blank">
                             <Image src={facebook} boxSize="35px" alt="Facebook" />
                         </a>
-                        <a href="https://www.instagram.com/heaven07_volleyagency/" target="_blank">
+                        <a href="https://www.instagram.com/heaven07.volleyball.agency?igsh=MXhzM2p5NWFwMnBp" target="_blank">
                             <Image src={instagram} boxSize="35px" alt="Instagram" borderRadius="full" />
                         </a>
 
