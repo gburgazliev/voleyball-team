@@ -66,6 +66,9 @@ label {
   min-height: 100vh;
 
 }
+html {
+  overscroll-behavior: none;
+}
 
 
 
