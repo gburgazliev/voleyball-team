@@ -72,7 +72,7 @@ const Login = () => {
               placeholder='Enter password'
               value={form.password}
               onChange={updateForm('password')}
-            
+              bg='white'
             />
             <InputRightElement width='4.5rem'>
               <Button h='1.75rem' size='sm' onClick={handleClick}>
