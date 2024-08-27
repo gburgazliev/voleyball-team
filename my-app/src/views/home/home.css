@@ -18,7 +18,7 @@
   }
 
 li {
-  color: var();
+  color: var(--base--text--color);
  
 }
 
