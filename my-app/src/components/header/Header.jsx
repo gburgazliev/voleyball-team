@@ -123,10 +123,10 @@ const Header = () => {
                         {content}
 
                         <a href="https://www.facebook.com/profile.php?id=61564570175373" target="_blank">
-                            <Image src={facebook} boxSize="35px" alt="Facebook" />
+                            <Image src={facebook} boxSize={35}  alt="Facebook" />
                         </a>
                         <a href="https://www.instagram.com/heaven07.volleyball.agency?igsh=MXhzM2p5NWFwMnBp" target="_blank">
-                            <Image src={instagram} boxSize="35px" alt="Instagram" borderRadius="full" />
+                            <Image src={instagram} boxSize={35} alt="Instagram" borderRadius="full" />
                         </a>
 
                         <Image src={youtube} boxSize="40px" alt="Youtube" borderRadius="full" />
