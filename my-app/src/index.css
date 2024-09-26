@@ -64,7 +64,7 @@ label {
 #root, body, html {
   width: 100%;
   min-height: 100vh;
-
+overscroll-behavior: none;
 }
 html {
   overscroll-behavior: none;
