@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { subscribeToCoachById } from '../../utils/utils'
@@ -14,11 +14,9 @@ const DetailedCoach = () => {
   const [userData, setUser] = useState({});
   const [coachDescription, setCoachDescription] = useState('');
   const formatCoachDescription = coach?.description ? coach?.description.split('\n').map((string, index) => {
-    return <p key={index}>{string}</p>
+    return <li key={index}>{string}</li>
   })
     : [];
-
-   
 
 
 
@@ -45,7 +43,7 @@ const DetailedCoach = () => {
 
 
   return (
-    <div class='detailed-coach-container'>
+    <div className='detailed-coach-container'>
 
 
       <div id="coach-details-container">
@@ -61,7 +59,9 @@ const DetailedCoach = () => {
             </textarea>
           </>
             :
-            <>{formatCoachDescription}</>
+            <or>
+              {formatCoachDescription}
+              </or>
           }
 
           {userData?.role === 'admin' && coach?.description !== coachDescription && <><button onClick={() => setCoachDescription(coach?.description || '')}>Cancel</button> <button onClick={handleSubmit}>Save</button> </>}
