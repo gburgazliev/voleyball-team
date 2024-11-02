@@ -1,9 +1,10 @@
-import { getDatabase, ref, set, get, child, onValue, update, push} from "firebase/database";
-import { database, storage, storageRef , deleteObject} from "../../firebase/firebase-config";
-
-
-
-
+import { ref, set, get, onValue, update, push } from "firebase/database";
+import {
+  database,
+  storage,
+  storageRef,
+  deleteObject,
+} from "../../firebase/firebase-config";
 
 /**
  * Retrieves a user from the database by their ID and sets it as the current user.
@@ -12,15 +13,30 @@ import { database, storage, storageRef , deleteObject} from "../../firebase/fire
  * @returns {Promise<void>} - A promise that resolves when the user is retrieved and set as the current user.
  */
 export const getUserById = async (id, setCurrentUser) => {
+  try {
     const usersRef = ref(database, `users`);
-  const snapshot = await get(usersRef);
+    const snapshot = await get(usersRef);
     const data = snapshot.val();
-   Object.entries(data).forEach(([key, value]) => {
-        if (value.uid === id) {
-            setCurrentUser(value);
-        }
+    // eslint-disable-next-line no-unused-vars
+    Object.entries(data).forEach(([key, value]) => {
+      if (value.uid === id) {
+        setCurrentUser(value);
+      }
     });
-}
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const fetchUserData = async (uid, setUserData) => {
+    try {
+      await getUserById(uid, setUserData);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
 
 /**
  * Subscribes to updates for a specific athlete by ID.
@@ -30,18 +46,21 @@ export const getUserById = async (id, setCurrentUser) => {
  * @returns {function} - The unsubscribe function that can be called to stop listening for updates.
  */
 export const subscribeToAthleteById = (id, onAthleteUpdate, setIsLoading) => {
-    const athleteRef = ref(database, `homePageAthletes/${id}`);
-    const unsubscribe = onValue(athleteRef, (snapshot) => {
-        const athlete = snapshot.val();
-        onAthleteUpdate(athlete);
-        setIsLoading(false);
+  const athleteRef = ref(database, `homePageAthletes/${id}`);
+  const unsubscribe = onValue(
+    athleteRef,
+    (snapshot) => {
+      const athlete = snapshot.val();
+      onAthleteUpdate(athlete);
+      setIsLoading(false);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
 
-    }, (error) => {
-        console.error(error);
-    });
-
-    // Return the unsubscribe function so it can be called to stop listening for updates
-    return unsubscribe;
+  // Return the unsubscribe function so it can be called to stop listening for updates
+  return unsubscribe;
 };
 
 /**
@@ -49,52 +68,54 @@ export const subscribeToAthleteById = (id, onAthleteUpdate, setIsLoading) => {
  * @returns {Promise<Object>} A promise that resolves to the athletes data.
  */
 export const getHomePageAthletes = async () => {
-    const athletesRef = ref(database, `homePageAthletes`);
-    const athletesSnapshot = await get(athletesRef);
-    const athletes = athletesSnapshot.val();
-    return athletes;
-}
-
-
+  const athletesRef = ref(database, `homePageAthletes`);
+  const athletesSnapshot = await get(athletesRef);
+  const athletes = athletesSnapshot.val();
+  return athletes;
+};
 
 /**
  * Updates the home page athletes in the database.
- * 
+ *
  * @param {Array} athletes - The array of athletes to update.
  * @returns {Promise<void>} - A promise that resolves when the update is complete.
  */
 export const updateHomePageAthletes = async (athletes) => {
-    const athletesRef = ref(database, `homePageAthletes`);
-    await update(athletesRef, athletes);
-}
+  const athletesRef = ref(database, `homePageAthletes`);
+  await update(athletesRef, athletes);
+};
 
 export const addCoachToDatabase = async (firstName, lastName, imageURL) => {
-    const newCoach = {
-        firstName,
-        lastName,
-        imageURL
-    };
-    const coachesRef = ref(database, `coaches`);
-    const newCoachRef = push(coachesRef);
-    await set(newCoachRef, newCoach);
-    return newCoachRef.key;
-}
+  const newCoach = {
+    firstName,
+    lastName,
+    imageURL,
+  };
+  const coachesRef = ref(database, `coaches`);
+  const newCoachRef = push(coachesRef);
+  await set(newCoachRef, newCoach);
+  return newCoachRef.key;
+};
 
 export const updateCoach = async (id, data) => {
-    const coachRef = ref(database, `coaches/${id}`);
-    await update(coachRef, data);
-}
+  const coachRef = ref(database, `coaches/${id}`);
+  await update(coachRef, data);
+};
 
 export const subscribeToCoachById = (id, onCoachUpdate) => {
-    const coachRef = ref(database, `coaches/${id}`);
-   onValue(coachRef, (snapshot) => {
-     const coach = snapshot.val();
-        onCoachUpdate(coach);
-    }, (error) => {
-        console.error(error);
-    })
-
-}
+  const coachRef = ref(database, `coaches/${id}`);
+  const unsubscribe = onValue(
+    coachRef,
+    (snapshot) => {
+      const coach = snapshot.val();
+      onCoachUpdate(coach);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+  return unsubscribe;
+};
 
 /**
  * Deletes an object from the database.
@@ -102,16 +123,14 @@ export const subscribeToCoachById = (id, onCoachUpdate) => {
  * @returns {Promise<void>} - A promise that resolves when the object is successfully deleted.
  */
 export const deleteDatabaseObject = async (url) => {
-    const objectRef = ref(database, url);
-    await set(objectRef, null);
+  const objectRef = ref(database, url);
+  await set(objectRef, null);
 };
-
 
 export const deleteStorageObject = async (url) => {
-   const storageRefObject = storageRef(storage, url);
-    await deleteObject(storageRefObject);
+  const storageRefObject = storageRef(storage, url);
+  await deleteObject(storageRefObject);
 };
-
 
 /**
  * Deletes an athlete from the home page athletes list.
@@ -119,21 +138,21 @@ export const deleteStorageObject = async (url) => {
  * @returns {Promise<void>} - A promise that resolves when the athlete is successfully deleted.
  */
 export const handleDeleteAthlete = async (id) => {
-    try {
-    
-          const athletesRef = ref(database, `homePageAthletes`);
+  try {
+    const athletesRef = ref(database, `homePageAthletes`);
     const athletesSnapshot = await get(athletesRef);
     const athletes = athletesSnapshot.val();
-  const newAthletesArray = Object.entries(athletes).filter(([key, value]) => key !== id);
+    const newAthletesArray = Object.entries(athletes).filter(
+      ([key]) => key !== id
+    );
     const newAthletes = Object.fromEntries(newAthletesArray);
- 
+
     await deleteStorageObject(`homepageAthletes/${id}`);
     await set(athletesRef, newAthletes);
- 
-    } catch (error) {
-        console.error(error);
-    }
-}
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 /**
  * Updates an athlete in the database.
@@ -142,14 +161,29 @@ export const handleDeleteAthlete = async (id) => {
  * @returns {Promise<void>} - A promise that resolves when the athlete is updated.
  */
 export const updateAthlete = async (id, data) => {
-    const athleteRef = ref(database, `homePageAthletes/${id}`);
-    await update(athleteRef, data);
-}
+  const athleteRef = ref(database, `homePageAthletes/${id}`);
+  await update(athleteRef, data);
+};
 
 /**
  * Checks if the current device is a mobile device.
  * @returns {boolean} Returns true if the device is a mobile device, otherwise returns false.
  */
 export function isMobileDevice() {
-    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-  };
+  return (
+    typeof window.orientation !== "undefined" ||
+    navigator.userAgent.indexOf("IEMobile") !== -1
+  );
+}
+
+
+export const usersListener = (setUsers) => {
+  const usersRef = ref(database, 'users');
+  const unsubscribe = onValue(usersRef, (snapshot) => {
+     const usersSnapshot = snapshot.val();
+     setUsers(usersSnapshot)
+   
+  })
+
+ return unsubscribe;
+}
