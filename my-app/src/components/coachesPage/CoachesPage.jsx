@@ -21,14 +21,14 @@ import SingleCoachesPageCoach from "../singleCoachesPageCoach/SingleCoachesPageC
 import { getUserById } from "../../utils/utils";
 import { uploadBytes } from "firebase/storage";
 const CoachesPage = () => {
-    const { user } = useAuth();
+    const { userData } = useAuth();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [file, setFile] = useState(null);
     const [coaches, setCoaches] = useState([]);
-    const [currentUser, setCurrentUser] = useState(null);
+
 
     const handleFileChange = (e) => {
         setImageURL(URL.createObjectURL(e.target.files[0]));
@@ -70,24 +70,22 @@ const CoachesPage = () => {
         });
     }, []);
 
-    useEffect(() => {
-        if (user)  getUserById(user.uid, setCurrentUser);
-        }, [user]);
+    
     
     
     return (
-        <div class="coaches-page-container">
+        <div className="coaches-page-container">
             
 
             <div id='coaches-container'>
                 {coaches.map((coach) => {
                     return (
-                        <SingleCoachesPageCoach user={currentUser} key={coach.uid} coach={coach} />
+                        <SingleCoachesPageCoach user={userData} key={coach.uid} coach={coach} />
                     );
                 })}
 
             </div>
-          { currentUser && currentUser.role ==='admin' && <button id='add-coach-button' onClick={() => setIsModalOpen(true)}>Add coach</button>}
+          { userData && userData.role ==='admin' && <button id='add-coach-button' onClick={() => setIsModalOpen(true)}>Add coach</button>}
             <Modal isOpen={isModalOpen} onClose={() => { setIsModalOpen(false) }}>
                 <ModalOverlay />
                 <ModalContent>
