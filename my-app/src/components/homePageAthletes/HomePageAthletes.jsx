@@ -123,14 +123,14 @@ const HomePageAthletes = () => {
   const handleAddAthlete = async () => {
     try {
       const newAthleteRef = push(ref(database, "homePageAthletes"));
-
+      const athletesRef = ref(database, "homePageAthletes");
       const newAthlete = {
         uid: newAthleteRef.key,
         firstname: form.firstname,
         lastname: form.lastname,
       };
       newAthlete.picture = await handleUploadPicture(file, newAthlete);
-      await update(newAthleteRef, newAthlete);
+      await update(athletesRef, newAthlete);
       setForm({
         firstname: "",
         lastname: "",
