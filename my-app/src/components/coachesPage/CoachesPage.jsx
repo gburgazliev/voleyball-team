@@ -58,7 +58,7 @@ const CoachesPage = () => {
 
     useEffect(() => {
         const coachesRef = ref(database, `coaches`);
-        onValue(coachesRef, (snapshot) => {
+       const unsubscribe =  onValue(coachesRef, (snapshot) => {
             const coachesOBJ = snapshot.val();
             const coachesARR = [];
             for (let coach in coachesOBJ) {
@@ -68,6 +68,8 @@ const CoachesPage = () => {
         }, (error) => {
             console.error(error);
         });
+
+        return () => unsubscribe();
     }, []);
 
     
