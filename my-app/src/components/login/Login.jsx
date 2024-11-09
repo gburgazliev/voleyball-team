@@ -4,14 +4,14 @@
  * @component
  * @returns {JSX.Element} Login component
  */
-import {
-  Flex,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Button,
+// import {
+//   Flex,
+//   Input,
+//   InputGroup,
+//   InputRightElement,
+//   Button,
   
-} from "@chakra-ui/react";
+// } from "@chakra-ui/react";
 
 import React from "react";
 
@@ -63,7 +63,9 @@ const Login = () => {
   };
 
   return (
-    <Flex
+    <>
+   
+    {/* <Flex
       w="100%"
       marginBottom={40}
       display="flex"
@@ -116,8 +118,9 @@ const Login = () => {
           </Button>
         </Flex>
       </Flex>
-    </Flex>
-  );
+    </Flex> */}
+   </>
+  )
 };
 
 export default Login;
