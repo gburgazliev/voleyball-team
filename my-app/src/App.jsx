@@ -60,7 +60,8 @@ function App() {
             path="/contact"
             element={
               <React.Suspense fallback={<Loader />}>
-                <LazyContactUsPage />
+                <Loader/>
+                {/* <LazyContactUsPage /> */}
               </React.Suspense>
             }
           />
