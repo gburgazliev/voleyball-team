@@ -33,10 +33,10 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
           name={athlete.firstname}
           src={athlete.picture}
           fit="cover"
-          boxSize={["90px", "90px", "100px", "150px"]} //   {["xl", "lg", "2xl", "2xl"]}
+          boxSize={["80px", "90px", "100px", "150px"]} //   {["xl", "lg", "2xl", "2xl"]}
           borderRadius="full"
           sx={{ userSelect: 'none' }} 
-        />
+        /> 
         {/* {isAdmin() && isHovered && (
           <Flex justify="space-evenly" direction="column" position="absolute">
             {" "}
@@ -96,9 +96,35 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
             
             
             >
+               
               <MotionText layout fontSize="clamp(11px, 2.5vw, 1rem)">Delete athlete</MotionText>
             </MotionButton>
           </Flex>
+        )}
+
+{!isAdmin() && isHovered && (
+          <Flex justifyContent='center' align='center'>
+
+          
+           <MotionButton
+           w={["90%", '80%' , '80%' , '80%']}
+           layout
+           size="sm" //{["sm", "sm", "md", "md"]}
+           backgroundColor="red"
+          position='absolute'
+          top={['20%', '20%' , '35%' , '35%']}
+           whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
+           whileTap={{ scale: 0.6, transition: { duration: 0.1 } }}
+           p={1}
+           borderRadius="13px"
+           
+           onClick={() => navigate(`/detailed-athlete-view/:${athlete.uid}`)}
+         
+         
+         >
+           <MotionText layout fontSize="clamp(11px, 2vw, 13px)">View profile</MotionText>
+         </MotionButton>
+</Flex>
         )}
       </motion.div>
 
