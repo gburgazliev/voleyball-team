@@ -47,7 +47,7 @@ const Footer = () => {
           <Heading>Vicho Kolev</Heading>
           <Flex
             w="100%"
-            fontSize="clamp(8px, 3vw, 1rem)"
+            fontSize="clamp(8px, 2.5vw, 1rem)"
             alignItems="center"
             justifyContent="center"
            gap={2}
