@@ -11,7 +11,7 @@ import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRef } from "react";
 import './contactUsPage.css';
-import { useToast } from '@chakra-ui/react'
+
 
 
 
@@ -27,7 +27,7 @@ const ContactUsPage = () => {
   const nameLengthLimit = 20;
   const contentLengthLimit = 2000;
   const form = useRef();
-  const toast = useToast();
+  
 
 
   /**
@@ -62,36 +62,36 @@ const ContactUsPage = () => {
     e.preventDefault();
 
     if (!captchaVal) {
-      toast({
+      // toast({
 
-        title: 'Captcha is required!',
-        description: 'Please verify that you are not a robot!',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      });
+      //   title: 'Captcha is required!',
+      //   description: 'Please verify that you are not a robot!',
+      //   status: 'error',
+      //   duration: 3000,
+      //   isClosable: true,
+      // });
       setIsLoading(false);
       return;
     } else if (!name || !email || !content) {
-      toast({
-        className: 'error',
-        title: 'All fields should be filled!',
-        description: 'Please fill all fields!',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      });
+      // toast({
+      //   className: 'error',
+      //   title: 'All fields should be filled!',
+      //   description: 'Please fill all fields!',
+      //   status: 'error',
+      //   duration: 3000,
+      //   isClosable: true,
+      // });
       setIsLoading(false);
       return;
     } else if (name.length < 3 || name.length > 20) {
-      toast({
-        className: 'error',
-        title: 'Name should be between 3 and 20 characters!',
-        description: 'Please enter a valid name!',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      });
+      // toast({
+      //   className: 'error',
+      //   title: 'Name should be between 3 and 20 characters!',
+      //   description: 'Please enter a valid name!',
+      //   status: 'error',
+      //   duration: 3000,
+      //   isClosable: true,
+      // });
       setIsLoading(false);
       return;
     }
@@ -117,20 +117,20 @@ const ContactUsPage = () => {
    
     setContent('');
 
-    toast({
-      title: 'Message sent!',
-      description: 'Thank you for contacting us!',
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-    });
+    // toast({
+    //   title: 'Message sent!',
+    //   description: 'Thank you for contacting us!',
+    //   status: 'success',
+    //   duration: 3000,
+    //   isClosable: true,
+    // });
   }
 
 
   return (
     <Flex direction='column'  w='100%' minH='100%' justify='space-evenly' align='center' >
 
-
+{/* 
 
       {isLoading ?   <Loader />  :  <form className="form" ref={form} onSubmit={handleFormSubmit}>
         <div className="nameContainer">
@@ -163,7 +163,7 @@ const ContactUsPage = () => {
         />
 
       </form>}
-     
+      */}
 
 
   
