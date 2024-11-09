@@ -58,15 +58,12 @@ const DetailedAthletePage = () => {
 
   useEffect(() => {
     setIsLoaded(true);
-   let unsubscribe;
-      subscribeToAthleteById( id.slice(1),
-      setAthlete,
-      setIsLoaded).then((func) => {
+    let unsubscribe;
+    subscribeToAthleteById(id.slice(1), setAthlete, setIsLoaded).then(
+      (func) => {
         unsubscribe = func;
-      })
-    
-    
-    
+      }
+    );
 
     // Unsubscribe when the component unmounts
     return () => {
