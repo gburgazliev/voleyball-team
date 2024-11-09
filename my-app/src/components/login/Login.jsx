@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { Toaster, toaster } from "../ui/toaster";
 import { Card, Stack } from "@chakra-ui/react";
 import { InputGroup } from "../ui/input-group";
+import { Field } from "../ui/field";
 
 const Login = () => {
   const [show, setShow] = React.useState(false);
@@ -73,37 +74,41 @@ const Login = () => {
   };
 
   return (
-    <Box pt={[10, 10, 5 , 0]}>
-
-    
+    <Box pt={[10, 10, 5, 0]}>
       <Toaster />
-      <Card.Root w={['300px', '300px' , '400px', '400px']}>
-        <Card.Header >
-          <Card.Title >Sign in</Card.Title>
-          <Card.Description size='lg'>Fill in the form below to sign in</Card.Description>
+      <Card.Root w={["300px", "300px", "400px", "400px"]}>
+        <Card.Header>
+          <Card.Title>Sign in</Card.Title>
+          <Card.Description size="lg">
+            Fill in the form below to sign in
+          </Card.Description>
         </Card.Header>
-        <Card.Body >
-          <Stack gap={4} w='full'>
-            <Input
-              placeholder="Enter email"
-              value={form.email}
-              onChange={updateForm("email")}
-            />
-            <InputGroup
-              
-              endElement={
-                <Button h="1.75rem" size="sm" onClick={handleClick}>
-                  {show ? "Hide" : "Show"}
-                </Button>
-              }
-            >
+        <Card.Body>
+          <Stack gap={4} w="full">
+            <Field label="Email" required>
               <Input
-                type={show ? "text" : "password"}
-                placeholder="Enter password"
-                value={form.password}
-                onChange={updateForm("password")}
+                placeholder="Enter email"
+                value={form.email}
+                onChange={updateForm("email")}
               />
-            </InputGroup>
+            </Field>
+            <Field label="Password" required>
+              <InputGroup w='100%'
+                endElement={
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ? "Hide" : "Show"}
+                  </Button>
+                }
+              >
+                <Input
+                  type={show ? "text" : "password"}
+                  w="100%"
+                  placeholder="Enter password"
+                  value={form.password}
+                  onChange={updateForm("password")}
+                />
+              </InputGroup>
+            </Field>
           </Stack>
         </Card.Body>
         <Card.Footer justifyContent="flex-end">
