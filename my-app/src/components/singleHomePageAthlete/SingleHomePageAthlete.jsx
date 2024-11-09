@@ -62,7 +62,8 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
             align="center"
             direction="column"
             position="absolute"
-            top="30%"
+            top="20%"
+            gap={3}
           >
             <MotionButton
               w="80%"
@@ -76,9 +77,26 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
               
               onClick={() => navigate(`/detailed-athlete-view/:${athlete.uid}`)}
             
-            //  handleDeleteAthlete(athlete.uid)
+            
             >
               <MotionText layout fontSize="clamp(11px, 2.5vw, 1rem)">View profile</MotionText>
+            </MotionButton>
+
+            <MotionButton
+              w="80%"
+              layout
+              size="sm" //{["sm", "sm", "md", "md"]}
+              backgroundColor="red"
+              whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.6, transition: { duration: 0.1 } }}
+              p={[0.5, 1, 1, 1]}
+              borderRadius="13px"
+              
+              onClick={() =>handleDeleteAthlete(athlete.uid)}
+            
+            
+            >
+              <MotionText layout fontSize="clamp(11px, 2.5vw, 1rem)">Delete athlete</MotionText>
             </MotionButton>
           </Flex>
         )}
