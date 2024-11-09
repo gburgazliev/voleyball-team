@@ -34,7 +34,7 @@
  .heading {
      text-align: center;
      width: 90%;
-     font-size: clamp(10px, 2vw, 15px);
+     font-size: clamp(10px, 3vw, 15px);
      color: var(--base--text--color);
  }
 
