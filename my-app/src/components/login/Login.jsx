@@ -4,25 +4,28 @@
  * @component
  * @returns {JSX.Element} Login component
  */
-// import {
-//   Flex,
-//   Input,
-//   InputGroup,
-//   InputRightElement,
-//   Button,
-  
-// } from "@chakra-ui/react";
+import {
+  Flex,
+  Input,
+  //   InputGroup,
+  // InputRightElement,
+  Button,
+  Box,
+} from "@chakra-ui/react";
 
 import React from "react";
 
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toaster } from "../ui/toaster";
+import { Card, Stack } from "@chakra-ui/react";
+import { InputGroup } from "../ui/input-group";
 
 const Login = () => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   const navigate = useNavigate();
-  
+
   const { login } = useAuth();
   const [form, setForm] = React.useState({
     email: "",
@@ -49,78 +52,68 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       await login(form.email, form.password);
-      navigate("/");
+      toaster.create({
+        title: "Invalid email or password.",
+        description: "Please try again.",
+        type: "success",
+        duration: 3000,
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } catch (error) {
-      // toast({
-      //   title: "Invalid email or password.",
-      //   description: "Please try again.",
-      //   status: "error",
-      //   duration: 3000,
-      //   isClosable: true,
-      // });
+      toaster.create({
+        title: "Invalid email or password.",
+        description: "Please try again.",
+        type: "error",
+        duration: 3000,
+      });
       console.error(error);
     }
   };
 
   return (
-    <>
-   
-    {/* <Flex
-      w="100%"
-      marginBottom={40}
-      display="flex"
-      direction="column"
-      justify="space-between"
-      align="center"
-    >
-      <Flex
-        w={["100%", "100%", "30%", "30%"]}
-        h={["60%", "60%", "40%", "40%"]}
-        marginTop={10}
-        justify="center"
-        align="center"
-      >
-        <Flex
-          w={["70%", "70%", "50%", "50%"]}
-          h="50%"
-          justify="space-evenly"
-          direction="column"
-        >
-       
-              <Input
-            placeholder="Enter email"
-            value={form.email}
-            onChange={updateForm("email")}
-            marginBottom={5}
-            bg="white"
-          />
-          
-           
-         
-         
-          <InputGroup size="lg">
+    <Box pt={[10, 10, 5 , 0]}>
+
+    
+      <Toaster />
+      <Card.Root w={['300px', '300px' , '400px', '400px']}>
+        <Card.Header >
+          <Card.Title >Sign in</Card.Title>
+          <Card.Description size='lg'>Fill in the form below to sign in</Card.Description>
+        </Card.Header>
+        <Card.Body >
+          <Stack gap={4} w='full'>
             <Input
-              w="100%"
-              type={show ? "text" : "password"}
-              placeholder="Enter password"
-              value={form.password}
-              onChange={updateForm("password")}
-              bg="white"
+              placeholder="Enter email"
+              value={form.email}
+              onChange={updateForm("email")}
             />
-            <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={handleClick}>
-                {show ? "Hide" : "Show"}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
+            <InputGroup
+              
+              endElement={
+                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                  {show ? "Hide" : "Show"}
+                </Button>
+              }
+            >
+              <Input
+                type={show ? "text" : "password"}
+                placeholder="Enter password"
+                value={form.password}
+                onChange={updateForm("password")}
+              />
+            </InputGroup>
+          </Stack>
+        </Card.Body>
+        <Card.Footer justifyContent="flex-end">
           <Button w="50%" marginTop={10} onClick={handleLogin}>
             Login
           </Button>
-        </Flex>
-      </Flex>
-    </Flex> */}
-   </>
-  )
+        </Card.Footer>
+      </Card.Root>
+    </Box>
+  );
 };
 
 export default Login;
