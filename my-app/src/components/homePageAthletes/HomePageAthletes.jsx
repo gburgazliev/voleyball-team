@@ -159,7 +159,7 @@ const HomePageAthletes = () => {
 
       return unsubscribe;
     };
-    fetchAthletes();
+const unsubscribe =     fetchAthletes();
   }, [athletes]);
 
   return (
