@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 
 
 
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-} from '@chakra-ui/react'
+// import {
+//     Modal,
+//     ModalOverlay,
+//     ModalContent,
+//     ModalHeader,
+//     ModalFooter,
+//     ModalBody,
+//     ModalCloseButton,
+// } from '@chakra-ui/react'
 import './coachesPage.css';
 import { getDownloadURL } from "firebase/storage";
 import { addCoachToDatabase, updateCoach} from "../../utils/utils";
@@ -78,7 +78,7 @@ const CoachesPage = () => {
     return (
         <div className="coaches-page-container">
             
-
+{/* 
             <div id='coaches-container'>
                 {coaches.map((coach) => {
                     return (
@@ -103,7 +103,7 @@ const CoachesPage = () => {
                         <button onClick={addCoach}>Save</button>
                     </ModalFooter>
                 </ModalContent>
-            </Modal>
+            </Modal> */}
           
         </div>
     );
