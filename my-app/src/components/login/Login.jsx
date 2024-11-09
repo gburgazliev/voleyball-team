@@ -12,7 +12,7 @@ import {
   Button,
   
 } from "@chakra-ui/react";
-import { useToast } from "@chakra-ui/react";
+
 import React from "react";
 
 import { useAuth } from "../../context/AuthContext";
@@ -22,7 +22,7 @@ const Login = () => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   const navigate = useNavigate();
-  const toast = useToast();
+  
   const { login } = useAuth();
   const [form, setForm] = React.useState({
     email: "",
@@ -51,13 +51,13 @@ const Login = () => {
       await login(form.email, form.password);
       navigate("/");
     } catch (error) {
-      toast({
-        title: "Invalid email or password.",
-        description: "Please try again.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
+      // toast({
+      //   title: "Invalid email or password.",
+      //   description: "Please try again.",
+      //   status: "error",
+      //   duration: 3000,
+      //   isClosable: true,
+      // });
       console.error(error);
     }
   };
