@@ -6,12 +6,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getUserById } from "../../utils/utils";
-import { Box, Flex, Image, Text, Heading, SkeletonText, Input, Button, Container, Textarea, Popover, PopoverArrow, PopoverAnchor, PopoverBody, PopoverTrigger, PopoverContent, PopoverHeader, PopoverCloseButton, Grid } from "@chakra-ui/react"
+import { Box, Flex, Heading, Input, Button,Textarea } from "@chakra-ui/react"
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
 import { subscribeToAthleteById } from "../../utils/utils";
 import { updateAthlete } from "../../utils/utils";
 import Loader from "../loader/Loader";
+import { SkeletonText } from "../ui/skeleton";
 import './detailedAthlete.css'
 
 
@@ -142,7 +143,7 @@ const DetailedAthletePage = () => {
 
         {currUser.role === 'admin' && <Flex w='10%' h='10%' direction='column' justify='center' align='center' gap={5} >
 
-           {!athlete.videoID && <Input bg='white' w={200} type="text" value={videoId} onChange={(e) => setVideoId(e.target.value)}></Input>}
+           {!athlete?.videoID && <Input bg='white' w={200} type="text" value={videoId} onChange={(e) => setVideoId(e.target.value)}></Input>}
             {!athlete?.videoID && <Button colorScheme='red' onClick={handleAddVideo}>Add video</Button>}
             {athlete?.videoID && <Button colorScheme='red' onClick={handleDeleteVideo}>Delete video</Button>}
         </Flex>}
@@ -161,7 +162,7 @@ const DetailedAthletePage = () => {
             {currUser.role === 'admin' && <Textarea bg='white' color='black' value={description} onChange={(e) => setDescription(e.target.value)} ></Textarea>  }
 
       
-        {currUser.role === 'admin' && description !== athlete.description && <Button onClick={handleSubmitDescription}> Submit description</Button>} </Flex>
+        {currUser.role === 'admin' && description !== athlete?.description && <Button onClick={handleSubmitDescription}> Submit description</Button>} </Flex>
             </div>
               </Flex>
               
