@@ -261,7 +261,7 @@ const HomePageAthletes = () => {
 
         <PopoverRoot onClose={() => setFile("")} drag>
           <PopoverTrigger>
-            {isAdmin() ? <Button>Add new athlete</Button> : <span></span>}
+            {isAdmin() ? <Button bg='lightblue' >Add new athlete</Button> : <span></span>}
           </PopoverTrigger>
           <PopoverContent>
             <PopoverArrow />
