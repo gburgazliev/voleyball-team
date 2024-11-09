@@ -5,28 +5,35 @@
   height: auto;
   background-color: green;
   padding: 20px;
-  gap: 20px;
+  /* gap: 20px; */
 }
 
 #banner {
   
- 
-  border-radius: 20%;
- margin-top: 10px;
-  box-shadow: 0px 0px 4px 3px var(--base--text--color);
+   width: 100vw;
+   height: 400px;
+   object-fit: cover;
   
+  }
+
+  .banner-container {
+    width: 100vw;
   }
 
 li {
   color: var(--base--text--color);
- 
+ text-align: left;
+ font-size: clamp(1rem, 2vw, 1.5rem);
+ user-select: none;
+ -webkit-user-select: none;
+ -moz-user-select: none;
 }
 
 
 
 #logo {
-  height: 400px;
-  width:450px;
+  height: 500px;
+  width:550px;
   
   
 }
@@ -40,17 +47,9 @@ li {
     
   }
 
-  li {
-    
-    font-size: 11px
-  }
+  
 
-  ul {
-
-   margin-top: 10px;
-   
-  width: 100%;
-  }
+  
 }
 
 @media screen and (max-width: 460px) {
@@ -60,17 +59,7 @@ li {
     
   }
 
-  li {
-    
-    font-size: 11px
-  }
-
-  ul {
-
-   margin-top: 10px;
-   
-  width: 100%;
-  }
+ 
   .banner-container {
     padding: 10px;
   }
@@ -88,17 +77,7 @@ li {
   }
 
 
-  li {
-   
-    font-size: 11px
-  }
-
-  ul {
-
-   margin-top: 10px;
-   
-  width: 100%;
-  }
+  
 }
 @media screen and (max-width: 481px) {
   .banner-container {
@@ -111,15 +90,4 @@ li {
     
   }
 
-  li {
-    
-    font-size: 11px
-  }
-
-  ul {
-
-   margin-top: 10px;
-   
-  width: 100%;
-  }
 }
