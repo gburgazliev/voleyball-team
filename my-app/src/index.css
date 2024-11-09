@@ -17,7 +17,10 @@ p {
   margin: 0;
   padding: 0;
 }
-
+button {
+  background-color: var(--base--button--color);
+  color: var(--base--text--button--color);
+}
 
 h1, h2 ,h3 ,h4 ,h5, h6{
   color: var(--base--text--color);

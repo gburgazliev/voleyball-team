@@ -136,7 +136,7 @@ const MobileHeader = () => {
 
         <DrawerRoot placement={"left"} onClose={onClose} isOpen={isOpen}>
           <DrawerTrigger >
-            <Button bgColor='var(--base--button--color)' color='var(--base--text--button--color)'>Menu</Button>
+            <Button >Menu</Button>
           </DrawerTrigger>
           <DrawerBackdrop />
           <DrawerContent >
