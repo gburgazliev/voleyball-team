@@ -3,7 +3,7 @@
  * This component is responsible for handling user registration.
  * @returns {JSX.Element} The Register component.
  */
-import { Flex, Button, Input, useToast } from "@chakra-ui/react";
+import { Flex, Button, Input } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
 import { usersListener } from "../../utils/utils";
@@ -12,7 +12,7 @@ import { database } from "../../../firebase/firebase-config";
 import { update, ref, get } from "firebase/database";
 
 const Register = () => {
-  const toast = useToast();
+  // const toast = useToast();
   const { register, login } = useAuth();
   const [users, setUsers] = useState(null);
   const [form, setForm] = useState({
@@ -40,13 +40,13 @@ const Register = () => {
    */
   const isValidPassword = (password) => {
     if (password.length < 8) {
-      toast({
-        title: "Invalid Password.",
-        description: "Password can't be less than 8 symbols.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
+      // toast({
+      //   title: "Invalid Password.",
+      //   description: "Password can't be less than 8 symbols.",
+      //   status: "error",
+      //   duration: 3000,
+      //   isClosable: true,
+      // });
       return false;
     }
     return true;
@@ -61,13 +61,13 @@ const Register = () => {
   const isValidEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
-      toast({
-        title: "Invalid email.",
-        description: "This email doesn't exist.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
+      // toast({
+      //   title: "Invalid email.",
+      //   description: "This email doesn't exist.",
+      //   status: "error",
+      //   duration: 3000,
+      //   isClosable: true,
+      // });
       return false;
     }
     return true;
