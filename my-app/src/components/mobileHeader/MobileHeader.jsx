@@ -150,7 +150,7 @@ const MobileHeader = () => {
             <DrawerBody class="mobile-drawer" bg='var(--base--color)'>
               <Stack>
                 <Button
-                  bg={location.pathname === "/" ? "blue.200" : "gray.400"}
+                  bg={location.pathname === "/" ? "blue.400" : "var(--base--button--color)"}
                   _hover={{ color: "blue.200", cursor: "pointer" }}
                   onClick={() => {
                     navigate("/");
@@ -161,7 +161,7 @@ const MobileHeader = () => {
                 </Button>
                 <Button
                   bg={
-                    location.pathname === "/coaches" ? "blue.200" : "gray.400"
+                    location.pathname === "/coaches" ? "blue.400" : "var(--base--button--color)"
                   }
                   _hover={{ color: "blue.200", cursor: "pointer" }}
                   onClick={() => {
@@ -173,7 +173,7 @@ const MobileHeader = () => {
                 </Button>
                 <Button
                   bg={
-                    location.pathname === "/about-us" ? "blue.200" : "gray.400"
+                    location.pathname === "/about-us" ? "blue.400" : "var(--base--button--color)"
                   }
                   _hover={{ color: "blue.200", cursor: "pointer" }}
                   onClick={() => {
@@ -185,7 +185,7 @@ const MobileHeader = () => {
                 </Button>
                 <Button
                   bg={
-                    location.pathname === "/contact" ? "blue.200" : "gray.400"
+                    location.pathname === "/contact" ? "blue.400" : "var(--base--button--color)"
                   }
                   _hover={{ color: "blue.200", cursor: "pointer" }}
                   onClick={() => {
