@@ -9,10 +9,9 @@ import { isMobileDevice } from "./utils/utils";
 import React from "react";
 import Loader from "./components/loader/Loader";
 import { useLocation } from "react-router-dom";
+import AuthPage from "./components/authPage/AuthPage";
 const LazyHome = React.lazy(() => import("./views/home/Home"));
 const LazyAboutUs = React.lazy(() => import("./components/aboutUs/AboutUs"));
-const LazyRegister = React.lazy(() => import("./components/register/Register"));
-const LazyLogin = React.lazy(() => import("./components/login/Login"));
 const LazyDetailedAthletePage = React.lazy(() =>
   import("./components/detailedAthletePage/DetailedAthletePage")
 );
@@ -29,13 +28,12 @@ const LazyContactUsPage = React.lazy(() =>
 function App() {
   const location = useLocation();
 
-
-     useEffect(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
-     }, [location])
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [location]);
 
   return (
     <div className="app">
@@ -74,22 +72,8 @@ function App() {
               </React.Suspense>
             }
           />
-          <Route
-            path="/auth/register"
-            element={
-              <React.Suspense fallback={<Loader />}>
-                <LazyRegister />
-              </React.Suspense>
-            }
-          />
-          <Route
-            path="/auth/login"
-            element={
-              <React.Suspense fallback={<Loader />}>
-                <LazyLogin />
-              </React.Suspense>
-            }
-          />
+
+          <Route path="/auth" element={<AuthPage />} />
           <Route
             path="/detailed-coach/:id"
             element={
