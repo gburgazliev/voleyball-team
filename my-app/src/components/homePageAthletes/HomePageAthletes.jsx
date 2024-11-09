@@ -38,7 +38,8 @@ import {
 import { storage } from "../../../firebase/firebase-config";
 
 const HomePageAthletes = () => {
-  const [athletes, setAthletes] = useState({});
+  const [athletes, setAthletes] = useState([]);
+  const [atheletesIds, setAthletesIds] = useState([]);
   const { userData } = useAuth();
   const fileRef = useRef();
   const [file, setFile] = useState(null);
@@ -123,14 +124,16 @@ const HomePageAthletes = () => {
   const handleAddAthlete = async () => {
     try {
       const newAthleteRef = push(ref(database, "homePageAthletes"));
-
+      const athletesCopy = [...athletes];
       const newAthlete = {
         uid: newAthleteRef.key,
         firstname: form.firstname,
         lastname: form.lastname,
       };
       newAthlete.picture = await handleUploadPicture(file, newAthlete);
-      await update(newAthleteRef, newAthlete);
+      athletesCopy.push(newAthlete);
+
+      await set(ref(database, "homePageAthletes"), athletesCopy);
       setForm({
         firstname: "",
         lastname: "",
@@ -145,11 +148,16 @@ const HomePageAthletes = () => {
   };
 
   useEffect(() => {
-    const fetchAthletes = async () => {
-      onValue(ref(database, "homePageAthletes"), (snapshot) => {
+    const fetchAthletes = () => {
+      const unsubscribe = onValue(
+        ref(database, "homePageAthletes"),
+        (snapshot) => {
         const data = snapshot.val();
-        setAthletes(data || {});
-      });
+          setAthletes(data || []);
+        }
+      );
+
+      return unsubscribe;
     };
     fetchAthletes();
   }, [athletes]);
