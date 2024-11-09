@@ -40,7 +40,7 @@ import {
 } from "firebase/storage";
 import { MotionGridItem } from "../motionComponents/motionComponents.jsx";
 import { storage } from "../../../firebase/firebase-config";
-import { Reorder } from "framer-motion";
+import { Reorder, useDragControls } from "framer-motion";
 import {
   PopoverTrigger,
   PopoverArrow,
@@ -218,15 +218,47 @@ const HomePageAthletes = () => {
         marginTop={5}
       >
         <Text color="white">OUR ATHLETES</Text>
-
-        <Reorder.Group
-          axis="y"
-          values={atheletesIds}
-          layout
-          onReorder={(newOrder) =>
-            reorderAthletes(newOrder, athletes, setAthletes)
-          }
-        >
+        {userData?.role === "admin" ? (
+          <Reorder.Group
+            axis="y"
+            values={atheletesIds}
+            layout
+            onReorder={(newOrder) =>
+              reorderAthletes(newOrder, athletes, setAthletes)
+            }
+          >
+            <Grid
+              templateColumns={[
+                "repeat(3, 1fr)",
+                "repeat(3, 1fr)",
+                "repeat(4, 1fr)",
+                "repeat(4, 1fr)",
+              ]}
+              gap={[8, 16, 20, 20]}
+              position="relative"
+            >
+              {athletes &&
+                athletes.map((athelete) => (
+                  <Reorder.Item
+                    key={athelete.uid}
+                    value={athelete.uid}
+                    layout
+                    transition={{ duration: 2 }}
+                    style={{
+                      order: atheletesIds.indexOf(athelete.uid), // Set the CSS order based on the reordering array
+                    }}
+                  >
+                    <GridItem>
+                      <SingleHomePageAthlete
+                        athlete={athelete}
+                        isAdmin={isAdmin}
+                      />
+                    </GridItem>
+                  </Reorder.Item>
+                ))}
+            </Grid>
+          </Reorder.Group>
+        ) : (
           <Grid
             templateColumns={[
               "repeat(3, 1fr)",
@@ -239,29 +271,16 @@ const HomePageAthletes = () => {
           >
             {athletes &&
               athletes.map((athelete) => (
-                <Reorder.Item
-                  key={athelete.uid}
-                  value={athelete.uid}
-                  layout
-                  transition={{ duration: 2 }}
-                  style={{
-                    order: atheletesIds.indexOf(athelete.uid), // Set the CSS order based on the reordering array
-                  }}
-                >
-                  <GridItem>
-                    <SingleHomePageAthlete
-                      athlete={athelete}
-                      isAdmin={isAdmin}
-                    />
-                  </GridItem>
-                </Reorder.Item>
+                <GridItem key={athelete.uid}>
+                  <SingleHomePageAthlete athlete={athelete} isAdmin={isAdmin} />
+                </GridItem>
               ))}
           </Grid>
-        </Reorder.Group>
+        )}
 
         <PopoverRoot onClose={() => setFile("")} drag>
           <PopoverTrigger>
-            {isAdmin() ? <Button  >Add new athlete</Button> : <span></span>}
+            {isAdmin() ? <Button>Add new athlete</Button> : <span></span>}
           </PopoverTrigger>
           <PopoverContent>
             <PopoverArrow />
