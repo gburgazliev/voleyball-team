@@ -5,6 +5,7 @@ import {
   storageRef,
   deleteObject,
 } from "../../firebase/firebase-config";
+import { updateEmail } from "firebase/auth";
 
 /**
  * Retrieves a user from the database by their ID and sets it as the current user.
@@ -30,13 +31,13 @@ export const getUserById = async (id, setCurrentUser) => {
 };
 
 export const fetchUserData = async (uid, setUserData) => {
-    try {
-      await getUserById(uid, setUserData);
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  };
+  try {
+    await getUserById(uid, setUserData);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
 
 /**
  * Subscribes to updates for a specific athlete by ID.
@@ -129,7 +130,7 @@ export const deleteDatabaseObject = async (url) => {
 
 export const deleteStorageObject = async (url) => {
   const storageRefObject = storageRef(storage, url);
-  await deleteObject(storageRefObject);
+  storageRefObject && (await deleteObject(storageRefObject));
 };
 
 /**
@@ -141,18 +142,29 @@ export const handleDeleteAthlete = async (id) => {
   try {
     const athletesRef = ref(database, `homePageAthletes`);
     const athletesSnapshot = await get(athletesRef);
-    const athletes = athletesSnapshot.val();
-    const newAthletesArray = Object.entries(athletes).filter(
-      ([key]) => key !== id
-    );
-    const newAthletes = Object.fromEntries(newAthletesArray);
-
-    await deleteStorageObject(`homepageAthletes/${id}`);
-    await set(athletesRef, newAthletes);
+    const athletesArray = athletesSnapshot.val();
+    const athleteIndex = await findAthleteKeyById(id)
+    athletesArray.splice(athleteIndex, 1);
+    await set(athletesRef , athletesArray);
   } catch (error) {
     console.error(error);
   }
+  try {
+    await deleteStorageObject(`homepageAthletes/${id}`);
+  } catch (error) {
+    console.log(`Couldn't delete storage object`);
+  }
 };
+
+export async function findAthleteKeyById(id) {
+  const athletesRef = ref(database, `homePageAthletes`);
+  const athletesSnapshot = await get(athletesRef);
+  const athletesArray = athletesSnapshot.val();
+  const athleteIndex = Object.keys(athletesArray).find(
+    (key) => athletesArray[key].uid === id
+  );
+  return athleteIndex;
+}
 
 /**
  * Updates an athlete in the database.
@@ -161,8 +173,21 @@ export const handleDeleteAthlete = async (id) => {
  * @returns {Promise<void>} - A promise that resolves when the athlete is updated.
  */
 export const updateAthlete = async (id, data) => {
-  const athleteRef = ref(database, `homePageAthletes/${id}`);
+  const atheleteKey = await findAthleteKeyById(id);
+  const athleteRef = ref(database, `homePageAthletes/${atheleteKey}`)
   await update(athleteRef, data);
+};
+
+export const setAthletesDB = async (athletes) => {
+  try {
+    const athletesRef = ref(database, "homePageAthletes");
+
+    await set(athletesRef, athletes);
+    console.log("ok");
+  } catch (error) {
+    console.log("Error settings athletes");
+    throw error;
+  }
 };
 
 /**
@@ -176,14 +201,16 @@ export function isMobileDevice() {
   );
 }
 
-
 export const usersListener = (setUsers) => {
-  const usersRef = ref(database, 'users');
-  const unsubscribe = onValue(usersRef, (snapshot) => {
-     const usersSnapshot = snapshot.val();
-     setUsers(usersSnapshot)
-   
-  })
+  const usersRef = ref(database, "users");
+  const unsubscribe = onValue(
+    usersRef,
+    (snapshot) => {
+      const usersSnapshot = snapshot.val();
+      setUsers(usersSnapshot);
+    },
+    (error) => console.log(`Subscription to user canceled: ${error}`)
+  );
 
- return unsubscribe;
-}
+  return unsubscribe;
+};
