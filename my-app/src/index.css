@@ -1,11 +1,14 @@
 :root {
   --base--color: #1a202c;
   --base--text--color: #ffffff;
-  
+  --base--button--color: lightblue;
+  --base--text--button--color: black;
 }
 .light-mode {
-  --base--color: #ffffff;
+  --base--color: lightblue;
   --base--text--color: #000000;
+  --base--button--color: #089089;
+  --base--text--button--color: white;
 }
 p {
   color: var(--base--text--color);
