@@ -39,15 +39,16 @@ export const fetchUserData = async (uid, setUserData) => {
   }
 };
 
-/**
- * Subscribes to updates for a specific athlete by ID.
- *
- * @param {string} id - The ID of the athlete.
- * @param {function} onAthleteUpdate - The callback function to be called when the athlete is updated.
- * @returns {function} - The unsubscribe function that can be called to stop listening for updates.
- */
-export const subscribeToAthleteById = (id, onAthleteUpdate, setIsLoading) => {
-  const athleteRef = ref(database, `homePageAthletes/${id}`);
+// /**
+//  * Subscribes to updates for a specific athlete by ID.
+//  *
+//  * @param {string} id - The ID of the athlete.
+//  * @param {function} onAthleteUpdate - The callback function to be called when the athlete is updated.
+//  * @returns {function} - The unsubscribe function that can be called to stop listening for updates.
+//  */
+export const subscribeToAthleteById = async (id, onAthleteUpdate, setIsLoading) => {
+  const athleteKey = await findAthleteKeyById(id);
+  const athleteRef = ref(database, `homePageAthletes/${athleteKey}`);
   const unsubscribe = onValue(
     athleteRef,
     (snapshot) => {
@@ -61,7 +62,7 @@ export const subscribeToAthleteById = (id, onAthleteUpdate, setIsLoading) => {
   );
 
   // Return the unsubscribe function so it can be called to stop listening for updates
-  return unsubscribe;
+  return unsubscribe
 };
 
 /**
