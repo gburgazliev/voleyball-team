@@ -40,6 +40,8 @@ export const AuthProvider = ({ children }) => {
     }
   }, [user]);
 
+  
+
   const valueData = {
     userData,
     loading,
