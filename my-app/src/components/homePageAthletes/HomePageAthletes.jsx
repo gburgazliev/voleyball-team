@@ -51,6 +51,7 @@ import {
   PopoverHeader,
 } from "../ui/popover.jsx";
 import { Avatar } from "../ui/avatar.jsx";
+import { NativeSelectField, NativeSelectRoot } from "../ui/native-select.jsx";
 
 const HomePageAthletes = () => {
   const [athletes, setAthletes] = useState([]);
@@ -64,6 +65,7 @@ const HomePageAthletes = () => {
     firstname: "",
     lastname: "",
     picture: "",
+    gender: "",
   });
 
   /**
@@ -145,6 +147,7 @@ const HomePageAthletes = () => {
         uid: newAthleteRef.key,
         firstname: form.firstname,
         lastname: form.lastname,
+        gender: form.gender,
       };
       newAthlete.picture = await handleUploadPicture(file, newAthlete);
       athletesCopy.push(newAthlete);
@@ -154,6 +157,7 @@ const HomePageAthletes = () => {
         firstname: "",
         lastname: "",
         picture: "",
+        gender: '',
       });
       setFile(null);
       setProfilePic("");
@@ -323,8 +327,17 @@ const HomePageAthletes = () => {
                 >
                   Clear{" "}
                 </Button>
-              </Box>
-
+              </Box>{" "}
+              <NativeSelectRoot variant="subtle">
+                <NativeSelectField
+                  placeholder="Select gender"
+                  value={form.gender}
+                  onChange={updateForm("gender")}
+                >
+                  <option value="Male">Male</option>
+                  <option value="Male">Female</option>
+                </NativeSelectField>
+              </NativeSelectRoot>
               <Input
                 p={1}
                 ref={fileRef}
