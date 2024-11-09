@@ -9,23 +9,26 @@ import {
   Flex,
   Text,
   Button,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Avatar,
-  PopoverBody,
-  PopoverHeader,
-  PopoverArrow,
-  PopoverCloseButton,
+  // Popover,
+  // PopoverTrigger,
+  // PopoverContent,
+  // Avatar,
+  // PopoverBody,
+  // PopoverHeader,
+  // PopoverArrow,
+  // PopoverCloseButton,
   Input,
-  Wrap,
-  WrapItem,
+  Grid,
+  GridItem,
+  // Wrap,
+  // WrapItem,
 } from "@chakra-ui/react";
-import { getHomePageAthletes } from "../../utils/utils";
+import { getHomePageAthletes, setAthletesDB } from "../../utils/utils";
 import { useEffect, useState } from "react";
-import SingleHomePageAthlete from "../singleHomePageAthlete/SingleHomePageAthlete";
+import SingleHomePageAthlete from "../singleHomePageAthlete/SingleHomePageAthlete.jsx";
+
 import { useAuth } from "../../context/AuthContext";
-import { get, onValue, set, update } from "firebase/database";
+import { get, onValue, remove, set, update } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, push } from "firebase/database";
 import { auth, database } from "../../../firebase/firebase-config";
@@ -35,7 +38,19 @@ import {
   getDownloadURL,
   ref as storageRef,
 } from "firebase/storage";
+import { MotionGridItem } from "../motionComponents/motionComponents.jsx";
 import { storage } from "../../../firebase/firebase-config";
+import { Reorder } from "framer-motion";
+import {
+  PopoverTrigger,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverRoot,
+  PopoverCloseTrigger,
+  PopoverHeader,
+} from "../ui/popover.jsx";
+import { Avatar } from "../ui/avatar.jsx";
 
 const HomePageAthletes = () => {
   const [athletes, setAthletes] = useState([]);
@@ -43,6 +58,7 @@ const HomePageAthletes = () => {
   const { userData } = useAuth();
   const fileRef = useRef();
   const [file, setFile] = useState(null);
+  const [didReorder, setDidReorder] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [form, setForm] = useState({
     firstname: "",
@@ -147,80 +163,167 @@ const HomePageAthletes = () => {
     }
   };
 
+  const reorderAthletes = (atheletesIds, athletes, updateAthletes) => {
+    const athletesMap = new Map(
+      athletes.map((athlete) => [athlete.uid, athlete])
+    );
+    const reorderedAtheletes = atheletesIds.map((id) => athletesMap.get(id));
+
+    updateAthletes(reorderedAtheletes);
+
+    setDidReorder(!didReorder);
+  };
+
+  useEffect(() => {
+    if (athletes.length > 0) {
+      const timeoutId = setTimeout(async () => {
+        await setAthletesDB(athletes);
+      }, 4000);
+
+      // Clear the timeout if `didReorder` changes or the component unmounts
+      return () => clearTimeout(timeoutId);
+    }
+  }, [didReorder]);
+
   useEffect(() => {
     const fetchAthletes = () => {
       const unsubscribe = onValue(
         ref(database, "homePageAthletes"),
         (snapshot) => {
-        const data = snapshot.val();
+          const data = snapshot.val();
           setAthletes(data || []);
         }
       );
 
       return unsubscribe;
     };
-const unsubscribe =     fetchAthletes();
+    const unsubscribe = fetchAthletes();
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    setAthletesIds(athletes.map((athlete) => athlete.uid));
   }, [athletes]);
 
   return (
-    <Flex
-      w="100%"
-      minH="30vh"
-      direction="column"
-      justify="center"
-      align="center"
-      zIndex={10}
-      marginTop={5}
-    >
-      <Text color="white">OUR ATHLETES</Text>
-      <Wrap
-        spacing="20px"
-        justify="space-evenly"
-        paddingTop={2}
-        paddingRight={1}
-        paddingLeft={1}
-        paddingBottom={2}
-        w={["100%", "90%", "50%", "50%"]}
+    <>
+      <Flex
+        w="100%"
+        minH="30vh"
+        direction="column"
+        justify="center"
+        align="center"
+        gap={5}
+        marginTop={5}
       >
-        {Object.entries(athletes).map(([key, value]) => (
-          <WrapItem key={key}>
-            <SingleHomePageAthlete athlete={value} isAdmin={isAdmin} />
-          </WrapItem>
-        ))}
-      </Wrap>
+        <Text color="white">OUR ATHLETES</Text>
 
-      <Popover onClose={() => setFile("")}>
-        <PopoverTrigger>
-          {isAdmin() ? <Button>Add new athlete</Button> : <span></span>}
-        </PopoverTrigger>
-        <PopoverContent>
-          <PopoverArrow />
-          <PopoverCloseButton />
-          <PopoverHeader>Add new athlete</PopoverHeader>
-          <PopoverBody justify="center" align="center">
-            <Input
-              placeholder="Firstname"
-              value={form.firstname}
-              onChange={updateForm("firstname")}
-            />
-            <Input
-              placeholder="Lastname"
-              value={form.lastname}
-              onChange={updateForm("lastname")}
-            />
-            <Avatar
-              size="2xl"
-              name={form.firstname + " " + form.lastname}
-              src={profilePic}
-            />
-            <Input ref={fileRef} type="file" onChange={handleChange}></Input>
-            <Button justifySelf="center" onClick={handleAddAthlete}>
-              Add
-            </Button>
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
-    </Flex>
+        <Reorder.Group
+          axis="y"
+          values={atheletesIds}
+          layout
+          onReorder={(newOrder) =>
+            reorderAthletes(newOrder, athletes, setAthletes)
+          }
+        >
+          <Grid
+            templateColumns={[
+              "repeat(3, 1fr)",
+              "repeat(3, 1fr)",
+              "repeat(4, 1fr)",
+              "repeat(4, 1fr)",
+            ]}
+            gap={[8, 16, 20, 20]}
+            position="relative"
+          >
+            {athletes &&
+              athletes.map((athelete) => (
+                <Reorder.Item
+                  key={athelete.uid}
+                  value={athelete.uid}
+                  layout
+                  transition={{ duration: 2 }}
+                  style={{
+                    order: atheletesIds.indexOf(athelete.uid), // Set the CSS order based on the reordering array
+                  }}
+                >
+                  <GridItem>
+                    <SingleHomePageAthlete
+                      athlete={athelete}
+                      isAdmin={isAdmin}
+                    />
+                  </GridItem>
+                </Reorder.Item>
+              ))}
+          </Grid>
+        </Reorder.Group>
+
+        <PopoverRoot onClose={() => setFile("")} drag>
+          <PopoverTrigger>
+            {isAdmin() ? <Button>Add new athlete</Button> : <span></span>}
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseTrigger />
+            <PopoverHeader>Add new athlete</PopoverHeader>
+            <PopoverBody
+              justify="center"
+              align="center"
+              display="flex"
+              flexDirection="column"
+              gap={2}
+            >
+              <Input
+                placeholder="Firstname"
+                value={form.firstname}
+                onChange={updateForm("firstname")}
+              />
+              <Input
+                placeholder="Lastname"
+                value={form.lastname}
+                onChange={updateForm("lastname")}
+              />
+              <Box>
+                <Avatar
+                  size="2xl"
+                  name={`${form.firstname} ${form.lastname}`}
+                  src={profilePic}
+                  fallback="Athlete"
+                />
+                <Button
+                  size="sm"
+                  boxSize="10px"
+                  fontSize="10px"
+                  bgColor="transparent"
+                  color="white"
+                  onClick={() => {
+                    fileRef.current.value = "";
+                    setFile(""), setProfilePic("");
+                  }}
+                >
+                  Clear{" "}
+                </Button>
+              </Box>
+
+              <Input
+                p={1}
+                ref={fileRef}
+                type="file"
+                onChange={handleChange}
+              ></Input>
+              <Button
+                justifySelf="center"
+                alignSelf="center"
+                onClick={handleAddAthlete}
+              >
+                Add
+              </Button>
+            </PopoverBody>
+          </PopoverContent>
+        </PopoverRoot>
+      </Flex>
+    </>
   );
 };
 
