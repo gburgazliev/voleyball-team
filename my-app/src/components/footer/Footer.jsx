@@ -12,6 +12,7 @@ import { Separator } from "@chakra-ui/react";
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
 import letter from "../../assets/letter.png";
+import { Image, Flex, Heading, Text, Box } from "@chakra-ui/react";
 import "./footer.css";
 
 const Footer = () => {
@@ -35,27 +36,55 @@ const Footer = () => {
         <div className="divider">
           <Separator />
         </div>
-        <div id="staff-info">
-          <div>
-            <div className="staff-couple">
-              <div className="person-info">
-                {" "}
-                <h1 className="heading">Vicho Kolev</h1>
-                <div className="couples">
-                  <p> +359 88 6676470</p>
-                </div>
-                <div className="couples">
-                  <img src={location} alt="location" />
-                  <p>Owner - Sofia, Bulgaria</p>
-                </div>
-                <div className="couples">
-                  <img src={letter} alt="letter" />
-                  <p>heaven07@abv.bg</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+        <Flex
+          direction="column"
+          w="100%"
+          justifyContent="center"
+          alignItems="center"
+          pb={5}
+        >
+          <Heading>Vicho Kolev</Heading>
+          <Flex
+            w="100%"
+            fontSize="clamp(8px, 2.5vw, 1rem)"
+            alignItems="center"
+            justifyContent="center"
+           gap={2}
+            
+          >
+            <Image
+              w="20px "
+              height="20px"
+              borderRadius="full"
+              src={phone}
+              alt="location"
+            />
+            <Text> +359 88 6676470</Text>
+
+            <Image
+              w="20px "
+              height="20px"
+              borderRadius="full"
+              src={location}
+              alt="location"
+            />
+            <Text>Owner - Sofia, Bulgaria</Text>
+
+            <Image
+              w="20px "
+              height="20px"
+              borderRadius="full"
+              src={letter}
+              alt="letter"
+            />
+            <Text>heaven07@abv.bg</Text>
+          </Flex>
+        </Flex>
+
+        <Text fontSize="sm" pb={2} color="gray.500" fontFamily="fantasy">
+          © {new Date().getFullYear()} Heaven07. All rights reserved.
+        </Text>
       </footer>
     </>
   );
