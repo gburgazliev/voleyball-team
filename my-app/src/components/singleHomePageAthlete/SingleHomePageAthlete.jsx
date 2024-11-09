@@ -33,7 +33,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
           name={athlete.firstname}
           src={athlete.picture}
           fit="cover"
-          boxSize={["80px", "90px", "100px", "150px"]} //   {["xl", "lg", "2xl", "2xl"]}
+          boxSize={["85px", "90px", "100px", "150px"]} //   {["xl", "lg", "2xl", "2xl"]}
           borderRadius="full"
           sx={{ userSelect: 'none' }} 
         /> 
@@ -62,8 +62,8 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
             align="center"
             direction="column"
             position="absolute"
-            top="20%"
-            gap={3}
+            top={['20%', '20%' , '30%' , '30%']}
+            gap={1}
           >
             <MotionButton
               w="80%"
@@ -79,11 +79,11 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
             
             
             >
-              <MotionText layout fontSize="clamp(11px, 2.5vw, 1rem)">View profile</MotionText>
+              <MotionText layout fontSize="clamp(11px, 2vw, 13px)">View profile</MotionText>
             </MotionButton>
 
             <MotionButton
-              w="80%"
+              w={['80%', '80%', '80%', '80%']}
               layout
               size="sm" //{["sm", "sm", "md", "md"]}
               backgroundColor="red"
@@ -97,7 +97,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
             
             >
                
-              <MotionText layout fontSize="clamp(11px, 2.5vw, 1rem)">Delete athlete</MotionText>
+              <MotionText layout fontSize="clamp(8px, 2vw, 13pxrem)">Delete</MotionText>
             </MotionButton>
           </Flex>
         )}
