@@ -17,6 +17,7 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setUserData] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // Define authentication functions
   const register = async (email, password) => {
@@ -35,14 +36,27 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (user) {
       fetchUserData(user.uid, setUserData);
+
+      user
+        .getIdTokenResult()
+        .then((token) => {
+          if (token.claims.isAdmin) {
+            setIsAdmin(true);
+            console.log('USER IS ADMIN')
+          } else {
+            setIsAdmin(false);
+          }
+        })
+        .catch((error) =>
+          console.error(`Error getting desirialised token: ${error.message}`)
+        );
     } else {
       setUserData(null);
     }
   }, [user]);
 
-  
-
   const valueData = {
+    isAdmin,
     userData,
     loading,
     error,
