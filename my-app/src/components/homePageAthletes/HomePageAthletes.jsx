@@ -172,6 +172,12 @@ const HomePageAthletes = () => {
     const reorderedAtheletes = atheletesIds.map((id) => athletesMap.get(id));
 
     updateAthletes(reorderedAtheletes);
+
+    if (athletes[0].gender === 'Male') {
+      setDidReorderMale(!didReorderMale)
+    } else  {
+      setDidReorderFemale(!didReorderFemale)
+    }
   };
 
   useEffect(() => {
@@ -242,9 +248,6 @@ const HomePageAthletes = () => {
  
   }, [femaleAthletes]);
 
-  useEffect(() => {
-  console.log(femaleAthletes)
-  }, [femaleAthletes])
 
   useEffect(() => {
     setAthletesIdsMale(maleAthletes.map((athlete) => athlete.uid));
@@ -335,7 +338,7 @@ const HomePageAthletes = () => {
             values={atheletesIdsMale}
             layout
             onReorder={(newOrder) =>
-              reorderAthletes(newOrder, maleAthletes, setAthletesIdsMale)
+              reorderAthletes(newOrder, maleAthletes, setMaleAthletes)
             }
           >
 
@@ -361,8 +364,9 @@ const HomePageAthletes = () => {
                       order: atheletesIdsMale.indexOf(athelete.uid), // Set the CSS order based on the reordering array
                     }}
                   >
-                    <GridItem>
+                    <GridItem key={athelete.uid}>
                       <SingleHomePageAthlete
+                      key={athelete.uid}
                         athlete={athelete}
                         isAdmin={isAdmin}
                       />
