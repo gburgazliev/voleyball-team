@@ -23,24 +23,24 @@ import {
   // Wrap,
   // WrapItem,
 } from "@chakra-ui/react";
-import { getHomePageAthletes, setAthletesDB } from "../../utils/utils";
+import { setAthletesDB } from "../../utils/utils";
 import { useEffect, useState } from "react";
 import SingleHomePageAthlete from "../singleHomePageAthlete/SingleHomePageAthlete.jsx";
 
 import { useAuth } from "../../context/AuthContext";
-import { get, onValue, remove, set, update } from "firebase/database";
-import { onAuthStateChanged } from "firebase/auth";
-import { ref, push } from "firebase/database";
-import { auth, database } from "../../../firebase/firebase-config";
+import { onValue, set } from "firebase/database";
+
+import { ref, push, get } from "firebase/database";
+import { database } from "../../../firebase/firebase-config";
 import { useRef } from "react";
 import {
   uploadBytesResumable,
   getDownloadURL,
   ref as storageRef,
 } from "firebase/storage";
-import { MotionGridItem } from "../motionComponents/motionComponents.jsx";
+
 import { storage } from "../../../firebase/firebase-config";
-import { Reorder, useDragControls } from "framer-motion";
+import { Reorder } from "framer-motion";
 import {
   PopoverTrigger,
   PopoverArrow,
@@ -54,12 +54,16 @@ import { Avatar } from "../ui/avatar.jsx";
 import { NativeSelectField, NativeSelectRoot } from "../ui/native-select.jsx";
 
 const HomePageAthletes = () => {
-  const [athletes, setAthletes] = useState([]);
-  const [atheletesIds, setAthletesIds] = useState([]);
-  const { userData } = useAuth();
+
+  const [maleAthletes, setMaleAthletes] = useState([]);
+  const [femaleAthletes, setFemaleAthletes] = useState([]);
+  const [atheletesIdsFemale, setAthletesIdsFemale] = useState([]);
+  const [atheletesIdsMale, setAthletesIdsMale] = useState([]);
+  const { isAdmin } = useAuth();
   const fileRef = useRef();
   const [file, setFile] = useState(null);
-  const [didReorder, setDidReorder] = useState(false);
+  const [didReorderFemale, setDidReorderFemale] = useState(false);
+  const [didReorderMale, setDidReorderMale] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [form, setForm] = useState({
     firstname: "",
@@ -84,9 +88,6 @@ const HomePageAthletes = () => {
    * Checks if the current user has the role of admin.
    * @returns {boolean} True if the current user is an admin, false otherwise.
    */
-  const isAdmin = () => {
-    return userData?.role === "admin";
-  };
 
   /**
    * Handles the change event of the file input element.
@@ -119,10 +120,7 @@ const HomePageAthletes = () => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref)
             .then((downloadURL) => {
-              setAthletes({
-                ...athletes,
-                [newAthlete.uid]: newAthlete,
-              });
+          
 
               resolve(downloadURL);
             })
@@ -141,8 +139,8 @@ const HomePageAthletes = () => {
 
   const handleAddAthlete = async () => {
     try {
-      const newAthleteRef = push(ref(database, "homePageAthletes"));
-      const athletesCopy = [...athletes];
+      const newAthleteRef = push(ref(database, `homePageAthletes/${form.gender}`));
+      const athletesCopy = form.gender === 'Male' ? [...maleAthletes] : [...femaleAthletes];
       const newAthlete = {
         uid: newAthleteRef.key,
         firstname: form.firstname,
@@ -152,12 +150,12 @@ const HomePageAthletes = () => {
       newAthlete.picture = await handleUploadPicture(file, newAthlete);
       athletesCopy.push(newAthlete);
 
-      await set(ref(database, "homePageAthletes"), athletesCopy);
+      await set(ref(database, `homePageAthletes/${form.gender}`), athletesCopy);
       setForm({
         firstname: "",
         lastname: "",
         picture: "",
-        gender: '',
+        gender: "",
       });
       setFile(null);
       setProfilePic("");
@@ -174,28 +172,38 @@ const HomePageAthletes = () => {
     const reorderedAtheletes = atheletesIds.map((id) => athletesMap.get(id));
 
     updateAthletes(reorderedAtheletes);
-
-    setDidReorder(!didReorder);
   };
 
   useEffect(() => {
-    if (athletes.length > 0) {
+    if (femaleAthletes.length > 0) {
       const timeoutId = setTimeout(async () => {
-        await setAthletesDB(athletes);
+        await setAthletesDB(femaleAthletes);
       }, 4000);
 
       // Clear the timeout if `didReorder` changes or the component unmounts
       return () => clearTimeout(timeoutId);
     }
-  }, [didReorder]);
+  }, [didReorderFemale]);
+
+  useEffect(() => {
+    if (maleAthletes.length > 0) {
+      const timeoutId = setTimeout(async () => {
+        await setAthletesDB(maleAthletes);
+      }, 4000);
+
+      // Clear the timeout if `didReorder` changes or the component unmounts
+      return () => clearTimeout(timeoutId);
+    }
+  }, [didReorderMale]);
 
   useEffect(() => {
     const fetchAthletes = () => {
       const unsubscribe = onValue(
-        ref(database, "homePageAthletes"),
+        ref(database, "homePageAthletes/Male"),
         (snapshot) => {
           const data = snapshot.val();
-          setAthletes(data || []);
+         
+          setMaleAthletes(data || []);
         }
       );
 
@@ -206,9 +214,41 @@ const HomePageAthletes = () => {
     return () => unsubscribe();
   }, []);
 
+
+
+
   useEffect(() => {
-    setAthletesIds(athletes.map((athlete) => athlete.uid));
-  }, [athletes]);
+    const fetchAthletes = () => {
+      const unsubscribe = onValue(
+        ref(database, "homePageAthletes/Female"),
+        (snapshot) => {
+          const data = snapshot.val();
+         
+          setFemaleAthletes(data || []);
+        }
+      );
+
+      return unsubscribe;
+    };
+    const unsubscribe = fetchAthletes();
+
+    return () => unsubscribe();
+  }, []);
+
+  
+
+  useEffect(() => {
+    setAthletesIdsFemale(femaleAthletes.map((athlete) => athlete.uid));
+ 
+  }, [femaleAthletes]);
+
+  useEffect(() => {
+  console.log(femaleAthletes)
+  }, [femaleAthletes])
+
+  useEffect(() => {
+    setAthletesIdsMale(maleAthletes.map((athlete) => athlete.uid));
+  }, [maleAthletes])
 
   return (
     <>
@@ -222,34 +262,103 @@ const HomePageAthletes = () => {
         marginTop={5}
       >
         <Text color="white">OUR ATHLETES</Text>
-        {userData?.role === "admin" ? (
+        <Flex gap={5} justifyContent='space-evenly'>
+          {isAdmin ? (
           <Reorder.Group
             axis="y"
-            values={atheletesIds}
+            values={atheletesIdsFemale}
             layout
             onReorder={(newOrder) =>
-              reorderAthletes(newOrder, athletes, setAthletes)
+              reorderAthletes(newOrder, femaleAthletes, setFemaleAthletes)
             }
           >
+
             <Grid
               templateColumns={[
                 "repeat(3, 1fr)",
                 "repeat(3, 1fr)",
-                "repeat(4, 1fr)",
-                "repeat(4, 1fr)",
+                "repeat(3, 1fr)",
+                "repeat(3, 1fr)",
               ]}
               gap={[8, 16, 20, 20]}
               position="relative"
             >
-              {athletes &&
-                athletes.map((athelete) => (
+              {femaleAthletes &&
+                femaleAthletes.map((athelete) => (
+                  athelete.gender === 'Female' &&
                   <Reorder.Item
                     key={athelete.uid}
                     value={athelete.uid}
                     layout
                     transition={{ duration: 2 }}
                     style={{
-                      order: atheletesIds.indexOf(athelete.uid), // Set the CSS order based on the reordering array
+                      order: atheletesIdsFemale.indexOf(athelete.uid), // Set the CSS order based on the reordering array
+                    }}
+                  >
+                    <GridItem key={athelete.uid}>
+                      <SingleHomePageAthlete
+                      key={athelete.uid}
+                        athlete={athelete}
+                        isAdmin={isAdmin}
+                      />
+                    </GridItem>
+                  </Reorder.Item>
+                ))}
+            </Grid>
+          </Reorder.Group>
+        ) : (
+          <Grid
+            templateColumns={[
+              "repeat(3, 1fr)",
+              "repeat(3, 1fr)",
+              "repeat(3, 1fr)",
+              "repeat(3, 1fr)",
+            ]}
+            gap={[8, 16, 20, 20]}
+            position="relative"
+          >
+            {femaleAthletes &&
+              femaleAthletes.map((athelete) => (
+                athelete.gender === 'Female' &&
+                <GridItem key={athelete.uid}>
+                  <SingleHomePageAthlete athlete={athelete} isAdmin={isAdmin} />
+                </GridItem>
+              ))}
+          </Grid>
+        )}
+
+
+
+{isAdmin ? (
+          <Reorder.Group
+            axis="y"
+            values={atheletesIdsMale}
+            layout
+            onReorder={(newOrder) =>
+              reorderAthletes(newOrder, maleAthletes, setAthletesIdsMale)
+            }
+          >
+
+            <Grid
+              templateColumns={[
+                "repeat(3, 1fr)",
+                "repeat(3, 1fr)",
+                "repeat(3, 1fr)",
+                "repeat(3, 1fr)",
+              ]}
+              gap={[8, 16, 20, 20]}
+              position="relative"
+            >
+              {maleAthletes &&
+                maleAthletes.map((athelete) => (
+                  athelete.gender === 'Male' &&
+                  <Reorder.Item
+                    key={athelete.uid}
+                    value={athelete.uid}
+                    layout
+                    transition={{ duration: 2 }}
+                    style={{
+                      order: atheletesIdsMale.indexOf(athelete.uid), // Set the CSS order based on the reordering array
                     }}
                   >
                     <GridItem>
@@ -273,18 +382,20 @@ const HomePageAthletes = () => {
             gap={[8, 16, 20, 20]}
             position="relative"
           >
-            {athletes &&
-              athletes.map((athelete) => (
+            {maleAthletes &&
+              maleAthletes.map((athelete) => (
                 <GridItem key={athelete.uid}>
                   <SingleHomePageAthlete athlete={athelete} isAdmin={isAdmin} />
                 </GridItem>
               ))}
           </Grid>
         )}
+        </Flex>
+        
 
         <PopoverRoot onClose={() => setFile("")} drag>
           <PopoverTrigger>
-            {isAdmin() ? <Button>Add new athlete</Button> : <span></span>}
+            {isAdmin ? <Button>Add new athlete</Button> : <span></span>}
           </PopoverTrigger>
           <PopoverContent>
             <PopoverArrow />
@@ -335,7 +446,7 @@ const HomePageAthletes = () => {
                   onChange={updateForm("gender")}
                 >
                   <option value="Male">Male</option>
-                  <option value="Male">Female</option>
+                  <option value="Female">Female</option>
                 </NativeSelectField>
               </NativeSelectRoot>
               <Input
