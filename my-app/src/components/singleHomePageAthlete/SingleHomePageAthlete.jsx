@@ -6,8 +6,8 @@
  * @returns {JSX.Element} The rendered component.
  */
 
-import { Text, Flex, Button, Image } from "@chakra-ui/react";
-import { Avatar } from "../ui/avatar";
+import { Text, Flex, Image } from "@chakra-ui/react";
+
 import { useState } from "react";
 import { handleDeleteAthlete } from "../../utils/utils";
 import { motion } from "framer-motion";
@@ -17,7 +17,6 @@ import PropTypes from "prop-types";
 import "./singleHomePageAthlete.css";
 
 const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
-  const [isAnimating, setIsAnimating] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
@@ -55,7 +54,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
             </Button>
           </Flex>
         )} */}
-        {isAdmin() && isHovered && (
+        {isAdmin && isHovered && (
           <Flex
             w="100%"
             justify="center"
@@ -75,7 +74,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
               p={[0.5, 1, 1, 1]}
               borderRadius="13px"
               
-              onClick={() => navigate(`/detailed-athlete-view/:${athlete.uid}`)}
+              onClick={() => navigate(`/detailed-athlete-view/${athlete.uid}`)}
             
             
             >
@@ -92,7 +91,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
               p={[0.5, 1, 1, 1]}
               borderRadius="13px"
               
-              onClick={() =>handleDeleteAthlete(athlete.uid)}
+              onClick={() =>handleDeleteAthlete(athlete.uid, athlete.gender)}
             
             
             >
@@ -102,7 +101,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
           </Flex>
         )}
 
-{!isAdmin() && isHovered && (
+{!isAdmin && isHovered && (
           <Flex justifyContent='center' align='center'>
 
           
@@ -118,7 +117,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
            p={1}
            borderRadius="13px"
            
-           onClick={() => navigate(`/detailed-athlete-view/:${athlete.uid}`)}
+           onClick={() => navigate(`/detailed-athlete-view/${athlete.uid}`)}
          
          
          >
@@ -150,8 +149,9 @@ SingleHomePageAthlete.propTypes = {
     picture: PropTypes.string,
     uid: PropTypes.string.isRequired,
     videoID: PropTypes.string,
+    gender: PropTypes.string,
   }),
-  isAdmin: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool,
 };
 
 export default SingleHomePageAthlete;
