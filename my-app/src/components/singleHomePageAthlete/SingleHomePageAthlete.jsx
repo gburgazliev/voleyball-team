@@ -21,7 +21,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
   const navigate = useNavigate();
 
   return (
-    <Flex w="100%" direction="column" justify="center" align="center">
+    <Flex w="100%" direction="column" justifyContent="center" alignItems="center">
       <motion.div
         layout
         id="athlete-pic"
@@ -61,7 +61,8 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
             align="center"
             direction="column"
             position="absolute"
-            top={['20%', '20%' , '30%' , '30%']}
+            top={['10%', '15%' , '25%' , '25%']}
+
             gap={1}
           >
             <MotionButton
@@ -82,7 +83,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
             </MotionButton>
 
             <MotionButton
-              w={['80%', '80%', '80%', '80%']}
+              w={['70%', '80%', '80%', '80%']}
               layout
               size="sm" //{["sm", "sm", "md", "md"]}
               backgroundColor="red"
@@ -111,7 +112,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
            size="sm" //{["sm", "sm", "md", "md"]}
            backgroundColor="red"
           position='absolute'
-          top={['20%', '20%' , '35%' , '35%']}
+          top={['25%', '25%' , '35%' , '35%']}
            whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
            whileTap={{ scale: 0.6, transition: { duration: 0.1 } }}
            p={1}
