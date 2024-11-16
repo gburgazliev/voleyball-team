@@ -52,6 +52,7 @@ import {
 } from "../ui/popover.jsx";
 import { Avatar } from "../ui/avatar.jsx";
 import { NativeSelectField, NativeSelectRoot } from "../ui/native-select.jsx";
+import { Toaster ,toaster } from "../ui/toaster.jsx";
 
 const HomePageAthletes = () => {
   const [maleAthletes, setMaleAthletes] = useState([]);
@@ -136,6 +137,13 @@ const HomePageAthletes = () => {
 
   const handleAddAthlete = async () => {
     try {
+    
+        if(!form.gender) {
+       
+          throw new Error('Select gender!');
+         
+        }
+
       const newAthleteRef = push(
         ref(database, `homePageAthletes/${form.gender}`)
       );
@@ -161,7 +169,12 @@ const HomePageAthletes = () => {
       setProfilePic("");
       if (fileRef.current) fileRef.current.value = "";
     } catch (error) {
-      console.error(error);
+      toaster.create({
+        title: 'Invalid athlete!',
+        description: `${error.message}`,
+        type:'error',
+        duration: 3000
+      })
     }
   };
 
@@ -248,6 +261,7 @@ const HomePageAthletes = () => {
 
   return (
     <>
+    <Toaster/>
       <Flex
         w="100%"
         minH="30vh"
