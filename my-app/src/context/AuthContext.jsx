@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
         .then((token) => {
           if (token.claims.isAdmin) {
             setIsAdmin(true);
-            console.log('USER IS ADMIN')
+            console.log("USER IS ADMIN");
           } else {
             setIsAdmin(false);
           }
@@ -52,6 +52,7 @@ export const AuthProvider = ({ children }) => {
         );
     } else {
       setUserData(null);
+      setIsAdmin(false);
     }
   }, [user]);
 
