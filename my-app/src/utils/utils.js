@@ -207,14 +207,17 @@ export const updateAthlete = async (id, data) => {
 
 export const setAthletesDB = async (athletes) => {
   try {
-    const gender = athletes[0] && athletes[0].gender;
+    if (athletes) {
+       const gender = athletes[0] && athletes[0].gender;
     console.log(gender)
     const athletesRef = ref(database,`homePageAthletes/${gender}`);
 
     await set(athletesRef, athletes);
-    console.log("ok");
+    
+    }
+   
   } catch (error) {
-    console.log("Error settings athletes");
+    console.log("Error setting athletes");
     throw error;
   }
 };
