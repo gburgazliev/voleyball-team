@@ -122,7 +122,11 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
               whileTap={{ scale: 0.6, transition: { duration: 0.1 } }}
               p={1}
               borderRadius="13px"
-              onClick={() => navigate(`/detailed-athlete-view/${athlete.uid}`)}
+              onClick={() =>
+                navigate(`/detailed-athlete-view/${athlete.uid}`, {
+                  state: { gender: athlete.gender },
+                })
+              }
             >
               <MotionText layout fontSize="clamp(11px, 2vw, 13px)">
                 View profile
