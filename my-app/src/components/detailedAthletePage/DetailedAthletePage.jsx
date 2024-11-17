@@ -19,8 +19,8 @@ const DetailedAthletePage = () => {
   const { id } = useParams();
   const [athlete, setAthlete] = useState({});
   const { isAdmin } = useAuth();
-  const location = useLocation();
-  const { state } = location;
+  const gender = useLocation().state.gender;
+  
 
   const [videoId, setVideoId] = useState("");
 
@@ -64,7 +64,7 @@ const DetailedAthletePage = () => {
     const videoProp = {
       videoID: videoId,
     };
-    await updateAthlete(id, videoProp, state.gender);
+    await updateAthlete(id, videoProp, gender);
     setVideoId("");
   };
 
@@ -76,7 +76,7 @@ const DetailedAthletePage = () => {
     const videoProp = {
       videoID: null,
     };
-    await updateAthlete(id, videoProp, state.gender);
+    await updateAthlete(id, videoProp, gender);
     setVideoId("");
   };
 
@@ -89,13 +89,14 @@ const DetailedAthletePage = () => {
     const descriptionProp = {
       description: description,
     };
-    await updateAthlete(id, descriptionProp, state.gender);
+    await updateAthlete(id, descriptionProp, gender);
     setDescription(description);
   };
 
   useEffect(() => {
     let unsubscribe;
-    subscribeToAthleteById(id, setAthlete, state.gender)
+   
+    subscribeToAthleteById(id, setAthlete, gender)
       .then((func) => {
         unsubscribe = func;
       })
@@ -107,11 +108,11 @@ const DetailedAthletePage = () => {
     return () => {
       if (unsubscribe) unsubscribe();
     };
-  }, [id, state]);
+  }, [id, gender]);
 
   useEffect(() => {
     setDescription(athlete?.description);
-    
+  
   }, [athlete]);
 
   return (
