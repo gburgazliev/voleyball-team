@@ -21,7 +21,12 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
   const navigate = useNavigate();
 
   return (
-    <Flex w="100%" direction="column" justifyContent="center" alignItems="center">
+    <Flex
+      w="100%"
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+    >
       <motion.div
         layout
         id="athlete-pic"
@@ -34,8 +39,8 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
           fit="cover"
           boxSize={["85px", "90px", "100px", "150px"]} //   {["xl", "lg", "2xl", "2xl"]}
           borderRadius="full"
-          sx={{ userSelect: 'none' }} 
-        /> 
+          sx={{ userSelect: "none" }}
+        />
         {/* {isAdmin() && isHovered && (
           <Flex justify="space-evenly" direction="column" position="absolute">
             {" "}
@@ -61,8 +66,7 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
             align="center"
             direction="column"
             position="absolute"
-            top={['10%', '15%' , '25%' , '25%']}
-
+            top={["10%", "15%", "25%", "25%"]}
             gap={1}
           >
             <MotionButton
@@ -74,16 +78,21 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
               whileTap={{ scale: 0.6, transition: { duration: 0.1 } }}
               p={[0.5, 1, 1, 1]}
               borderRadius="13px"
-              
-              onClick={() => navigate(`/detailed-athlete-view/${athlete.uid}`)}
-            
-            
+              onClick={() =>
+                navigate(`/detailed-athlete-view/${athlete.uid}`, {
+                  state: {
+                    gender: athlete.gender,
+                  },
+                })
+              }
             >
-              <MotionText layout fontSize="clamp(11px, 2vw, 13px)">View profile</MotionText>
+              <MotionText layout fontSize="clamp(11px, 2vw, 13px)">
+                View profile
+              </MotionText>
             </MotionButton>
 
             <MotionButton
-              w={['70%', '80%', '80%', '80%']}
+              w={["70%", "80%", "80%", "80%"]}
               layout
               size="sm" //{["sm", "sm", "md", "md"]}
               backgroundColor="red"
@@ -91,40 +100,35 @@ const SingleHomePageAthlete = ({ athlete, isAdmin }) => {
               whileTap={{ scale: 0.6, transition: { duration: 0.1 } }}
               p={[0.5, 1, 1, 1]}
               borderRadius="13px"
-              
-              onClick={() =>handleDeleteAthlete(athlete.uid, athlete.gender)}
-            
-            
+              onClick={() => handleDeleteAthlete(athlete.uid, athlete.gender)}
             >
-               
-              <MotionText layout fontSize="clamp(8px, 2vw, 13pxrem)">Delete</MotionText>
+              <MotionText layout fontSize="clamp(8px, 2vw, 13pxrem)">
+                Delete
+              </MotionText>
             </MotionButton>
           </Flex>
         )}
 
-{!isAdmin && isHovered && (
-          <Flex justifyContent='center' align='center'>
-
-          
-           <MotionButton
-           w={["90%", '80%' , '80%' , '80%']}
-           layout
-           size="sm" //{["sm", "sm", "md", "md"]}
-           backgroundColor="red"
-          position='absolute'
-          top={['25%', '25%' , '35%' , '35%']}
-           whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
-           whileTap={{ scale: 0.6, transition: { duration: 0.1 } }}
-           p={1}
-           borderRadius="13px"
-           
-           onClick={() => navigate(`/detailed-athlete-view/${athlete.uid}`)}
-         
-         
-         >
-           <MotionText layout fontSize="clamp(11px, 2vw, 13px)">View profile</MotionText>
-         </MotionButton>
-</Flex>
+        {!isAdmin && isHovered && (
+          <Flex justifyContent="center" align="center">
+            <MotionButton
+              w={["90%", "80%", "80%", "80%"]}
+              layout
+              size="sm" //{["sm", "sm", "md", "md"]}
+              backgroundColor="red"
+              position="absolute"
+              top={["25%", "25%", "35%", "35%"]}
+              whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.6, transition: { duration: 0.1 } }}
+              p={1}
+              borderRadius="13px"
+              onClick={() => navigate(`/detailed-athlete-view/${athlete.uid}`)}
+            >
+              <MotionText layout fontSize="clamp(11px, 2vw, 13px)">
+                View profile
+              </MotionText>
+            </MotionButton>
+          </Flex>
         )}
       </motion.div>
 
