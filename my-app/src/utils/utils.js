@@ -1,11 +1,20 @@
-import { ref, set, get, onValue, update, push, query, orderByChild, equalTo } from "firebase/database";
+import {
+  ref,
+  set,
+  get,
+  onValue,
+  update,
+  push,
+  query,
+  orderByChild,
+  equalTo,
+} from "firebase/database";
 import {
   database,
   storage,
   storageRef,
   deleteObject,
 } from "../../firebase/firebase-config";
-
 
 /**
  * Retrieves a user from the database by their ID and sets it as the current user.
@@ -46,22 +55,20 @@ export const fetchUserData = async (uid, setUserData) => {
 //  * @param {function} onAthleteUpdate - The callback function to be called when the athlete is updated.
 //  * @returns {function} - The unsubscribe function that can be called to stop listening for updates.
 //  */
-export const subscribeToAthleteById = async (
-  id,
-  onAthleteUpdate,
-) => {
+export const subscribeToAthleteById = async (id, onAthleteUpdate, gender) => {
   let athleteKey;
-
   try {
-    athleteKey = await findAthleteKeyById(id)[0];
-    
+    athleteKey = await findAthleteKeyById(id, gender);
+    athleteKey = athleteKey[0];
   } catch (error) {
     console.log(`Failed getting athlete key ${error.message}`);
   }
 
   if (athleteKey) {
-   
-    const athleteRef = ref(database, `homePageAthletes/${athleteKey}`);
+    const athleteRef = ref(
+      database,
+      `homePageAthletes/${gender}/${athleteKey}`
+    );
     const unsubscribe = onValue(
       athleteRef,
       (snapshot) => {
@@ -87,6 +94,7 @@ export const getHomePageAthletesByGender = async (gender) => {
     const athletesRef = ref(database, `homePageAthletes/${gender}`);
     const athletesSnapshot = await get(athletesRef);
     const athletes = athletesSnapshot.val();
+
     return athletes;
   } catch (error) {
     console.error(
@@ -164,11 +172,9 @@ export const deleteStorageObject = async (url) => {
  */
 export const handleDeleteAthlete = async (id, gender) => {
   try {
-    
-   
-    const athletesArray = await getHomePageAthletesByGender(gender)
+    const athletesArray = await getHomePageAthletesByGender(gender);
     const athleteIndex = await findAthleteKeyById(id, gender)[0];
-   
+
     athletesArray.splice(athleteIndex, 1);
     await set(ref(database, `homePageAthletes/${gender}`), athletesArray);
   } catch (error) {
@@ -182,14 +188,12 @@ export const handleDeleteAthlete = async (id, gender) => {
 };
 
 export async function findAthleteKeyById(id, gender) {
+  const athletesArray = await getHomePageAthletesByGender(gender);
 
-
-  const athletesArray = await getHomePageAthletesByGender(gender)
-  console.log(athletesArray)
   const athleteIndex = Object.keys(athletesArray).find(
     (key) => athletesArray[key].uid === id
   );
-  
+
   return [athleteIndex, gender];
 }
 
@@ -199,23 +203,24 @@ export async function findAthleteKeyById(id, gender) {
  * @param {object} data - The updated data for the athlete.
  * @returns {Promise<void>} - A promise that resolves when the athlete is updated.
  */
-export const updateAthlete = async (id, data) => {
-  const atheleteKeyGenderArr = await findAthleteKeyById(id, data.gender)[0];
-  const athleteRef = ref(database, `homePageAthletes/${atheleteKeyGenderArr[1]}/${atheleteKeyGenderArr[0]}`);
-  await update(athleteRef, data);
+export const updateAthlete = async (id, prop, gender) => {
+  const atheleteKeyGenderArr = await findAthleteKeyById(id, gender);
+  const athleteRef = ref(
+    database,
+    `homePageAthletes/${atheleteKeyGenderArr[1]}/${atheleteKeyGenderArr[0]}`
+  );
+  await update(athleteRef, prop);
 };
 
 export const setAthletesDB = async (athletes) => {
   try {
     if (athletes) {
-       const gender = athletes[0] && athletes[0].gender;
-    console.log(gender)
-    const athletesRef = ref(database,`homePageAthletes/${gender}`);
+      const gender = athletes[0] && athletes[0].gender;
+      console.log(gender);
+      const athletesRef = ref(database, `homePageAthletes/${gender}`);
 
-    await set(athletesRef, athletes);
-    
+      await set(athletesRef, athletes);
     }
-   
   } catch (error) {
     console.log("Error setting athletes");
     throw error;
@@ -248,16 +253,20 @@ export const usersListener = (setUsers) => {
 };
 
 export const fetchUserByEmail = async (email) => {
-const usersRef = ref(database, 'users');
-const emailQuery = query(usersRef, orderByChild('email'), equalTo(email));
-console.log(emailQuery)
-const snapshot = await get(emailQuery);
-return snapshot.val();
-}
+  const usersRef = ref(database, "users");
+  const emailQuery = query(usersRef, orderByChild("email"), equalTo(email));
+
+  const snapshot = await get(emailQuery);
+  return snapshot.val();
+};
 
 export const fetchUserByUsername = async (username) => {
-  const usersRef = ref(database, 'users');
-const usernameQuery = query(usersRef, orderByChild('username'), equalTo(username));
-const snapshot = await get(usernameQuery);
-return snapshot.val();
-}
+  const usersRef = ref(database, "users");
+  const usernameQuery = query(
+    usersRef,
+    orderByChild("username"),
+    equalTo(username)
+  );
+  const snapshot = await get(usernameQuery);
+  return snapshot.val();
+};
