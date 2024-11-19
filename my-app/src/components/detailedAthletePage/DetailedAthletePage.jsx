@@ -5,6 +5,7 @@
  */
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
+import { delay, motion, stagger } from "framer-motion";
 import {
   MotionList,
   MotionListItem,
@@ -26,7 +27,7 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { InputGroup } from "../ui/input-group";
-import { LuCheck, LuPencilLine, LuX } from "react-icons/lu";
+import { LuCheck, LuPencilLine, LuScale, LuX } from "react-icons/lu";
 import { useAuth } from "../../context/AuthContext";
 import { subscribeToAthleteById } from "../../utils/utils";
 import { updateAthlete } from "../../utils/utils";
@@ -41,9 +42,41 @@ const DetailedAthletePage = () => {
   const gender = useLocation().state.gender;
   const [isEditableOpen, setIsEditableOpen] = useState(false);
   const [isEditableVideoOpen, setIsEditableVideoOpen] = useState(false);
+  const [isAchievmentsHovered, setIsAchievmentsHovered] = useState(false);
+  const [isListVisible, setIsListVisible] = useState(false);
   const [videoId, setVideoId] = useState("");
-
   const [description, setDescription] = useState("");
+  const listVariants = {
+    invisible: {
+     height: 0,
+     width: 0,
+      opacity: 0,
+      scale: 0,
+    },
+    visible: {
+      width: 'auto',
+      height: 'auto',
+      scale: 1,
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5,
+      },
+    },
+  };
+  const listItemVariants = {
+    invisible: {
+      opacity: 0,
+      y: -10, 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+
   const formattedDescription = athlete?.description
     ?.split("\n")
     .map((item, index) => {
@@ -76,7 +109,7 @@ const DetailedAthletePage = () => {
         }
       } else {
         return (
-          <Text color="white" key={index}>
+          <Text fontFamily='monospace' color="white" key={index}>
             {item}
           </Text>
         );
@@ -272,7 +305,29 @@ const DetailedAthletePage = () => {
           bg="bg.subtle"
           border="2px solid"
           borderColor="border.info"
+          position="relative"
+          onClick={() => setIsListVisible(!isListVisible)}
+          whileHover={() => setIsAchievmentsHovered(true)}
+          onHoverEnd={() => setIsAchievmentsHovered(false)}
         >
+          {isAchievmentsHovered && (
+            <MotionFlex
+              layout
+              cursor="pointer"
+              onClick={() => {
+                console.log("asdasdsad");
+                setIsListVisible(!isListVisible);
+              }}
+              position="absolute"
+              zIndex={10}
+              bg="rgba(0, 0, 0, 0.5)"
+              h="100%"
+              w="100%"
+              top={0}
+              left={0}
+            />
+          )}
+
           <Text
             alignSelf="center"
             fontSize="clamp(10px, 3vw, 2rem)"
@@ -284,13 +339,19 @@ const DetailedAthletePage = () => {
           </Text>
           <MotionList
             layout
+            initial="invisible"
+            animate={isListVisible ? "visible" : "invisible"}
+            variants={listVariants}
             as="ol"
             maxW={["250px", "300px", "400px", "500px"]}
+            overflow="hidden"
           >
             {formattedDescription?.map((item) => (
               <MotionListItem
+                variants={listItemVariants}
                 layout
-                fontSize="clamp(10px, 2vw, 1rem)"
+                fontSize="clamp(12px, 4vw, 1rem)"
+              
                 key={item}
               >
                 {item}
