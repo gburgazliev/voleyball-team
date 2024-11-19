@@ -186,7 +186,7 @@ const DetailedAthletePage = () => {
             {athlete.firstname && `${athlete.firstname}'s highlight video`}{" "}
           </Text>
           <Box>
-            {!isEditableVideoOpen && (
+            {isAdmin && !isEditableVideoOpen && (
               <IconButton
                 variant="ghost"
                 size="xs"
@@ -195,7 +195,7 @@ const DetailedAthletePage = () => {
                 <LuPencilLine />
               </IconButton>
             )}
-            {isEditableVideoOpen && (
+            { isEditableVideoOpen && (
               <>
                 <IconButton
                   variant="outline"
@@ -217,7 +217,7 @@ const DetailedAthletePage = () => {
                 </IconButton>
               </>
             )}
-            {isEditableVideoOpen && (
+            { isEditableVideoOpen && (
               <Input
                 placeholder="Example: abbstDTVweY"
                 bg="bg.subtle"
