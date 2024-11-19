@@ -5,9 +5,28 @@
  */
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-
-import { Box, Flex, Heading, Input, Button, Textarea } from "@chakra-ui/react";
-
+import {
+  MotionList,
+  MotionListItem,
+  MotionFlex,
+} from "../motionComponents/motionComponents";
+import {
+  Box,
+  Flex,
+  Heading,
+  Input,
+  Button,
+  Text,
+  Textarea,
+  List,
+  InputAddon,
+  Group,
+  Editable,
+  AspectRatio,
+  IconButton,
+} from "@chakra-ui/react";
+import { InputGroup } from "../ui/input-group";
+import { LuCheck, LuPencilLine, LuX } from "react-icons/lu";
 import { useAuth } from "../../context/AuthContext";
 import { subscribeToAthleteById } from "../../utils/utils";
 import { updateAthlete } from "../../utils/utils";
@@ -20,8 +39,8 @@ const DetailedAthletePage = () => {
   const [athlete, setAthlete] = useState({});
   const { isAdmin } = useAuth();
   const gender = useLocation().state.gender;
-  
-
+  const [isEditableOpen, setIsEditableOpen] = useState(false);
+  const [isEditableVideoOpen, setIsEditableVideoOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
 
   const [description, setDescription] = useState("");
@@ -32,7 +51,7 @@ const DetailedAthletePage = () => {
         item = item.split(": ");
         if (item.length > 1) {
           return (
-            <p key={index}>
+            <Text key={index}>
               {item[0]}{" "}
               <a
                 className="link"
@@ -42,7 +61,7 @@ const DetailedAthletePage = () => {
               >
                 {item[1]}
               </a>
-            </p>
+            </Text>
           );
         } else {
           return (
@@ -56,7 +75,11 @@ const DetailedAthletePage = () => {
           );
         }
       } else {
-        return <p key={index}>{item}</p>;
+        return (
+          <Text color="white" key={index}>
+            {item}
+          </Text>
+        );
       }
     });
 
@@ -95,7 +118,7 @@ const DetailedAthletePage = () => {
 
   useEffect(() => {
     let unsubscribe;
-   
+
     subscribeToAthleteById(id, setAthlete, gender)
       .then((func) => {
         unsubscribe = func;
@@ -112,95 +135,170 @@ const DetailedAthletePage = () => {
 
   useEffect(() => {
     setDescription(athlete?.description);
-  
   }, [athlete]);
 
   return (
-    <Flex w="100%" direction="column" justify="flex-start" align="center">
-      <div id="videoContainer" className="fadeIn">
-        <iframe
-          className="video"
-          src={`https://www.youtube.com/embed/${athlete?.videoID}`}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title="Athlete Video"
+    <Flex
+      direction={["column", "column", "column", "row"]}
+      justifyContent="center"
+      alignItems="center"
+      mt={[10, 10, 5, 0]}
+      p={5}
+      gap={2}
+      overflow="hidden"
+    >
+      <Box>
+        <Flex justifyContent="space-between">
+          <Text fontFamily="heading" fontSize="clamp(15px, 4vw, 1.5rem)">
+            {athlete.firstname && `${athlete.firstname}'s highlight video`}{" "}
+          </Text>
+          <Box>
+            {!isEditableVideoOpen && (
+              <IconButton
+                variant="ghost"
+                size="xs"
+                onClick={() => setIsEditableVideoOpen(!isEditableVideoOpen)}
+              >
+                <LuPencilLine />
+              </IconButton>
+            )}
+            {isEditableVideoOpen && (
+              <>
+                <IconButton
+                  variant="outline"
+                  size="xs"
+                  onClick={() => {
+                    handleAddVideo();
+                    setIsEditableVideoOpen(false);
+                  }}
+                >
+                  <LuCheck />
+                </IconButton>
+
+                <IconButton
+                  variant="outline"
+                  size="xs"
+                  onClick={() => setIsEditableVideoOpen(false)}
+                >
+                  <LuX />
+                </IconButton>
+              </>
+            )}
+            {isEditableVideoOpen && (
+              <Input
+                placeholder="Example: abbstDTVweY"
+                bg="bg.subtle"
+                color="white"
+                value={videoId}
+                onChange={(e) => setVideoId(e.target.value)}
+              />
+            )}
+          </Box>
+        </Flex>
+
+        <AspectRatio
+          w={["350px", "350px", "700px", "700px"]}
+          ratio={16 / 9}
+          minH={100}
+          border="3px solid"
+          borderColor="border.emphasized"
+          boxShadow={["2xl", "2xl", "lg", "lg"]}
+          order={0}
         >
-          Your browser does not support the video tag.
-        </iframe>
-      </div>
+          <iframe
+            title="naruto"
+            src={`https://www.youtube.com/embed/${athlete?.videoID}`}
+            allowFullScreen
+          />
+        </AspectRatio>
+      </Box>
 
       {isAdmin && (
-        <Flex
-          w="10%"
-          h="10%"
-          direction="column"
-          justify="center"
-          align="center"
-          gap={5}
+        <Editable.Root
+          value={description}
+          color="white"
+          order={2}
+          w={
+            isEditableOpen
+              ? ["100%", "100%", "80%", "80%"]
+              : ["100%", "5%", "5%", "5%"]
+          }
         >
-          {!athlete?.videoID && (
-            <Input
-              bg="white"
-              w={200}
-              type="text"
-              value={videoId}
-              onChange={(e) => setVideoId(e.target.value)}
-            ></Input>
-          )}
-          {!athlete?.videoID && (
-            <Button colorScheme="red" onClick={handleAddVideo}>
-              Add video
-            </Button>
-          )}
-          {athlete?.videoID && (
-            <Button colorScheme="red" onClick={handleDeleteVideo}>
-              Delete video
-            </Button>
-          )}
-        </Flex>
+          <Editable.Textarea
+            minW="300px"
+            minH="200px"
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <Editable.Control>
+            <Editable.EditTrigger asChild>
+              <IconButton
+                variant="ghost"
+                size="xs"
+                onClick={() => setIsEditableOpen(!isEditableOpen)}
+              >
+                <LuPencilLine />
+              </IconButton>
+            </Editable.EditTrigger>
+            <Editable.CancelTrigger asChild>
+              <IconButton
+                variant="outline"
+                size="xs"
+                onClick={() => setIsEditableOpen(false)}
+              >
+                <LuX />
+              </IconButton>
+            </Editable.CancelTrigger>
+            <Editable.SubmitTrigger asChild>
+              <IconButton
+                variant="outline"
+                size="xs"
+                onClick={() => {
+                  handleSubmitDescription();
+                  setIsEditableOpen(false);
+                }}
+              >
+                <LuCheck />
+              </IconButton>
+            </Editable.SubmitTrigger>
+          </Editable.Control>
+        </Editable.Root>
       )}
-
-      <Flex
-        w={["100%", "100%", "50%", "50%"]}
-        borderRadius="1px"
-        h={["100%", "100%", "100%", "20%"]}
-        justify="center"
-        align="center"
-      >
-        <div className="description">
-          {!isAdmin && (
-            <Box
-              padding={5}
-              h={["100%", "100%", "100%", "100%"]}
-              boxShadow="5px"
-              w="100%"
-            >
-              <Heading>{athlete?.firstname + " " + athlete?.lastname}</Heading>
-
-              {!athlete?.description && (
-                <SkeletonText mt="4" noOfLines={4} spacing="4" />
-              )}
-              {athlete?.description && !isAdmin && <>{formattedDescription}</>}
-            </Box>
-          )}
-          <Flex w="100%" direction="column" gap={5}>
-            {isAdmin && (
-              <Textarea
-                bg="white"
-                color="black"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></Textarea>
-            )}
-            {isAdmin && description !== athlete?.description && (
-              <Button onClick={handleSubmitDescription}>
-                {" "}
-                Submit description
-              </Button>
-            )}{" "}
-          </Flex>
-        </div>
-      </Flex>
+      {!isEditableOpen && (
+        <MotionFlex
+          layout
+          flexDirection="column"
+          p={3}
+          order={1}
+          bg="bg.subtle"
+          border="2px solid"
+          borderColor="border.info"
+        >
+          <Text
+            alignSelf="center"
+            fontSize="clamp(10px, 3vw, 2rem)"
+            fontFamily="heading"
+            userSelect="none"
+            color="white"
+          >
+            Achievments
+          </Text>
+          <MotionList
+            layout
+            as="ol"
+            maxW={["250px", "300px", "400px", "500px"]}
+          >
+            {formattedDescription?.map((item) => (
+              <MotionListItem
+                layout
+                fontSize="clamp(10px, 2vw, 1rem)"
+                key={item}
+              >
+                {item}
+              </MotionListItem>
+            ))}
+          </MotionList>
+        </MotionFlex>
+      )}
     </Flex>
   );
 };
