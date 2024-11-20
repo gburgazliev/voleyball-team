@@ -3,18 +3,24 @@
  * This component is responsible for handling user registration.
  * @returns {JSX.Element} The Register component.
  */
-import { Flex, Button, Input } from "@chakra-ui/react";
+import { Box, Button, Input } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
-import { usersListener } from "../../utils/utils";
+import {
+  fetchUserByEmail,
+  fetchUserByUsername,
+  usersListener,
+} from "../../utils/utils";
 import { useAuth } from "../../context/AuthContext";
 import { database } from "../../../firebase/firebase-config";
-import { update, ref, get } from "firebase/database";
-
+import { update, ref } from "firebase/database";
+import { Toaster, toaster } from "../ui/toaster";
+import { Card, Stack } from "@chakra-ui/react";
+import { InputGroup } from "../ui/input-group";
+import { Field } from "../ui/field";
 const Register = () => {
   // const toast = useToast();
   const { register, login } = useAuth();
-  const [users, setUsers] = useState(null);
   const [form, setForm] = useState({
     email: "",
     username: "",
@@ -40,13 +46,12 @@ const Register = () => {
    */
   const isValidPassword = (password) => {
     if (password.length < 8) {
-      // toast({
-      //   title: "Invalid Password.",
-      //   description: "Password can't be less than 8 symbols.",
-      //   status: "error",
-      //   duration: 3000,
-      //   isClosable: true,
-      // });
+      toaster.create({
+        title: "Invalid Password.",
+        description: "Password can't be less than 8 symbols.",
+        status: "error",
+        duration: 3000,
+      });
       return false;
     }
     return true;
@@ -58,16 +63,26 @@ const Register = () => {
    * @param {string} email - The email to be validated.
    * @returns {boolean} - Returns true if the email is valid, false otherwise.
    */
-  const isValidEmail = (email) => {
+  const isValidEmail = async (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
-      // toast({
-      //   title: "Invalid email.",
-      //   description: "This email doesn't exist.",
-      //   status: "error",
-      //   duration: 3000,
-      //   isClosable: true,
-      // });
+      toaster.create({
+        title: "Invalid email.",
+        description: "This email doesn't exist.",
+        type: "error",
+        duration: 3000,
+      });
+      return false;
+    }
+    const isUniqueEmail = await fetchUserByEmail(email);
+
+    if (isUniqueEmail) {
+      toaster.create({
+        title: "This email already exists.",
+        description: "User has already registered with the same email.",
+        type: "error",
+        duration: 3000,
+      });
       return false;
     }
     return true;
@@ -80,10 +95,10 @@ const Register = () => {
    */
   const isValidUsername = (username) => {
     if ((username && username.length < 3) || username.length > 20) {
-      toast({
+      toaster.create({
         title: "Invalid username.",
         description: "Username must be between 3 and 20 symbols.",
-        status: "error",
+        type: "error",
         duration: 3000,
         isClosable: true,
       });
@@ -98,20 +113,18 @@ const Register = () => {
    * @param {string} username - The username to check.
    * @returns {boolean} - Returns true if the username is unique, false otherwise.
    */
-  const isUniqueUsername = (users, username) => {
-    if (users) {
-      const usernames = Object.keys(users);
-      if (usernames.includes(username)) {
-        toast({
-          title: "Invalid username.",
-          description: "This username is already taken.",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-        return false;
-      }
+  const isUniqueUsername = async (username) => {
+    let isUniqueUsername = await fetchUserByUsername(username);
+    if (isUniqueUsername) {
+      toaster.create({
+        title: "Invalid username.",
+        description: "This username is already taken.",
+        type: "error",
+        duration: 3000,
+      });
+      return false;
     }
+
     return true;
   };
 
@@ -121,12 +134,10 @@ const Register = () => {
    */
   const handleRegister = async () => {
     try {
-      const usersRef = ref(database, 'users');
-
       if (
         isValidEmail(form.email) &&
         isValidPassword(form.password) &&
-        isUniqueUsername(users, form.username) &&
+        isUniqueUsername(form.username) &&
         isValidUsername(form.username)
       ) {
         const credentials = await register(form.email, form.password);
@@ -137,18 +148,18 @@ const Register = () => {
         };
 
         try {
-          await update(usersRef, { [form?.username]: user });
+          const usersRef = ref(database, "users");
+          await update(usersRef, { [form.username]: user });
           console.log("Database updated successfully");
         } catch (error) {
           console.error("Failed to update database:", error);
         }
 
-        toast({
+        toaster.create({
           title: "Success.",
           description: "You have successfully registered.",
-          status: "success",
+          type: "success",
           duration: 3000,
-          isClosable: true,
         });
         await login(form.email, form.password);
         setTimeout(() => {
@@ -162,76 +173,60 @@ const Register = () => {
         });
       }
     } catch (error) {
-      toast({
+      toaster.create({
         title: "Error.",
         description: error.message,
-        status: "error",
+        type: "error",
         duration: 3000,
         isClosable: true,
       });
     }
   };
 
-
-
-   useEffect(() => {
-    const unsubscribe = usersListener(setUsers);
-
-    return () => unsubscribe();
-   }, [])
-
-
-
-
   return (
-    <Flex
-      w="100%"
-      marginTop={10}
-      display="flex"
-      direction="column"
-      justify="center"
-      align="center"
-    >
-      <Flex
-        w={["200px", "220px", "220px", "300px"]}
-        h={["60%", "60%", "40%", "40%"]}
-        marginBottom="10%"
-        justify="center"
-        align="center"
-        direction="column"
-      >
-        <Flex
-          w='100%'
-          h="60%"
-          direction="column"
-          justify="space-evenly"
-        >
-          <Input
-            placeholder="Email"
-            value={form.email}
-            marginBottom={5}
-            onChange={updateForm("email")}
-            bg="gray.300"
-          />
-          <Input
-            placeholder="Username"
-            marginBottom={5}
-            value={form.username}
-            onChange={updateForm("username")}
-            bg="gray.300"
-          />
-          <Input
-            placeholder="Password"
-            value={form.password}
-            onChange={updateForm("password")}
-            bg="gray.300"
-          />
-        </Flex>
-        <Button marginTop={10} onClick={handleRegister}>
-          Register
-        </Button>
-      </Flex>
-    </Flex>
+    <Box pt={[10, 10, 0, 0]}>
+      <Toaster />
+      <Card.Root w={["300px", "300px", "400px", "500px"]}>
+        <Card.Header>
+          <Card.Title color="white">Sign in</Card.Title>
+          <Card.Description size="lg" color="white">
+            Fill in the form below to sign in
+          </Card.Description>
+        </Card.Header>
+        <Card.Body>
+          <Stack gap={4} w="full">
+            <Field label="Username" required>
+              <Input
+                placeholder="Enter username"
+                value={form.username}
+                onChange={updateForm("username")}
+              />
+            </Field>
+            <Field label="Email" required>
+              <Input
+                placeholder="Enter email"
+                value={form.email}
+                onChange={updateForm("email")}
+              />
+            </Field>
+            <Field label="Password" required>
+              <Input
+                type="password"
+                w="100%"
+                placeholder="Enter password"
+                value={form.password}
+                onChange={updateForm("password")}
+              />
+            </Field>
+          </Stack>
+        </Card.Body>
+        <Card.Footer justifyContent="flex-end">
+          <Button w="50%" marginTop={10} onClick={handleRegister}>
+            Register
+          </Button>
+        </Card.Footer>
+      </Card.Root>
+    </Box>
   );
 };
 

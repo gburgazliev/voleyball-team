@@ -1,5 +1,4 @@
-import { Flex, Button } from "@chakra-ui/react";
-import Register from "../register/Register";
+
 import { Suspense } from "react";
 import Loader from "../loader/Loader";
 import React from "react";

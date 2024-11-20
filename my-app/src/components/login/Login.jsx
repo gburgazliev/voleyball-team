@@ -54,8 +54,8 @@ const Login = () => {
     try {
       await login(form.email, form.password);
       toaster.create({
-        title: "Invalid email or password.",
-        description: "Please try again.",
+        title: "Successful login.",
+        description: "Redirecting...",
         type: "success",
         duration: 3000,
       });
@@ -74,18 +74,18 @@ const Login = () => {
   };
 
   return (
-    <Box pt={[10, 10, 5, 0]}>
+    <Box pt={[10, 10, 0, 0]}>
       <Toaster />
-      <Card.Root w={["300px", "300px", "400px", "400px"]}>
+      <Card.Root w={["300px", "300px", "400px", "400px"]} >
         <Card.Header>
-          <Card.Title>Sign in</Card.Title>
-          <Card.Description size="lg">
+          <Card.Title color='white'>Sign in</Card.Title>
+          <Card.Description size="lg" color='white'>
             Fill in the form below to sign in
           </Card.Description>
         </Card.Header>
         <Card.Body>
-          <Stack gap={4} w="full">
-            <Field label="Email" required>
+          <Stack gap={4} w="full" >
+            <Field label="Email" required >
               <Input
                 placeholder="Enter email"
                 value={form.email}
@@ -93,21 +93,15 @@ const Login = () => {
               />
             </Field>
             <Field label="Password" required>
-              <InputGroup w='100%'
-                endElement={
-                  <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? "Hide" : "Show"}
-                  </Button>
-                }
-              >
+              
                 <Input
-                  type={show ? "text" : "password"}
+                  type="password"
                   w="100%"
                   placeholder="Enter password"
                   value={form.password}
                   onChange={updateForm("password")}
                 />
-              </InputGroup>
+              
             </Field>
           </Stack>
         </Card.Body>
