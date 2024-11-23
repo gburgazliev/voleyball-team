@@ -3,6 +3,7 @@
   --base--text--color: #ffffff;
   --base--button--color: lightblue;
   --base--text--button--color: black;
+  --base--form--color:rgb(0, 0, 0);
 }
 .light-mode {
   --base--color: lightblue;
@@ -39,7 +40,7 @@ li {
 }
 
 label {
-  color: var(--base--text--color);
+  color: white;
   
   font-family: 'Lobster';
   margin: 0;

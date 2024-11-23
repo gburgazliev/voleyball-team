@@ -3,25 +3,27 @@ import { useEffect, useState } from "react";
 
 
 
-// import {
-//     Modal,
-//     ModalOverlay,
-//     ModalContent,
-//     ModalHeader,
-//     ModalFooter,
-//     ModalBody,
-//     ModalCloseButton,
-// } from '@chakra-ui/react'
+import {
+    DialogRoot,
+    
+     DialogContent,
+    DialogHeader,
+    DialogFooter,
+    DialogBody,
+     DialogCloseTrigger,
+} from '../ui/dialog'
 import './coachesPage.css';
 import { getDownloadURL } from "firebase/storage";
 import { addCoachToDatabase, updateCoach} from "../../utils/utils";
 import { database, storage, storageRef } from '../../../firebase/firebase-config';
 import {onValue, ref } from "firebase/database";
 import SingleCoachesPageCoach from "../singleCoachesPageCoach/SingleCoachesPageCoach";
-import { getUserById } from "../../utils/utils";
 import { uploadBytes } from "firebase/storage";
+import { DialogBackdrop } from "@chakra-ui/react";
+
+
 const CoachesPage = () => {
-    const { userData } = useAuth();
+    const { isAdmin } = useAuth();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -78,32 +80,32 @@ const CoachesPage = () => {
     return (
         <div className="coaches-page-container">
             
-{/* 
+
             <div id='coaches-container'>
                 {coaches.map((coach) => {
                     return (
-                        <SingleCoachesPageCoach user={userData} key={coach.uid} coach={coach} />
+                        <SingleCoachesPageCoach isAdmin={isAdmin} key={coach.uid} coach={coach} />
                     );
                 })}
 
             </div>
-          { userData && userData.role ==='admin' && <button id='add-coach-button' onClick={() => setIsModalOpen(true)}>Add coach</button>}
-            <Modal isOpen={isModalOpen} onClose={() => { setIsModalOpen(false) }}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader >Add coach</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody >
+          { isAdmin && <button id='add-coach-button' onClick={() => setIsModalOpen(true)}>Add coach</button>}
+            <DialogRoot isOpen={isModalOpen} onClose={() => { setIsModalOpen(false) }}>
+                <DialogBackdrop />
+                <DialogContent>
+                    <DialogHeader >Add coach</DialogHeader>
+                    <DialogCloseTrigger />
+                    <DialogBody >
                         <input id='first-name-input' type="text" placeholder="First name" onChange={(e) => setFirstName(e.target.value)} value={firstName} />
                         <input id="last-name-input" type="text" placeholder="Last name" onChange={(e) => setLastName(e.target.value)} value={lastName} />
                         <input id="coach-file-input" type='file' onChange={handleFileChange} />
                         <img id='modal-image'src={imageURL} alt="" />
-                    </ModalBody>
-                    <ModalFooter >
+                    </DialogBody>
+                    <DialogFooter >
                         <button onClick={addCoach}>Save</button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal> */}
+                    </DialogFooter>
+                </DialogContent>
+            </DialogRoot>
           
         </div>
     );
