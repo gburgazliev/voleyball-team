@@ -36,6 +36,13 @@
       
 }
 
+.single-coach-container button {
+    background-color: transparent !important;
+    color: white;
+}
+.single-coach-container button:hover {
+    cursor: pointer;
+}
 
 
 #coach-image-container {
