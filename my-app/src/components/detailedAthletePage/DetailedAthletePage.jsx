@@ -109,7 +109,7 @@ const DetailedAthletePage = () => {
         }
       } else {
         return (
-          <Text fontFamily='monospace' color="white" key={index}>
+          <Text fontFamily='monospace, serif' color="white" key={index}>
             {item}
           </Text>
         );
