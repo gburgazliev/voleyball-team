@@ -121,16 +121,16 @@ const MobileHeader = () => {
             href="https://www.instagram.com/heaven07.volley.agency?igsh=bjNkbDc5cDhneXA2"
             target="_blank"
           >
-            <Image src={instagram} boxSize="30px"></Image>
+            <Image src={instagram} boxSize={["20px", '30px', '30px', '30px']}></Image>
           </a>
           <a
             href="https://www.facebook.com/profile.php?id=61564570175373"
             target="_blank"
           >
-            <Image src={facebook} boxSize="30px"></Image>
+            <Image src={facebook} boxSize={["20px", '30px', '30px', '30px']}></Image>
           </a>
           <a href="https://www.youtube.com" target="_blank">
-            <Image src={youtube} boxSize="30px"></Image>
+            <Image src={youtube} boxSize={["20px", '30px', '30px', '30px']}></Image>
           </a>
         </div>
 
