@@ -4,7 +4,7 @@
  * @returns {JSX.Element} DetailedAthletePage component
  */
 import { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { delay, motion, stagger } from "framer-motion";
 import {
   MotionList,
@@ -37,9 +37,10 @@ import "./detailedAthlete.css";
 
 const DetailedAthletePage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [athlete, setAthlete] = useState({});
   const { isAdmin } = useAuth();
-  const gender = useLocation().state.gender;
+  const gender = useLocation().state?.gender;
   const [isEditableOpen, setIsEditableOpen] = useState(false);
   const [isEditableVideoOpen, setIsEditableVideoOpen] = useState(false);
   const [isAchievmentsHovered, setIsAchievmentsHovered] = useState(false);
@@ -48,14 +49,14 @@ const DetailedAthletePage = () => {
   const [description, setDescription] = useState("");
   const listVariants = {
     invisible: {
-     height: 0,
-     width: 0,
+      height: 0,
+      width: 0,
       opacity: 0,
       scale: 0,
     },
     visible: {
-      width: 'auto',
-      height: 'auto',
+      width: "auto",
+      height: "auto",
       scale: 1,
       opacity: 1,
       transition: {
@@ -66,7 +67,7 @@ const DetailedAthletePage = () => {
   const listItemVariants = {
     invisible: {
       opacity: 0,
-      y: -10, 
+      y: -10,
     },
     visible: {
       opacity: 1,
@@ -109,7 +110,7 @@ const DetailedAthletePage = () => {
         }
       } else {
         return (
-          <Text fontFamily='monospace, serif' color="white" key={index}>
+          <Text fontFamily="monospace, serif" color="white" key={index}>
             {item}
           </Text>
         );
@@ -151,7 +152,9 @@ const DetailedAthletePage = () => {
 
   useEffect(() => {
     let unsubscribe;
-
+    if (!gender) {
+      navigate("/");
+    }
     subscribeToAthleteById(id, setAthlete, gender)
       .then((func) => {
         unsubscribe = func;
@@ -164,7 +167,7 @@ const DetailedAthletePage = () => {
     return () => {
       if (unsubscribe) unsubscribe();
     };
-  }, [id, gender]);
+  }, [id, gender, navigate]);
 
   useEffect(() => {
     setDescription(athlete?.description);
@@ -195,7 +198,7 @@ const DetailedAthletePage = () => {
                 <LuPencilLine />
               </IconButton>
             )}
-            { isEditableVideoOpen && (
+            {isEditableVideoOpen && (
               <>
                 <IconButton
                   variant="outline"
@@ -217,7 +220,7 @@ const DetailedAthletePage = () => {
                 </IconButton>
               </>
             )}
-            { isEditableVideoOpen && (
+            {isEditableVideoOpen && (
               <Input
                 placeholder="Example: abbstDTVweY"
                 bg="bg.subtle"
@@ -351,7 +354,6 @@ const DetailedAthletePage = () => {
                 variants={listItemVariants}
                 layout
                 fontSize="clamp(12px, 4vw, 1rem)"
-              
                 key={item}
               >
                 {item}
