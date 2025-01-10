@@ -18,7 +18,7 @@ import { Separator } from "@chakra-ui/react";
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
 import letter from "../../assets/letter.png";
-import ukraineFlag from "../../assets/ukraineFlag.jpg";
+
 import { Image, Flex, Heading, Text, Box } from "@chakra-ui/react";
 import "./footer.css";
 
