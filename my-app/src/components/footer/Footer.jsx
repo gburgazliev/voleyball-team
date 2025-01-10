@@ -8,10 +8,17 @@
  *   <Footer />
  * )
  */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHandshake,
+  faUsers,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 import { Separator } from "@chakra-ui/react";
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
 import letter from "../../assets/letter.png";
+import ukraineFlag from "../../assets/ukraineFlag.jpg";
 import { Image, Flex, Heading, Text, Box } from "@chakra-ui/react";
 import "./footer.css";
 
@@ -38,7 +45,7 @@ const Footer = () => {
         </div>
 
         <Flex
-          direction="column"
+          direction={['column', 'column', 'column', 'column']}
           w="100%"
           justifyContent="center"
           alignItems="center"
@@ -50,8 +57,7 @@ const Footer = () => {
             fontSize="clamp(8px, 2.5vw, 1rem)"
             alignItems="center"
             justifyContent="center"
-           gap={2}
-            
+            gap={2}
           >
             <Image
               w="20px "
@@ -79,6 +85,26 @@ const Footer = () => {
               alt="letter"
             />
             <Text>heaven07@abv.bg</Text>
+          </Flex>
+
+          <Flex justifyContent="center" >
+            <Flex direction="column" gap={2}>
+              <Heading  mt={3} textAlign='center'>
+                <FontAwesomeIcon color="yellow" icon={faHandshake} /> Official
+                partner for Ukraine{" "}
+                
+              </Heading>
+              <Flex justifyContent='center' gap={2}>
+                <Text  textAlign='center' fontSize="clamp(15px, 3vw, 1rem)">
+                  <FontAwesomeIcon color="yellow" icon={faUsers} /> Oleksandr
+                  Statsenko 
+                </Text>
+                <Text  textAlign='center' fontSize="clamp(15px, 3vw, 1rem)">
+                   <FontAwesomeIcon color="yellow" icon={faPhone} />{" "}
+                  +380 (50) 607 18 49
+                </Text>
+              </Flex>
+            </Flex>
           </Flex>
         </Flex>
 
