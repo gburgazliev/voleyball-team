@@ -17,7 +17,7 @@ import {
   faLocation,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
-import {Flag} from "react-world-flags";
+import Flag from "react-world-flags";
 import { Separator } from "@chakra-ui/react";
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
