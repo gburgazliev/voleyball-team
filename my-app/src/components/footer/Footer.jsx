@@ -52,7 +52,7 @@ const Footer = () => {
           direction={["column", "column", "row", "row"]}
           w="100%"
           gap={[0, 0, 5, 5]}
-          justifyContent="space-around"
+          justifyContent="space-evenly"
           alignItems="center"
           pb={5}
         >
