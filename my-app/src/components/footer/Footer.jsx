@@ -139,7 +139,7 @@ const Footer = () => {
              <Flex justifyContent="center" align="center" mt={3}>
             {" "}
             <Flag code="TUR" style={{ width: "64px", height: "20px" }} />
-            <Heading textAlign="center">Consult for Turkey </Heading>
+            <Heading textAlign="center">Consultant for Turkey </Heading>
             <Flag code="TUR" style={{ width: "64px", height: "20px" }} />
           </Flex>
           <Flex
