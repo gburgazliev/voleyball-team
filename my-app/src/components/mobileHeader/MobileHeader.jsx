@@ -73,14 +73,18 @@ const MobileHeader = () => {
         try {
           moon.style.display = "block";
           sun.style.display = "none";
-        } catch (error) {}
+        } catch (error) {
+          console.error('Error setting theme:', error.message)
+        }
       } else {
         body.classList.remove("light-mode");
         localStorage.removeItem("lightmode");
         try {
           sun.style.display = "block";
           moon.style.display = "none";
-        } catch (error) {}
+        } catch (error) {
+          console.error('Error setting theme:', error.message)
+        }
       }
     });
     setTheme(false);
@@ -129,7 +133,7 @@ const MobileHeader = () => {
           >
             <Image src={facebook} boxSize={["20px", '30px', '30px', '30px']}></Image>
           </a>
-          <a href="https://www.youtube.com" target="_blank">
+          <a href="https://youtube.com/@heaven07volleyagency?si=ixqpQROAynDfN5Px" target="_blank">
             <Image src={youtube} boxSize={["20px", '30px', '30px', '30px']}></Image>
           </a>
         </div>
