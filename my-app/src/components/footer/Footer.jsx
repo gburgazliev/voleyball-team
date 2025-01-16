@@ -13,7 +13,11 @@ import {
   faHandshake,
   faUsers,
   faPhone,
+  faMailBulk,
+  faLocation,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
+import Flag from "react-world-flags";
 import { Separator } from "@chakra-ui/react";
 import location from "../../assets/location.png";
 import phone from "../../assets/phone.png";
@@ -45,67 +49,113 @@ const Footer = () => {
         </div>
 
         <Flex
-          direction={['column', 'column', 'column', 'column']}
+          direction={["column", "column", "row", "row"]}
           w="100%"
-          justifyContent="center"
+          gap={[0, 0, 5, 5]}
+          justifyContent="space-around"
           alignItems="center"
           pb={5}
         >
-          <Heading>Vicho Kolev</Heading>
           <Flex
-            w="100%"
-            fontSize="clamp(8px, 2.5vw, 1rem)"
-            alignItems="center"
+            direction="column"
             justifyContent="center"
-            gap={2}
+            alignItems="center"
+            p={2}
           >
-            <Image
-              w="20px "
-              height="20px"
-              borderRadius="full"
-              src={phone}
-              alt="location"
-            />
-            <Text> +359 88 6676470</Text>
+            <Heading>Vicho Kolev</Heading>
+            <Flex
+              direction={["row", "row", "column", "column"]}
+              alignItems="center"
+              justifyContent="center"
+              gap={2}
+            >
+              <Text
+                display="flex"
+                gap={2}
+                textAlign="center"
+                justifyContent="center"
+                alignItems="center"
+                fontSize="clamp(12px, 3vw, 1rem)"
+              >
+                <FontAwesomeIcon icon={faPhone} />
+                +359 88 6676470
+              </Text>
 
-            <Image
-              w="20px "
-              height="20px"
-              borderRadius="full"
-              src={location}
-              alt="location"
-            />
-            <Text>Owner - Sofia, Bulgaria</Text>
+              <Text
+                display="flex"
+                gap={2}
+                textAlign="center"
+                justifyContent="center"
+                alignItems="center"
+                fontSize="clamp(12px, 3vw, 1rem)"
+              >
+                {" "}
+                <FontAwesomeIcon size="sm" icon={faLocation} />
+                Owner - Sofia, Bulgaria
+              </Text>
 
-            <Image
-              w="20px "
-              height="20px"
-              borderRadius="full"
-              src={letter}
-              alt="letter"
-            />
-            <Text>heaven07@abv.bg</Text>
+              <Text
+                display="flex"
+                gap={2}
+                textAlign="center"
+                justifyContent="center"
+                alignItems="center"
+                fontSize="clamp(12px, 3vw, 1rem)"
+              >
+                <FontAwesomeIcon icon={faMailBulk} />
+                heaven07@abv.bg
+              </Text>
+            </Flex>
           </Flex>
 
-          <Flex justifyContent="center" >
+          <Flex justifyContent="center">
             <Flex direction="column" gap={2}>
-              <Heading  mt={3} textAlign='center'>
-                <FontAwesomeIcon color="yellow" icon={faHandshake} /> Official
+              <Flex  justifyContent="center" align="center">
+              <Flag code="UA" style={{ width: "64px", height: "20px" }} />
+                 <Heading mt={3} textAlign="center">
+               Official
                 partner for Ukraine{" "}
-                
               </Heading>
-              <Flex justifyContent='center' gap={2}>
-                <Text  textAlign='center' fontSize="clamp(15px, 3vw, 1rem)">
-                  <FontAwesomeIcon color="yellow" icon={faUsers} /> Oleksandr
-                  Statsenko 
+              <Flag code="UA" style={{ width: "64px", height: "20px" }} />
+              </Flex>
+             
+              <Flex
+                justifyContent="center"
+                direction={["row", "row", "column", "column"]}
+                gap={2}
+              >
+                <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
+                  <FontAwesomeIcon icon={faUser} /> Oleksandr
+                  Statsenko
                 </Text>
-                <Text  textAlign='center' fontSize="clamp(15px, 3vw, 1rem)">
-                   <FontAwesomeIcon color="yellow" icon={faPhone} />{" "}
-                  +380 (50) 607 18 49
+                <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
+                  <FontAwesomeIcon  icon={faPhone} /> +380 (50)
+                  607 18 49
                 </Text>
               </Flex>
             </Flex>
           </Flex>
+           <Flex direction='column' gap={2}>
+             <Flex justifyContent="center" align="center" mt={3}>
+            {" "}
+            <Flag code="TUR" style={{ width: "64px", height: "20px" }} />
+            <Heading textAlign="center">Consult for Turkey </Heading>
+            <Flag code="TUR" style={{ width: "64px", height: "20px" }} />
+          </Flex>
+          <Flex
+                justifyContent="center"
+                direction={["row", "row", "column", "column"]}
+                gap={2}
+              >
+                <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
+                  <FontAwesomeIcon  icon={faUser} /> Imkan Colakoglu
+                </Text>
+                <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
+                  <FontAwesomeIcon  icon={faPhone} /> +90 530 353 03 17
+                </Text>
+              </Flex>
+           </Flex>
+         
         </Flex>
 
         <Text fontSize="sm" pb={2} color="gray.500" fontFamily="fantasy">
