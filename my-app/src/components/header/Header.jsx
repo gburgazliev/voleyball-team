@@ -129,8 +129,10 @@ const Header = () => {
                         <a href="https://www.instagram.com/heaven07.volley.agency?igsh=bjNkbDc5cDhneXA2" target="_blank">
                             <Image src={instagram} boxSize={35} alt="Instagram" borderRadius="full" />
                         </a>
-
-                        <Image src={youtube} boxSize="40px" alt="Youtube" borderRadius="full" />
+                        <a href="https://youtube.com/@heaven07volleyagency?si=ixqpQROAynDfN5Px" target="_blank">
+                           <Image src={youtube} boxSize="40px" alt="Youtube" borderRadius="full" />
+                        </a>
+                        
                     </HStack>
                 </Flex>
 
