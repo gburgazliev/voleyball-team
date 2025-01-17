@@ -85,9 +85,9 @@ const DetailedAthletePage = () => {
         item = item.split(": ");
         if (item.length > 1) {
           return (
-            <Text key={index}>
+            <Text key={index} >
               {item[0]}{" "}
-              <a
+              <a 
                 className="link"
                 onClick={() =>
                   window.open(item[1], "_blank", "noopener,noreferrer")
@@ -307,13 +307,15 @@ const DetailedAthletePage = () => {
           order={1}
           bg="gray.800"
           border="2px solid"
+          maxH='300px'
+          overflowY='scro'
           borderColor="border.info"
           position="relative"
           onClick={() => setIsListVisible(!isListVisible)}
           whileHover={() => setIsAchievmentsHovered(true)}
           onHoverEnd={() => setIsAchievmentsHovered(false)}
         >
-          {isAchievmentsHovered && (
+          {/* {isAchievmentsHovered && (
             <MotionFlex
               layout
               cursor="pointer"
@@ -328,7 +330,7 @@ const DetailedAthletePage = () => {
               top={0}
               left={0}
             />
-          )}
+          )} */}
 
           <Text
             alignSelf="center"
@@ -346,7 +348,7 @@ const DetailedAthletePage = () => {
             variants={listVariants}
             as="ol"
             maxW={["250px", "300px", "400px", "500px"]}
-            overflow="hidden"
+            overflowY='auto'
           >
             {formattedDescription?.map((item) => (
               <MotionListItem
