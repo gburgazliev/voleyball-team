@@ -110,7 +110,7 @@ const DetailedAthletePage = () => {
         }
       } else {
         return (
-          <Text fontFamily="monospace, serif" color="white" key={index}>
+          <Text  color="white" key={index}>
             {item}
           </Text>
         );
@@ -353,7 +353,7 @@ const DetailedAthletePage = () => {
               <MotionListItem
                 variants={listItemVariants}
                 layout
-                fontSize="clamp(12px, 4vw, 1rem)"
+                fontSize="clamp(10px, 4vw, 1rem)"
                 key={item}
               >
                 {item}
