@@ -308,7 +308,6 @@ const DetailedAthletePage = () => {
           bg="gray.800"
           border="2px solid"
           maxH='300px'
-          overflowY='scro'
           borderColor="border.info"
           position="relative"
           onClick={() => setIsListVisible(!isListVisible)}
@@ -346,7 +345,8 @@ const DetailedAthletePage = () => {
             initial="invisible"
             animate={isListVisible ? "visible" : "invisible"}
             variants={listVariants}
-            as="ol"
+            as="ul"
+             listStyleType="none"
             maxW={["250px", "300px", "400px", "500px"]}
             overflowY='auto'
           >
