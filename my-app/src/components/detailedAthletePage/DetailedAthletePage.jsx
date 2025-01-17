@@ -109,6 +109,11 @@ const DetailedAthletePage = () => {
           );
         }
       } else {
+       if (item[item.length - 1] === ':') {
+      return  <Text color="yellow" key={index}>
+            {item}
+          </Text>
+       }
         return (
           <Text color="white" key={index}>
             {item}
@@ -350,12 +355,12 @@ const DetailedAthletePage = () => {
             maxW={["250px", "300px", "400px", "500px"]}
             overflowY='auto'
           >
-            {formattedDescription?.map((item) => (
+            {formattedDescription?.map((item, index) => (
               <MotionListItem
                 variants={listItemVariants}
                 layout
                 fontSize="clamp(10px, 4vw, 1rem)"
-                key={item}
+                key={index}
               >
                 {item}
               </MotionListItem>

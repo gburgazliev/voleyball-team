@@ -91,12 +91,13 @@
 }
 .link {
     color: rgb(114, 114, 220);
+    
 }
 
 .link:hover {
     color: purple;
-    text-decoration: none;
-    font-size: 25px;
+    text-decoration: underline;
+    font-size: 17px;
     
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
