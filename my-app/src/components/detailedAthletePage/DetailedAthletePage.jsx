@@ -110,7 +110,7 @@ const DetailedAthletePage = () => {
         }
       } else {
         return (
-          <Text  color="white" key={index}>
+          <Text color="white" key={index}>
             {item}
           </Text>
         );
@@ -305,7 +305,7 @@ const DetailedAthletePage = () => {
           flexDirection="column"
           p={3}
           order={1}
-          bg="bg.subtle"
+          bg="gray.800"
           border="2px solid"
           borderColor="border.info"
           position="relative"
@@ -318,7 +318,6 @@ const DetailedAthletePage = () => {
               layout
               cursor="pointer"
               onClick={() => {
-                console.log("asdasdsad");
                 setIsListVisible(!isListVisible);
               }}
               position="absolute"
