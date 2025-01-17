@@ -85,7 +85,7 @@ const DetailedAthletePage = () => {
         item = item.split(": ");
         if (item.length > 1) {
           return (
-            <Text key={index} >
+            <Text key={index} color='white'>
               {item[0]}{" "}
               <a 
                 className="link"
