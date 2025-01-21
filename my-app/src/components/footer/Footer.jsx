@@ -15,7 +15,7 @@ import {
   faPhone,
   faMailBulk,
   faLocation,
-  faUser
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import Flag from "react-world-flags";
 import { Separator } from "@chakra-ui/react";
@@ -110,52 +110,72 @@ const Footer = () => {
 
           <Flex justifyContent="center">
             <Flex direction="column" gap={2}>
-              <Flex  justifyContent="center" align="center">
-              <Flag code="UA" style={{ width: "64px", height: "20px" }} />
-                 <Heading mt={3} textAlign="center">
-               Official
-                partner for Ukraine{" "}
-              </Heading>
-              <Flag code="UA" style={{ width: "64px", height: "20px" }} />
+              <Flex justifyContent="center" align="center">
+                <Flag code="UA" style={{ width: "64px", height: "20px" }} />
+                <Heading mt={3} textAlign="center">
+                  Official partner for Ukraine{" "}
+                </Heading>
+                <Flag code="UA" style={{ width: "64px", height: "20px" }} />
               </Flex>
-             
+
               <Flex
                 justifyContent="center"
                 direction={["row", "row", "column", "column"]}
                 gap={2}
               >
                 <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
-                  <FontAwesomeIcon icon={faUser} /> Oleksandr
-                  Statsenko
+                  <FontAwesomeIcon icon={faUser} /> Oleksandr Statsenko
                 </Text>
                 <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
-                  <FontAwesomeIcon  icon={faPhone} /> +380 (50)
-                  607 18 49
+                  <FontAwesomeIcon icon={faPhone} /> +380 (50) 607 18 49
                 </Text>
               </Flex>
             </Flex>
           </Flex>
-           <Flex direction='column' gap={2}>
-             <Flex justifyContent="center" align="center" mt={3}>
-            {" "}
-            <Flag code="TUR" style={{ width: "64px", height: "20px" }} />
-            <Heading textAlign="center">Consultant for Turkey </Heading>
-            <Flag code="TUR" style={{ width: "64px", height: "20px" }} />
+
+          <Flex direction="column" gap={2}>
+            <Flex justifyContent="center" align="center" mt={3}>
+              {" "}
+              <Flag code="US" style={{ width: "64px", height: "20px" }} />
+              <Heading textAlign="center">Official partner for USA </Heading>
+              <Flag code="US" style={{ width: "64px", height: "20px" }} />
+            </Flex>
+            <Flex
+              justifyContent="center"
+              direction={["row", "row", "column", "column"]}
+              gap={2}
+            >
+              <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
+                <FontAwesomeIcon icon={faUsers} /> PK Recruitment Agency
+              </Text>
+              <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
+                <FontAwesomeIcon icon={faUser} /> Radoslav Popov
+              </Text>
+              <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
+                <FontAwesomeIcon icon={faPhone} /> +359 88 840 7740
+              </Text>
+            </Flex>
           </Flex>
-          <Flex
-                justifyContent="center"
-                direction={["row", "row", "column", "column"]}
-                gap={2}
-              >
-                <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
-                  <FontAwesomeIcon  icon={faUser} /> Imkan Colakoglu
-                </Text>
-                <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
-                  <FontAwesomeIcon  icon={faPhone} /> +90 530 353 03 17
-                </Text>
-              </Flex>
-           </Flex>
-         
+          <Flex direction="column" gap={2}>
+            <Flex justifyContent="center" align="center" mt={3}>
+              {" "}
+              <Flag code="TUR" style={{ width: "64px", height: "20px" }} />
+              <Heading textAlign="center">Consultant for Turkey </Heading>
+              <Flag code="TUR" style={{ width: "64px", height: "20px" }} />
+            </Flex>
+            <Flex
+              justifyContent="center"
+              direction={["row", "row", "column", "column"]}
+              gap={2}
+            >
+              <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
+                <FontAwesomeIcon icon={faUser} /> Imkan Colakoglu
+              </Text>
+              <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
+                <FontAwesomeIcon icon={faPhone} /> +90 530 353 03 17
+              </Text>
+            </Flex>
+          </Flex>
         </Flex>
 
         <Text fontSize="sm" pb={2} color="gray.500" fontFamily="fantasy">
