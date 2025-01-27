@@ -137,7 +137,7 @@ const Footer = () => {
             <Flex justifyContent="center" align="center" mt={3}>
               {" "}
               <Flag code="US" style={{ width: "64px", height: "20px" }} />
-              <Heading textAlign="center">Official partner for USA </Heading>
+              <Heading textAlign="center"> Constultant USA </Heading>
               <Flag code="US" style={{ width: "64px", height: "20px" }} />
             </Flex>
             <Flex
@@ -146,13 +146,7 @@ const Footer = () => {
               gap={2}
             >
               <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
-                <FontAwesomeIcon icon={faUsers} /> PK Recruitment Agency
-              </Text>
-              <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
                 <FontAwesomeIcon icon={faUser} /> Radoslav Popov
-              </Text>
-              <Text textAlign="center" fontSize="clamp(12px, 3vw, 1rem)">
-                <FontAwesomeIcon icon={faPhone} /> +359 88 840 7740
               </Text>
             </Flex>
           </Flex>
