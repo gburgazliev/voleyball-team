@@ -40,7 +40,7 @@ Contact page is where you can directly send a message to the organization by fil
 ![Alt text](image-9.png)
   
 
-### Adminisrative part
+### Administrative part
 An authenticated user with admin role has the following features : 
 
 - **Home :** 
